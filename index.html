@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizal Reviewer — Modules 1–4 (Full Coverage)</title>
+<style>
+  :root{
+    --bg:#0f172a; --ink:#1e293b; --muted:#64748b;
+    --line:#e2e8f0; --accent:#1d4ed8; --accent-soft:#eff6ff;
+    --ok:#15803d; --ok-soft:#f0fdf4; --bad:#b91c1c; --bad-soft:#fef2f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; padding:24px 16px 64px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,#eef2f7 0%,#e2e8f0 100%);
+    color:var(--ink); line-height:1.55;
+  }
+  .wrap{max-width:780px;margin:0 auto}
+  header{
+    background:var(--bg); color:#fff; border-radius:16px; padding:26px 28px; margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(15,23,42,.18);
+  }
+  header h1{margin:0 0 6px; font-size:1.5rem; letter-spacing:-.02em}
+  header p{margin:0; color:#cbd5e1; font-size:.92rem}
+  .card{
+    background:#fff; border-radius:14px; padding:22px 24px; margin-bottom:16px;
+    box-shadow:0 2px 10px rgba(15,23,42,.07); border:1px solid var(--line);
+  }
+  h2{font-size:1.05rem;margin:0 0 12px;letter-spacing:-.01em}
+  .chip{
+    display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+    border-radius:999px; padding:3px 11px; margin-bottom:10px;
+  }
+  .progbar{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-bottom:8px}
+  .progfill{height:100%;width:0;background:var(--accent);transition:width .3s ease}
+  .progtxt{font-size:.8rem;color:var(--muted);margin:0 0 16px}
+  .qtext{font-size:1.06rem;font-weight:600;margin:0 0 16px}
+  button.opt{
+    display:block;width:100%;text-align:left;font:inherit;cursor:pointer;
+    background:#fff;border:1.5px solid var(--line);border-radius:11px;
+    padding:13px 16px;margin-bottom:9px;color:var(--ink);transition:.15s;
+  }
+  button.opt:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+  button.opt:disabled{cursor:default}
+  button.opt.right{border-color:var(--ok);background:var(--ok-soft);font-weight:600}
+  button.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+  .fb{margin-top:14px;padding:13px 16px;border-radius:11px;font-size:.92rem;display:none}
+  .fb.show{display:block}
+  .fb.right{background:var(--ok-soft);border-left:4px solid var(--ok)}
+  .fb.wrong{background:var(--bad-soft);border-left:4px solid var(--bad)}
+  .fb b{display:block;margin-bottom:4px}
+  .nav{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+  button.btn{
+    font:inherit;font-weight:600;cursor:pointer;border:none;border-radius:10px;
+    padding:12px 26px;background:var(--accent);color:#fff;transition:.15s;
+  }
+  button.btn:hover{background:#1e40af}
+  button.btn:disabled{background:#cbd5e1;cursor:not-allowed}
+  button.ghost{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+  button.ghost:hover{background:var(--accent-soft)}
+  .score-num{font-size:3rem;font-weight:800;letter-spacing:-.03em;margin:6px 0 2px}
+  .score-lbl{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+  .verdict{display:inline-block;padding:6px 14px;border-radius:99px;font-size:.85rem;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin:20px 0}
+  .stat{background:#f8fafc;border:1px solid var(--line);border-radius:11px;padding:13px}
+  .stat span{display:block;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .stat strong{font-size:1.3rem}
+  .breakdown{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:8px}
+  .breakdown th,.breakdown td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+  .breakdown th{font-size:.73rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .breakdown td:last-child,.breakdown th:last-child{text-align:right}
+  .modbar{height:6px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-top:5px}
+  .modfill{height:100%;background:var(--accent)}
+  .wronglist{margin:0;padding-left:20px;font-size:.9rem}
+  .wronglist li{margin-bottom:12px}
+  .wronglist em{color:var(--ok);font-style:normal;font-weight:600}
+  .wronglist small{color:var(--muted)}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Rizal Reviewer</h1>
+    <p>Modules 1–4 · Full coverage · 60 items · Instant feedback + final score</p>
+  </header>
+
+  <div class="card" id="startScreen">
+    <h2>Ready when you are</h2>
+    <p style="color:var(--muted);font-size:.94rem;margin:0 0 6px">
+      60 questions covering every module — Rizal Law, 19th Century, Genealogy &amp; Education,
+      and Life &amp; Travels. You get instant feedback after each answer, then a full score
+      breakdown by module at the end.
+    </p>
+    <div class="nav"><button class="btn" onclick="startQuiz()">Start Reviewer</button></div>
+  </div>
+
+  <div id="quizScreen" class="hidden">
+    <div class="card">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <p class="progtxt" id="progtxt"></p>
+      <span class="chip" id="qmod"></span>
+      <p class="qtext" id="qtext"></p>
+      <div id="opts"></div>
+      <div class="fb" id="fb"></div>
+      <div class="nav"><button class="btn" id="nextBtn" disabled onclick="nextQ()">Next</button></div>
+    </div>
+  </div>
+
+  <div id="resultScreen" class="hidden">
+    <div class="card">
+      <span class="chip">Final Score</span>
+      <div class="score-num" id="scoreNum"></div>
+      <p class="score-lbl" id="scorePct"></p>
+      <div id="verdict"></div>
+
+      <div class="grid">
+        <div class="stat"><span>Correct</span><strong id="statRight"></strong></div>
+        <div class="stat"><span>Wrong</span><strong id="statWrong"></strong></div>
+        <div class="stat"><span>Total</span><strong id="statTotal"></strong></div>
+        <div class="stat"><span>Percentage</span><strong id="statPct"></strong></div>
+      </div>
+
+      <h2>Score by Module</h2>
+      <table class="breakdown">
+        <thead><tr><th>Module</th><th>Score</th></tr></thead>
+        <tbody id="modTable"></tbody>
+      </table>
+
+      <div class="nav"><button class="btn ghost" onclick="location.reload()">Retake</button></div>
+    </div>
+
+    <div class="card" id="reviewCard">
+      <h2>Items to review</h2>
+      <ol class="wronglist" id="wrongList"></ol>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   QUESTION BANK — 60 items, full module coverage
+   m = module tag · q = question · a = options · c = correct index · e = explanation
+   ============================================================ */
+const QUESTIONS = [
+
+/* ---------------- MODULE 1: RIZAL LAW (18 items) ---------------- */
+{ m:"Module 1 · Rizal Law", q:"Who is known as the Father of the Rizal Law?",
+  a:["Sen. Jose P. Laurel","Sen. Claro M. Recto","Pres. Ramon Magsaysay","Sen. Mariano Cuenco"],
+  c:0, e:"Sen. Jose P. Laurel filed the Rizal Bill and is called its Father." },
+
+{ m:"Module 1 · Rizal Law", q:"What bill number did Laurel file in 1956?",
+  a:["Senate Bill 448","Senate Bill 1425","House Bill 448","Presidential Decree 247"],
+  c:0, e:"Senate Bill 448 — the Rizal Bill — filed in 1956." },
+
+{ m:"Module 1 · Rizal Law", q:"Why was the Rizal Bill described as 'rough' when filed?",
+  a:["Several persons tried to block its approval","It had no sponsor","It was filed too late","It lacked a bill number"],
+  c:0, e:"The bill was rough due to several persons who tried to block its approval." },
+
+{ m:"Module 1 · Rizal Law", q:"Sen. Decoroso Rosales opposed the bill. What was his connection to the Church?",
+  a:["Brother of the former Archbishop of Manila","A member of the Paulist Order","President of Catholic Action","A radio commentator"],
+  c:0, e:"Rosales was a devout Catholic and brother of the former Archbishop of Manila." },
+
+{ m:"Module 1 · Rizal Law", q:"Who was the President of Catholic Action of the Philippines who opposed the law?",
+  a:["Francisco 'Soc' Rodrigo","Jesus Paredes","Mariano Cuenco","Jose P. Laurel"],
+  c:0, e:"Francisco 'Soc' Rodrigo headed Catholic Action of the Philippines." },
+
+{ m:"Module 1 · Rizal Law", q:"Sen. Mariano Cuenco's connection to the Church was that he was —",
+  a:["a brother of an Archbishop in a local diocese","a member of the Paulist Order","author of a pastoral letter","a devout layman only"],
+  c:0, e:"Cuenco was a brother of an Archbishop in the local diocese." },
+
+{ m:"Module 1 · Rizal Law", q:"Who wrote a pastoral letter against the Rizal Bill as a member of the Paulist Order?",
+  a:["Fr. Jesus Cavana","Fr. Jose Burgos","Sen. Mariano Cuenco","Jesus Paredes"],
+  c:0, e:"Fr. Jesus Cavana, a Paulist, wrote a pastoral letter opposing it." },
+
+{ m:"Module 1 · Rizal Law", q:"Which of these was a radio commentator who opposed the Rizal Bill?",
+  a:["Jesus Paredes","Francisco Rodrigo","Decoroso Rosales","Claro M. Recto"],
+  c:0, e:"Jesus Paredes was among the opponents listed." },
+
+{ m:"Module 1 · Rizal Law", q:"Besides individual opponents, who else was listed as wanting the law disapproved?",
+  a:["The Friars","The Knights of Rizal","The Jesuits","The Americans"],
+  c:0, e:"'The Friars' are listed as opponents of the Rizal Bill." },
+
+{ m:"Module 1 · Rizal Law", q:"Which pair are named as champions of the Rizal Law?",
+  a:["Sen. Jose P. Laurel and Claro M. Recto","Rosales and Cuenco","Rodrigo and Paredes","Laurel and Magsaysay"],
+  c:0, e:"Laurel and Recto, along with other illustrious nationalists." },
+
+{ m:"Module 1 · Rizal Law", q:"Which organization is named among the champions of the Rizal Law?",
+  a:["Order of the Knights of Rizal","Catholic Action of the Philippines","Paulist Order","The Friars"],
+  c:0, e:"The Order of the Knights of Rizal backed the law." },
+
+{ m:"Module 1 · Rizal Law", q:"Opponents argued the novels were damaging to whom?",
+  a:["The clerics","The students","The government","The Spanish crown"],
+  c:0, e:"Their first argument: the Noli and Fili are very damaging to the clerics." },
+
+{ m:"Module 1 · Rizal Law", q:"Opponents claimed the novels were written when Rizal was —",
+  a:["separated from the Catholic faith and religion","still a student at Ateneo","living in Dapitan","serving as a physician"],
+  c:0, e:"They argued the novels contradict many Christian beliefs." },
+
+{ m:"Module 1 · Rizal Law", q:"Which constitutional provision did opponents cite against compulsory reading?",
+  a:["Art. 3, Sec. 1, Par. 7","Art. 2, Sec. 1, Par. 5","Art. 6, Sec. 3, Par. 2","Art. 1, Sec. 4, Par. 1"],
+  c:0, e:"Compelling Catholic students was said to violate Art. 3, Sec. 1, Par. 7." },
+
+{ m:"Module 1 · Rizal Law", q:"Which was a PRO-Rizal Law argument?",
+  a:["Need for rededication to the ideals of freedom and nationalism","The novels damage the clerics","Compulsory reading violates the Constitution","The novels contradict the faith"],
+  c:0, e:"Pro argument 1: rededication to the ideals of freedom and nationalism." },
+
+{ m:"Module 1 · Rizal Law", q:"The pro side argued the youth should be covered by Rizal's works during —",
+  a:["their formative and decisive years in school","their retirement years","only their graduate studies","their primary years alone"],
+  c:0, e:"Rizal's novels are a constant and inspiring source of patriotism for the youth." },
+
+{ m:"Module 1 · Rizal Law", q:"Which was among the pro arguments regarding character?",
+  a:["Need to develop moral character, personal discipline and civic conscience","Need to reduce school expenses","Need to limit foreign authors","Need to shorten the curriculum"],
+  c:0, e:"Pro argument 4: develop moral character, discipline, civic conscience, duties of citizenship." },
+
+{ m:"Module 1 · Rizal Law", q:"Which statement about R.A. 1425 is correct?",
+  a:["It included Rizal courses in all public and private schools, colleges and universities","It applied only to public schools","It made the course optional","It covered only graduate programs"],
+  c:0, e:"Courses on Rizal's life, works and writings went into all schools, public and private." },
+
+{ m:"Module 1 · Rizal Law", q:"Under R.A. 1425, which body was directed to translate Rizal's novels into English, Tagalog and other dialects?",
+  a:["Board of National Education","Commission on Higher Education","Department of Education","National Historical Commission"],
+  c:0, e:"The law authorized and directed the Board of National Education to arrange translations and cheap editions." },
+
+{ m:"Module 1 · Rizal Law", q:"Who signed the Rizal Bill into law?",
+  a:["Pres. Ramon Magsaysay","Pres. Elpidio Quirino","Pres. Carlos P. Garcia","Pres. Fidel Ramos"],
+  c:0, e:"President Ramon Magsaysay signed it as Republic Act 1425." },
+
+{ m:"Module 1 · Rizal Law", q:"When was R.A. 1425 approved?",
+  a:["June 12, 1956","June 19, 1861","December 26, 1994","February 15, 1996"],
+  c:0, e:"Approval came on June 12, 1956." },
+
+{ m:"Module 1 · Rizal Law", q:"Which memorandum directed DECS and CHED to immediately and fully implement R.A. 1425?",
+  a:["Presidential Memorandum Order 247","CHED Memorandum Order 6","Executive Order 1425","Memorandum Circular 19"],
+  c:0, e:"PMO 247, dated Dec. 26, 1994, issued by Pres. Ramos." },
+
+{ m:"Module 1 · Rizal Law", q:"What date is attached to Presidential Memorandum Order 247?",
+  a:["December 26, 1994","February 15, 1996","June 12, 1956","June 19, 1861"],
+  c:0, e:"PMO 247 is dated Dec. 26, 1994." },
+
+{ m:"Module 1 · Rizal Law", q:"Which CHED order required all colleges and universities to offer the Rizal course?",
+  a:["CHED Memorandum Order 6","CHED Memorandum Order 247","CHED Order 1425","CHED Circular 12"],
+  c:0, e:"CHED Memorandum Order 6, dated February 15, 1996." },
+
+{ m:"Module 1 · Rizal Law", q:"How was the Rizal course required to be offered?",
+  a:["As a separate three-unit course","As part of Philippine History","As a one-unit elective","As a graduate seminar"],
+  c:0, e:"CHED ordered a separate three-unit Rizal course, offered immediately." },
+
+{ m:"Module 1 · Rizal Law", q:"Which of these correctly describes the Rizal course requirement?",
+  a:["Legislated by R.A. 1425 and mandated by PMO 247 and CHED Memo 6","Voluntary for private schools","Only for education majors","Created by the Knights of Rizal"],
+  c:0, e:"It is legislated (R.A. 1425) and mandated (PMO 247, CMO 6)." },
+
+/* ---------------- MODULE 2: 19TH CENTURY (9 items) ---------------- */
+{ m:"Module 2 · 19th Century", q:"According to Module 2, why are historical stories worth studying?",
+  a:["History is full of stories — some inspiring, others chaotic and immoral","History is only for historians","History is purely entertainment","History is only about dates"],
+  c:0, e:"Studying both the uplifting and the immoral helps you become a more rounded person." },
+
+{ m:"Module 2 · 19th Century", q:"Which lesson does the statement 'Nations are made up of a collection of stories and legends' support?",
+  a:["Understand identity","Become a more rounded person","Become inspired","Preserve the status quo"],
+  c:0, e:"These stories shape how we think about our country and our standing within it." },
+
+{ m:"Module 2 · 19th Century", q:"Module 2 states that historical stories can —",
+  a:["inspire individuals to greatness","discourage patriotism","replace formal education","eliminate national legends"],
+  c:0, e:"'Those historical stories can also serve to inspire individuals to greatness.'" },
+
+{ m:"Module 2 · 19th Century", q:"Which of the following is one of Module 2's three lessons?",
+  a:["Become inspired","Increase personal wealth","Win political office","Avoid other subjects"],
+  c:0, e:"The three lessons: become a more rounded person, understand identity, become inspired." },
+
+{ m:"Module 2 · 19th Century", q:"Which of the following is NOT one of the three lessons in Module 2?",
+  a:["Memorize historical dates","Become a more rounded person","Understand identity","Become inspired"],
+  c:0, e:"The module's three lessons are the other three options." },
+
+{ m:"Module 2 · 19th Century", q:"'Some are inspiring and uplifting; others are chaotic and immoral.' What does this describe?",
+  a:["The stories that make up history","The laws of the Philippines","Rizal's family tree","The education system"],
+  c:0, e:"History is full of stories of both kinds." },
+
+{ m:"Module 2 · 19th Century", q:"Module 2's discussion of stories chiefly serves to help students —",
+  a:["understand their national identity and standing","pass a licensing exam","learn a foreign language","study economics"],
+  c:0, e:"Stories shape the way we think about our country and our standing within it." },
+
+{ m:"Module 2 · 19th Century", q:"Which best captures Module 2's overall argument?",
+  a:["Knowing history shapes identity and can inspire greatness","History has no practical value","Only heroes' stories matter","Stories should be forgotten"],
+  c:0, e:"Rounding the person, identity, and inspiration are its three themes." },
+
+{ m:"Module 2 · 19th Century", q:"The topic of Module 2 is —",
+  a:["The 19th Century","The Rizal Law","Rizal's Travels","Rizal's Genealogy"],
+  c:0, e:"Module 2 is titled '19th Century.'" },
+
+/* ---------------- MODULE 3: GENEALOGY & EDUCATION (21 items) ---------------- */
+{ m:"Module 3 · Genealogy & Education", q:"Rizal was born on which date?",
+  a:["June 19, 1861","June 12, 1861","December 30, 1896","June 19, 1863"],
+  c:0, e:"Born Wednesday, 19th of June 1861 in Calamba, Laguna." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Where was Rizal born?",
+  a:["Calamba, Laguna","Binondo, Manila","Intramuros, Manila","Dapitan, Zamboanga"],
+  c:0, e:"In the hilly village of Calamba, Laguna." },
+
+{ m:"Module 3 · Genealogy & Education", q:"The document gives Rizal's full name as —",
+  a:["Dr. Jose Protacio Mercado Rizal Alonzo Y Realonda","Dr. Jose Rizal Mercado y Alonzo","Dr. Jose Protacio Rizal Mercado","Dr. Jose Mercado Rizal Realonda"],
+  c:0, e:"That is the full form as given in Module 3." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Why was Rizal named 'Jose'?",
+  a:["He was born on the feast day of San Jose, his mother's patron","It was his grandfather's name","It was chosen by the friars","It is a Spanish royal name"],
+  c:0, e:"His mother was a devotee of San Jose, and he was born on that saint's feast day." },
+
+{ m:"Module 3 · Genealogy & Education", q:"The name 'Protacio' was taken from —",
+  a:["Gervacio Protacio, from the Catholic Christian calendar","a Spanish governor","his father","a place in Calamba"],
+  c:0, e:"It derives from Gervacio Protacio in the Catholic Christian calendar." },
+
+{ m:"Module 3 · Genealogy & Education", q:"What does 'Mercado' mean?",
+  a:["Market","Rice field","Doctor","Saint"],
+  c:0, e:"'Mercado' literally means market in Spanish." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Whose surname was Lamco, Rizal's great-great-grandfather?",
+  a:["A Chinese surname changed under a 1731 Spanish law","A Spanish surname","A saint's name","His mother's maiden name"],
+  c:0, e:"Lamco was his great-great-grandfather's Chinese surname; the 1731 law forced the change to Mercado." },
+
+{ m:"Module 3 · Genealogy & Education", q:"The surname 'Rizal' came from the Spanish word —",
+  a:["Ricial (rice fields)","Real (royal)","Mercado (market)","Alonzo (family)"],
+  c:0, e:"From 'Ricial,' meaning a rice field." },
+
+{ m:"Module 3 · Genealogy & Education", q:"'Alonzo' in Rizal's name is —",
+  a:["the maiden name of his mother, Donya Theodora","his father's surname","his godmother's surname","a saint's name"],
+  c:0, e:"Alonzo is the maiden name of his mother, Donya Theodora." },
+
+{ m:"Module 3 · Genealogy & Education", q:"What does the letter 'Y' stand for in 'Rizal Alonzo Y Realonda'?",
+  a:["The conjunction 'and'","His godfather's initial","A middle name","A nobility title"],
+  c:0, e:"In Spanish, 'Y' is the conjunction 'and.'" },
+
+{ m:"Module 3 · Genealogy & Education", q:"How is 'Realonda' explained in Module 3?",
+  a:["Traditionally the godmother's surname is added to the child's name","It is the mother's maiden name","It is a place name","It is a saint's name"],
+  c:0, e:"The godmother's surname was traditionally added to the child's name." },
+
+{ m:"Module 3 · Genealogy & Education", q:"The degree 'Doctor' in Rizal's name refers to which accomplishment?",
+  a:["He earned the Licentiate in Medicine at Universidad Central de Madrid","He earned a law degree at UST","He earned a doctorate in philosophy at Ateneo","An honorary title only"],
+  c:0, e:"He finished medical studies in Spain, earning the Licentiate in Medicine." },
+
+{ m:"Module 3 · Genealogy & Education", q:"How many children did the Rizal family have?",
+  a:["Eleven","Nine","Seven","Thirteen"],
+  c:0, e:"The Rizal family had eleven children." },
+
+{ m:"Module 3 · Genealogy & Education", q:"According to Module 3's introduction, the Rizal parents provided for all their children because —",
+  a:["they knew the responsibility and duties of being parents","they were extremely wealthy","the government supported them","relatives helped them"],
+  c:0, e:"Not because they were rich, but because they knew their responsibility and duties." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Which professional title does Module 3 give Rizal?",
+  a:["Ophthalmologist","Dentist","Pharmacist","Veterinarian"],
+  c:0, e:"He was a physician — an ophthalmologist — among many other things." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Which of these is NOT among the many talents Module 3 lists for Rizal?",
+  a:["Astronaut","Novelist","Sculptor","Cartographer"],
+  c:0, e:"The list includes novelist, sculptor, map maker, and dozens more — not astronaut." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Who was Rizal's first teacher?",
+  a:["His mother, Donya Theodora","Uncle Manuel","Fr. Cavana","Paciano Rizal"],
+  c:0, e:"His mother taught him to read, write, pray, and the story of the mother moth." },
+
+{ m:"Module 3 · Genealogy & Education", q:"What story did Rizal's mother tell him that later haunted his family's fears?",
+  a:["The mother moth and its son","The lion and the mouse","The prodigal son","The tortoise and the hare"],
+  c:0, e:"The famous story of the mother moth and its son." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Besides his mother, who helped develop Rizal's skills and sportsmanship?",
+  a:["His uncles","The friars","His brother Paciano","His schoolmates"],
+  c:0, e:"The influence of his uncles developing his skills and sportsmanship." },
+
+{ m:"Module 3 · Genealogy & Education", q:"What degree did Rizal obtain at Ateneo?",
+  a:["Bachelor of Arts","Licentiate in Medicine","Doctor of Philosophy","Bachelor of Laws"],
+  c:0, e:"He finished Ateneo with a Bachelor of Arts degree." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Which religious congregation supervised the school Rizal attended in Manila?",
+  a:["The Jesuits","The Dominicans","The Paulists","The Augustinians"],
+  c:0, e:"Ateneo was supervised by the Jesuits." },
+
+{ m:"Module 3 · Genealogy & Education", q:"What event convinced Don Francisco and Paciano to send Rizal to Manila?",
+  a:["The cruel execution and death of GOMBURZA","The death of his mother","A letter from the Jesuits","The family's financial loss"],
+  c:0, e:"After the execution of GOMBURZA, his father and brother urged him to study in Manila." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Why did Rizal's mother object to his higher education?",
+  a:["She feared too much education would harm him, recalling the moth story and GOMBURZA's death","She wanted him to be a farmer","The family could not afford it","He was needed at home"],
+  c:0, e:"She discerned danger in much education and feared it might cause her son's death." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Which university did Rizal attend for higher studies under the Dominican order?",
+  a:["University of Santo Tomas","Ateneo de Manila","Universidad Central de Madrid","Colegio de San Juan de Letran"],
+  c:0, e:"UST — the oldest university in the Philippines, run by the Dominicans." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Which was NOT one of Rizal's reasons for feeling unhappy at UST?",
+  a:["Filipino students received scholarships denied to Spaniards","Dominican professors and friars intimidated him","Filipinos experienced racial discrimination","Instruction was old-fashioned and oppressive"],
+  c:0, e:"The module lists intimidation, racial discrimination, and an old-fashioned oppressive system." },
+
+{ m:"Module 3 · Genealogy & Education", q:"Which novel reflects Rizal's UST experience of Filipino students being embarrassed by friars?",
+  a:["El Filibusterismo","Noli Me Tangere","Morga's Sucesos","The Reign of Greed only"],
+  c:0, e:"Module 3 says El Filibusterismo describes how Filipino students were embarrassed and disrespected." },
+
+/* ---------------- MODULE 4: LIFE & TRAVELS (12 items) ---------------- */
+{ m:"Module 4 · Life & Travels", q:"Module 4 is titled —",
+  a:["Rizal's Life: Travel abroad and Homecoming","Rizal's Genealogy and Education","The Rizal Law","The 19th Century"],
+  c:0, e:"Module 4 covers travel abroad and homecoming." },
+
+{ m:"Module 4 · Life & Travels", q:"Which learning outcome belongs to Module 4?",
+  a:["Sketch the route of Rizal's First Travel","Trace Rizal's genealogy","Enumerate UST grievances","Explain the Rizal Bill debates"],
+  c:0, e:"Outcome 1: sketch the route of Rizal's First Travel." },
+
+{ m:"Module 4 · Life & Travels", q:"Module 4 asks students to outline Rizal's first travel, including —",
+  a:["achievements, literary pieces, organizations joined, people befriended and love life","his birth and baptism only","his parents' occupations","the Rizal Law debates"],
+  c:0, e:"Outcome 2 lists those five elements." },
+
+{ m:"Module 4 · Life & Travels", q:"Which outcome requires comparison between Rizal's two homecomings?",
+  a:["Evaluate the difference between Rizal's First and Second Homecoming","Trace the genealogy of Rizal","Delineate childhood experiences","Understand the full meaning of his name"],
+  c:0, e:"Outcome 3: evaluate the difference between the First and Second Homecoming." },
+
+{ m:"Module 4 · Life & Travels", q:"Which regions does Module 4 cover for Rizal's travels?",
+  a:["Asia, the United States of America and European nations","Africa and South America","Australia and Antarctica","Only Europe"],
+  c:0, e:"The module title names Asia, the USA and European nations." },
+
+{ m:"Module 4 · Life & Travels", q:"Which of these is NOT an outcome listed for Module 4?",
+  a:["Compute Rizal's travel expenses","Sketch the route of his First Travel","Outline his achievements and literary pieces","Evaluate his two homecomings"],
+  c:0, e:"The module's three outcomes are the other three options." },
+
+{ m:"Module 4 · Life & Travels", q:"How many learning outcomes does Module 4 list?",
+  a:["Three","Two","Four","Five"],
+  c:0, e:"Three outcomes: route, life of the first travel, and homecoming comparison." },
+
+{ m:"Module 4 · Life & Travels", q:"Module 4 groups its travel content under which heading?",
+  a:["His Travels of Asian, United State of America and European nations","Rizal in Calamba","Rizal at UST","The Rizal Bill"],
+  c:0, e:"That is the heading used in the module." },
+
+{ m:"Module 4 · Life & Travels", q:"Which pair correctly matches a module to its focus?",
+  a:["Module 4 — Travel abroad and Homecoming","Module 1 — Genealogy and Education","Module 2 — Travel abroad","Module 3 — The Rizal Law"],
+  c:0, e:"Module 4 is Travel abroad and Homecoming." },
+
+{ m:"Module 4 · Life & Travels", q:"Which of Rizal's personal relationships is explicitly part of Module 4's scope?",
+  a:["His love life","His relationship with the friars only","His siblings' careers","His parents' marriage"],
+  c:0, e:"Outcome 2 includes 'love life' among what students should outline." },
+
+{ m:"Module 4 · Life & Travels", q:"Which type of literary output does Module 4 ask students to outline?",
+  a:["Rizal's literary pieces from his first travel","Only his novels' translations","Only his poems about education","His medical dissertations"],
+  c:0, e:"Outcome 2 includes the literary pieces produced during the first travel." },
+
+{ m:"Module 4 · Life & Travels", q:"The organizations mentioned in Module 4's outcome refer to —",
+  a:["groups Rizal joined during his first travel","groups that opposed the Rizal Law","the Knights of Rizal only","his family's business guild"],
+  c:0, e:"Outcome 2 covers the organizations Rizal joined while abroad." }
+];
+
+/* ============================================================
+   QUIZ ENGINE
+   ============================================================ */
+let i = 0, score = 0, answered = false;
+const modStats = {};
+const wrongLog = [];
+
+function startQuiz(){
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  render();
+}
+
+function render(){
+  const q = QUESTIONS[i];
+  answered = false;
+
+  document.getElementById('qmod').textContent = q.m;
+  document.getElementById('qtext').textContent = q.q;
+  document.getElementById('progfill').style.width = ((i / QUESTIONS.length) * 100) + '%';
+  document.getElementById('progtxt').textContent =
+    'Question ' + (i + 1) + ' of ' + QUESTIONS.length + (i ? '  ·  Score: ' + score : '');
+
+  const box = document.getElementById('opts');
+  box.innerHTML = '';
+  q.a.forEach((txt, idx) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = txt;
+    b.onclick = () => choose(idx, b);
+    box.appendChild(b);
+  });
+
+  const fb = document.getElementById('fb');
+  fb.className = 'fb';
+  fb.innerHTML = '';
+
+  const nb = document.getElementById('nextBtn');
+  nb.disabled = true;
+  nb.textContent = (i === QUESTIONS.length - 1) ? 'See My Score' : 'Next';
+}
+
+function choose(idx, btn){
+  if (answered) return;
+  answered = true;
+
+  const q = QUESTIONS[i];
+  const btns = document.querySelectorAll('#opts .opt');
+  btns.forEach(b => b.disabled = true);
+  btns[q.c].classList.add('right');
+
+  if (!modStats[q.m]) modStats[q.m] = { right:0, total:0 };
+  modStats[q.m].total++;
+
+  const fb = document.getElementById('fb');
+  if (idx === q.c){
+    score++;
+    modStats[q.m].right++;
+    fb.className = 'fb right show';
+    fb.innerHTML = '<b>Correct</b>' + q.e;
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'fb wrong show';
+    fb.innerHTML = '<b>Incorrect — the answer is: ' + q.a[q.c] + '</b>' + q.e;
+    wrongLog.push({ m:q.m, q:q.q, answer:q.a[q.c], note:q.e });
+  }
+
+  document.getElementById('nextBtn').disabled = false;
+  document.getElementById('progtxt').textContent =
+    'Question ' + (i + 1) + ' of ' + QUESTIONS.length + '  ·  Score: ' + score;
+}
+
+function nextQ(){
+  i++;
+  if (i < QUESTIONS.length) render();
+  else showResults();
+}
+
+function showResults(){
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+
+  const total = QUESTIONS.length;
+  const pct = Math.round((score / total) * 100);
+
+  document.getElementById('scoreNum').textContent = score + ' / ' + total;
+  document.getElementById('scorePct').textContent = pct + '% correct';
+  document.getElementById('statRight').textContent = score;
+  document.getElementById('statWrong').textContent = total - score;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statPct').textContent = pct + '%';
+
+  let label, color, bg;
+  if (pct >= 90)      { label = 'Excellent — exam ready';        color = '#15803d'; bg = '#f0fdf4'; }
+  else if (pct >= 75) { label = 'Good — review the misses';      color = '#1d4ed8'; bg = '#eff6ff'; }
+  else if (pct >= 50) { label = 'Fair — needs more review';      color = '#b45309'; bg = '#fffbeb'; }
+  else                { label = 'Needs work — reread the modules'; color = '#b91c1c'; bg = '#fef2f2'; }
+
+  const v = document.getElementById('verdict');
+  v.textContent = label;
+  v.className = 'verdict';
+  v.style.color = color;
+  v.style.background = bg;
+
+  const tbody = document.getElementById('modTable');
+  tbody.innerHTML = '';
+  Object.keys(modStats).forEach(k => {
+    const s = modStats[k];
+    const p = Math.round((s.right / s.total) * 100);
+    tbody.innerHTML +=
+      '<tr><td>' + k +
+      '<div class="modbar"><div class="modfill" style="width:' + p + '%"></div></div></td>' +
+      '<td>' + s.right + '/' + s.total + ' (' + p + '%)</td></tr>';
+  });
+
+  const wl = document.getElementById('wrongList');
+  wl.innerHTML = '';
+  if (wrongLog.length === 0){
+    wl.innerHTML = '<li style="list-style:none;color:var(--ok);font-weight:600">Perfect score — nothing to review.</li>';
+  } else {
+    wrongLog.forEach(w => {
+      wl.innerHTML +=
+        '<li>' + w.q +
+        '<br><em>' + w.answer + '</em>' +
+        '<br><small>' + w.m + ' — ' + w.note + '</small></li>';
+    });
+  }
+}
+</script>
+</body>
+</html>
