@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soc Sci 3 — The Contemporary World Reviewer</title>
+<style>
+  :root{
+    --bg:#0b1220;
+    --panel:#131c2e;
+    --panel2:#1a2540;
+    --line:#26334d;
+    --text:#e8eef9;
+    --muted:#94a3c4;
+    --acc:#4f8cff;
+    --ok:#2fbf71;
+    --bad:#e5574f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:24px 18px 60px}
+  header.hero{
+    background:linear-gradient(135deg,#14264a,#0b1220);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 24px;
+    margin-bottom:20px;
+    background-image:url('[files.use.ai](https://files.use.ai/files/chat%2Ffiles%2F34a8b573-9ba1-416d-805d-06a2527bc323-agentic-image-1790245448753-0.jpeg)');
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(8,14,26,.94),rgba(8,14,26,.72));
+  }
+  header.hero>*{position:relative}
+  header.hero h1{margin:0 0 6px;font-size:1.75rem;letter-spacing:-.3px}
+  header.hero .sub{color:var(--muted);font-size:.95rem;margin:0}
+  .tag{
+    display:inline-block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+    color:#bcd0f5;background:rgba(79,140,255,.18);border:1px solid rgba(79,140,255,.4);
+    padding:4px 10px;border-radius:999px;margin-bottom:12px;
+  }
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:22px;margin-bottom:16px;
+  }
+  .meta{color:var(--muted);font-size:.9rem}
+  h2{font-size:1.15rem;margin:0 0 14px}
+  h3{font-size:1rem;margin:20px 0 8px;color:#cddcff}
+  ul{margin:8px 0 8px 18px;padding:0}
+  li{margin:6px 0}
+  .btn{
+    display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:600;
+    background:var(--acc);color:#fff;padding:13px 24px;border-radius:10px;
+    transition:.15s transform,.15s filter;
+  }
+  .btn:hover{filter:brightness(1.1)}
+  .btn:active{transform:scale(.98)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  .bar{height:7px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-top:14px}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#4f8cff,#66e0c0);transition:.3s}
+
+  .qhead{display:flex;justify-content:space-between;gap:12px;font-size:.85rem;color:var(--muted);margin-bottom:10px}
+  .qtext{font-size:1.08rem;font-weight:600;margin:0 0 16px}
+  .opt{
+    display:flex;gap:12px;align-items:flex-start;
+    background:var(--panel2);border:1px solid var(--line);border-radius:11px;
+    padding:13px 15px;margin-bottom:10px;cursor:pointer;transition:.13s;
+  }
+  .opt:hover{border-color:#3d5480}
+  .opt .key{
+    flex:0 0 24px;height:24px;border-radius:50%;background:#2c3a58;color:#cfdcf7;
+    font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .opt.correct{background:rgba(47,191,113,.16);border-color:var(--ok)}
+  .opt.correct .key{background:var(--ok);color:#04180e}
+  .opt.wrong{background:rgba(229,87,79,.15);border-color:var(--bad)}
+  .opt.wrong .key{background:var(--bad);color:#1c0503}
+  .opt.locked{cursor:default}
+  .fb{border-radius:11px;padding:13px 15px;margin-top:6px;font-size:.94rem;display:none}
+  .fb.show{display:block}
+  .fb.good{background:rgba(47,191,113,.12);border:1px solid rgba(47,191,113,.45)}
+  .fb.bad{background:rgba(229,87,79,.1);border:1px solid rgba(229,87,79,.4)}
+  .fb b{color:#fff}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:8px 0 18px}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .stat .n{font-size:1.7rem;font-weight:700;line-height:1.1}
+  .stat .l{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .score-ring{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:8px}
+  .ring{
+    width:120px;height:120px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;font-weight:700;flex:0 0 120px;
+  }
+  table{width:100%;border-collapse:collapse;font-size:.94rem;margin-top:6px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pill{font-size:.75rem;padding:3px 9px;border-radius:999px;font-weight:600}
+  .pill.g{background:rgba(47,191,113,.16);color:#6ee0a4;border:1px solid rgba(47,191,113,.4)}
+  .pill.b{background:rgba(229,87,79,.14);color:#f39a94;border:1px solid rgba(229,87,79,.4)}
+  .rev{border-left:3px solid var(--bad);padding:10px 0 10px 14px;margin-bottom:14px}
+  .rev .qq{font-weight:600;margin-bottom:4px}
+  .rev small{color:var(--muted);display:block;margin-top:3px}
+  .hidden{display:none}
+  .note{font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="tag">Soc Sci 3 · Reviewer</span>
+    <h1>The Contemporary World</h1>
+    <p class="sub">60 questions — Overview muna, sunod ang Module 1A, 1B, at 1C. Instant feedback after each answer, then a full score breakdown by module at the end.</p>
+  </header>
+
+  <section id="startScreen" class="card">
+    <h2>Ready when you are</h2>
+    <p class="meta">60 questions · 4 modules · no time limit. Pick the best answer for each item — you'll see the correct one right away.</p>
+    <h3>Order ng modules</h3>
+    <ul class="meta">
+      <li><b>Overview — The Contemporary World Course</b> (12 items)</li>
+      <li><b>Module 1A — Nation, State &amp; How States Are Created</b> (15 items)</li>
+      <li><b>Module 1B — Definitions &amp; Drivers of Globalization</b> (15 items)</li>
+      <li><b>Module 1C — Typologies &amp; Metaphors of Globalization</b> (18 items)</li>
+    </ul>
+    <div class="row" style="margin-top:18px">
+      <button class="btn" id="startBtn">Start Reviewer</button>
+    </div>
+  </section>
+
+  <section id="quizScreen" class="card hidden">
+    <div class="qhead">
+      <span id="qCount">Question 1 of 60</span>
+      <span id="qMod"></span>
+    </div>
+    <div class="bar"><i id="prog"></i></div>
+    <p class="qtext" id="qText" style="margin-top:18px"></p>
+    <div id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn" id="nextBtn" disabled>Next</button>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="hidden">
+    <div class="card">
+      <h2>Final Score</h2>
+      <div class="score-ring">
+        <div class="ring" id="ring">0%</div>
+        <div>
+          <div style="font-size:1.05rem;font-weight:600" id="verdict"></div>
+          <div class="meta" id="verdictSub"></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="sCorrect" style="color:#6ee0a4">0</div><div class="l">Correct</div></div>
+        <div class="stat"><div class="n" id="sWrong" style="color:#f39a94">0</div><div class="l">Wrong</div></div>
+        <div class="stat"><div class="n" id="sTotal">60</div><div class="l">Total</div></div>
+        <div class="stat"><div class="n" id="sPct">0%</div><div class="l">Percentage</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Score by Module</h2>
+      <table>
+        <thead><tr><th>Module</th><th class="num">Correct</th><th class="num">Score</th></tr></thead>
+        <tbody id="modTable"></tbody>
+      </table>
+    </div>
+
+    <div class="card" id="reviewCard">
+      <h2>Items to review</h2>
+      <div id="reviewList"></div>
+      <div class="note" id="allGood" style="display:none">Perfect run — nothing to review. 🎉</div>
+    </div>
+
+    <div class="row">
+      <button class="btn" id="retakeBtn">Retake</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   ORDER: Overview → 1A → 1B → 1C
+   Content from: Overview_TCW_Lecture.pptx
+                 Module-1-Intro-to-Globalization_Part-1.ppt
+                 Module-1-Intro-to-Globalization_Part-2.ppt
+   ============================================================ */
+const BANK = [
+
+/* ---------- OVERVIEW (UNANG MODULE) ---------- */
+{m:"OV",q:"Using the various disciplines of the social sciences, the Contemporary World subject examines which transformations?",
+ o:["Economic, social, political, technological and other transformations creating awareness of global interconnectedness","Only economic transformations","Only technological transformations","Only historical transformations before 1945"],a:0,
+ e:"It examines economic, social, political, technological and other transformations that created increasing awareness of the interconnectedness of peoples and places around the globe."},
+
+{m:"OV",q:"In English-language historiography, contemporary history describes the historical period starting from approximately what year?",
+ o:["1900","1918","1945","1989"],a:2,
+ e:"Contemporary history describes the period from approximately 1945 to the present."},
+
+{m:"OV",q:"What is the main point of the Contemporary World as described in the overview?",
+ o:["The current period of time, encompassing the present day and recent past","The period of the Industrial Revolution","The study of ancient civilizations","The era before globalization began"],a:0,
+ e:"The contemporary world refers to the current period, characterized by rapid technological advancements, globalization, interconnectedness, and an evolving social and political landscape."},
+
+{m:"OV",q:"Which of these is a synonym given for the contemporary world?",
+ o:["Modern times","Ancient era","Medieval period","Prehistoric age"],a:0,
+ e:"Synonyms: modern times, modern world, present times."},
+
+{m:"OV",q:"What is the importance of the Contemporary World in our life?",
+ o:["It helps us understand the current social, political, economic, and environmental issues that affect our daily lives","It teaches only geography","It prepares students for government jobs","It focuses solely on Philippine history"],a:0,
+ e:"Studying the contemporary world gives insights into global interconnectedness, cultural diversity, technological advancements, and the impact of historical events on present-day societies."},
+
+{m:"OV",q:"Why is globalization important in the contemporary world?",
+ o:["It changes the way nations, business and people interact, changing the nature of international economic activity","It limits trade between countries","It reduces global supply chains","It eliminates labor markets"],a:0,
+ e:"It expands trade, opens global supply chains, and provides access to natural resources and labor markets."},
+
+{m:"OV",q:"What is the importance of studying globalization?",
+ o:["It helps us comprehend the intricate webs of interdependence and complex relationships between nations, organizations and individuals","It removes the need to study history","It only benefits economies, not individuals","It guarantees economic growth for all countries"],a:0,
+ e:"It provides insights into how decisions and events in one part of the world can have far-reaching consequences globally."},
+
+{m:"OV",q:"How is the contemporary world related to globalization?",
+ o:["The contemporary world is the current period; globalization is the process of increased interconnectedness and interdependence among countries, economies, and cultures on a global scale","They are identical terms with the same definition","Globalization ended with the contemporary period","The contemporary world has no relation to globalization"],a:0,
+ e:"The contemporary world refers to the current period including recent history, while globalization is the process of increased interconnectedness and interdependence."},
+
+{m:"OV",q:"Which of these best characterizes the contemporary world period?",
+ o:["Rapid technological advancements, globalization, interconnectedness and an evolving social and political landscape","Slow change and isolation of nations","Uniform cultural practices worldwide","Decline in all forms of communication"],a:0,
+ e:"The contemporary world is characterized by rapid technological advancements, globalization, interconnectedness, and an evolving social and political landscape."},
+
+{m:"OV",q:"The Contemporary World subject is listed in the lecture as which course?",
+ o:["Soc Sci 3","Soc Sci 1","Hist 101","Pol Sci 2"],a:0,
+ e:"Soc Sci 3 — The Contemporary World, Module 1 by Edmund V. Rubio, MAEd, LPT."},
+
+{m:"OV",q:"The overview states that globalization changes the nature of international economic activity by:",
+ o:["expanding trade, opening global supply chains, and providing access to natural resources and labor markets","closing borders and restricting migration","reducing the number of international organizations","eliminating the need for export economies"],a:0,
+ e:"It expands trade, opens global supply chains and provides access to natural resources and labor markets."},
+
+{m:"OV",q:"Which statement best captures the course's approach to studying the contemporary world?",
+ o:["It uses various disciplines of the social sciences to examine global transformations","It uses only quantitative data from economics","It relies solely on news reports","It studies only Philippine national history"],a:0,
+ e:"It uses the various disciplines of the social sciences to examine economic, social, political, technological and other transformations."},
+
+/* ---------- MODULE 1A : Nation, State, How States Are Created ---------- */
+{m:"1A",q:"Which term refers to a solidified unit of people tied up by a common history and cultural heritage, full of emotional, psychological, and spiritual bonds?",
+ o:["State","Nation","Sovereignty","Territory"],a:1,
+ e:"NATION is the unit of people bound by common history and cultural heritage with emotional, psychological, and spiritual bonds."},
+
+{m:"1A",q:"Which term is described as a political entity established to fulfill the security and ensure the common welfare of its people?",
+ o:["Nation","Government","State","Empire"],a:2,
+ e:"STATE is a political entity established to fulfill the security and ensure the common welfare of its people."},
+
+{m:"1A",q:"A state is an entity that has rights and responsibilities under international law. Which of the following does this describe?",
+ o:["Its capacity to maintain rights by bringing international claims","Its power to declare war without cause","Its monopoly over cultural heritage","Its duty to host the United Nations"],a:0,
+ e:"The state has rights and responsibilities under international law and the capacity to maintain those rights by bringing international claims."},
+
+{m:"1A",q:"How many elements of state were presented in the lecture?",
+ o:["Two","Three","Four","Six"],a:2,
+ e:"Four: Population, Territory, Government, and Sovereignty."},
+
+{m:"1A",q:"Which element of state is supported by the figure 113,412,898 and Article 1 of the 1987 Constitution?",
+ o:["Territory","Government","Sovereignty","Population"],a:3,
+ e:"POPULATION — listed as 113,412,898, with reference to 1987 Constitution Article 1."},
+
+{m:"1A",q:"According to the lecture, where does sovereignty reside and from where does all government authority emanate?",
+ o:["The President","The people","The Constitution","The Armed Forces"],a:1,
+ e:"Sovereignty resides in the people and all government authority emanates from them."},
+
+{m:"1A",q:"Which statement correctly differentiates nation from state?",
+ o:["Having an occupied territory is not an essential requirement for a nation","A nation must always possess sovereignty","A state does not need a definite territory","A nation is always larger than a state"],a:0,
+ e:"For a NATION, having an occupied territory is NOT an essential requirement, and it is not important for a nation to possess sovereignty."},
+
+{m:"1A",q:"What is the basis of the legal existence of a state?",
+ o:["Cultural heritage","Common history","Sovereignty","Population size"],a:2,
+ e:"Sovereignty is the basis of the legal existence of a state."},
+
+{m:"1A",q:"Which country is the biggest state in the world in terms of geographical size, as cited in the lecture?",
+ o:["China","Canada","Russia","United States"],a:2,
+ e:"Russia is the biggest state in the world in terms of geographical size."},
+
+{m:"1A",q:"Which mode of creating states occurs when a territory belonging to any state is placed under the sovereignty of the claiming state, typically in a peaceful and public manner?",
+ o:["Prescription","Discovery and occupation","Cession","Accretion"],a:1,
+ e:"Discovery and occupation — typically must be peaceful and public. Example: GUAM, occupied by the US government."},
+
+{m:"1A",q:"Which mode of acquiring territory is similar to occupation but concerns otherwise empty territory held continuously and uninterruptedly over a long period of time?",
+ o:["Prescription","Conquest","Cession","Accretion"],a:0,
+ e:"Prescription — acquisition through continuous and uninterrupted possession over a long period of time."},
+
+{m:"1A",q:"The Treaty of Paris (1898), which ended the Spanish-American War, required the US to take possession of the Philippines while paying Spain $20 million. Which mode of creating states does this illustrate?",
+ o:["Accretion","Conquest","Cession","Discovery and occupation"],a:2,
+ e:"Cession — the peaceful transfer of territory from one sovereign to another with the intention that sovereignty should pass."},
+
+{m:"1A",q:"Under the Treaty of Nanjing (1842) that ended the First Opium War, China paid an indemnity and ceded which territory to the British?",
+ o:["Macau","Hong Kong","Taiwan","Guam"],a:1,
+ e:"The Treaty of Nanjing (August 29, 1842) was among the first unequal treaties; China ceded the territory of Hong Kong."},
+
+{m:"1A",q:"The eruption of an underwater volcano at Home Reef in the Central Tonga Islands in September 2022 formed the newest land mass on earth. Which mode of creating states does this illustrate?",
+ o:["Accretion","Prescription","Conquest","Cession"],a:0,
+ e:"Accretion — the increase in land area of a state either through natural means or artificially through human labor."},
+
+{m:"1A",q:"Which mode of acquiring territory implies the taking of land frequently associated with coercion, such as the US annexation of Texas in 1845 and Germany's annexation of Austria in 1938?",
+ o:["Cession","Conquest/Annexation","Accretion","Prescription"],a:1,
+ e:"Conquest/Annexation — the act of defeating an opponent and occupying territory; often associated with coercion."},
+
+/* ---------- MODULE 1B : Definitions & Drivers of Globalization ---------- */
+{m:"1B",q:"Who defined globalization as the 'interweaving of markets, technology, information and telecommunication systems' that shrinks the world from medium to small?",
+ o:["Manfred Steger","Anthony Giddens","Thomas Friedman","Al Gore"],a:2,
+ e:"Thomas Friedman — globalization interweaves markets, technology, information and telecommunication systems, letting us reach around the world farther, faster, deeper, cheaper."},
+
+{m:"1B",q:"Which scholar described globalization as the expansion and intensification of social relations and consciousness across world time and world space, calling it a multi-dimensional phenomenon?",
+ o:["Manfred Steger","Thomas Friedman","Anthony Giddens","Edmund Rubio"],a:0,
+ e:"Manfred Steger — a multi-dimensional phenomenon involving economics, politics, culture, ideology, environment and technology."},
+
+{m:"1B",q:"Who defined globalization as the intensification of worldwide social relations linking distant localities, such that local happenings are shaped by events many thousand miles away and vice versa?",
+ o:["Anthony Giddens","Manfred Steger","Thomas Friedman","The IMF"],a:0,
+ e:"Anthony Giddens — the intensification of worldwide social relations linking distant localities."},
+
+{m:"1B",q:"How many dimensions of globalization did Giddens identify, and which is NOT one of them?",
+ o:["Four — and 'World Cultural Hegemony' is not one","Three — and 'World Military Order' is not one","Four — and 'Industrial Development' is not one","Five — and 'World Capitalist Economy' is not one"],a:0,
+ e:"Four dimensions: The World Capitalist Economy, The Nation-state System, World Military Order, and Industrial Development. 'World Cultural Hegemony' is not among them."},
+
+{m:"1B",q:"Which of the following is one of Giddens' four dimensions of globalization?",
+ o:["World Military Order","Global Connected Index","Barter System","Soft Infrastructure"],a:0,
+ e:"The four are: World Capitalist Economy, Nation-state System, World Military Order, and Industrial Development."},
+
+{m:"1B",q:"According to the IMF's definition, globalization refers to the increasing integration of economies around the world particularly through:",
+ o:["the movement of goods, services, and capital across borders","the spread of a single world language","the abolition of national governments","the expansion of military alliances"],a:0,
+ e:"The IMF definition covers movement of goods, services and capital across borders, and also the movement of people and knowledge across international borders."},
+
+{m:"1B",q:"What does the Global Connected Index (GCI) measure?",
+ o:["The number of member states in the UN","Flows and interconnections of a country to other global players through trade, capital, people, and information","The GDP growth rate of developing economies","The number of internet users per country"],a:1,
+ e:"GCI measures flows and interconnections of a country to other global players through exchanges in trade, capital, people, and information."},
+
+{m:"1B",q:"According to the Global Connected Index 2018 Report, which country was the world's most globally connected?",
+ o:["Singapore","Switzerland","The Netherlands","United States"],a:2,
+ e:"The Netherlands is the world's most globally connected country, and Europe is the most highly connected continent."},
+
+{m:"1B",q:"Per the GCI 2018 Report, what percentage of people live outside the countries they were born in?",
+ o:["3%","10%","20%","35%"],a:0,
+ e:"Only 3% of people are living outside the countries they were born in."},
+
+{m:"1B",q:"Per the GCI 2018 Report, what percentage of the global economic output of countries is exported from the home countries?",
+ o:["3%","20%","50%","80%"],a:1,
+ e:"Only 20% of the global economic output of the countries is exported from the home countries."},
+
+{m:"1B",q:"The GCI 2018 Report said the world's level of connectedness in international trade, capital, information and people reached its peak in which year?",
+ o:["2008","2015","2017","2018"],a:2,
+ e:"The world's level of connectedness is at its peak in 2017 per the GCI 2018 Report."},
+
+{m:"1B",q:"How many drivers of global change did Al Gore identify?",
+ o:["Four","Five","Six","Eight"],a:2,
+ e:"Six drivers of global change (Al Gore)."},
+
+{m:"1B",q:"Which of these is one of Al Gore's six drivers of global change?",
+ o:["The emergence of planet-wide electronic communication","The establishment of the United Nations","The rise of the Ottoman Empire","The invention of the barter system"],a:0,
+ e:"Gore's drivers include the deeply interconnected global economy, planet-wide electronic communication, a new balance of political/economic/military power, rapid unsustainable growth, revolutionary new science technologies, and a radically ecological relationship between humans and Earth's ecosystem."},
+
+{m:"1B",q:"Al Gore listed 'the emergence of a radically ecological relationship between human and Earth's ecosystem' as one of the drivers. Which of these is also in the list?",
+ o:["The emergence of rapid unsustainable growth","The fall of the Roman Empire","The colonization of the Americas","The invention of the printing press"],a:0,
+ e:"Yes — rapid unsustainable growth is one of Gore's six drivers of global change."},
+
+{m:"1B",q:"According to the lecture, which were cited as the first drivers of globalization?",
+ o:["Empires","The internet","The United Nations","Trade agreements"],a:0,
+ e:"Empires are the 1st drivers of globalization — for example, the empire of Alexander the Great."},
+
+/* ---------- MODULE 1C : Typologies & Metaphors ---------- */
+{m:"1C",q:"How many typologies of globalization were enumerated in Module 1 (Part 2)?",
+ o:["Four","Five","Six","Eight"],a:2,
+ e:"Six typologies: Economic, Political, Cultural, Financial, Technological, and Ecological Globalization."},
+
+{m:"1C",q:"Which typology of globalization refers to the growing interdependence of global economies due to increasing cross-border exchange of goods and services, flow of investment, and rapid diffusion of technology?",
+ o:["Financial Globalization","Economic Globalization","Technological Globalization","Political Globalization"],a:1,
+ e:"Economic Globalization — growing interdependence of global economies."},
+
+{m:"1C",q:"Which typology refers to the enlargement of the global governance system and international organizations in terms of influence, power, size and complexity?",
+ o:["Political Globalization","Cultural Globalization","Ecological Globalization","Economic Globalization"],a:0,
+ e:"Political Globalization — enlargement of global governance systems and international organizations."},
+
+{m:"1C",q:"Which typology describes the ability of a dominant culture to penetrate a unique but localized culture, resulting in the possible fusion of the two?",
+ o:["Economic Globalization","Cultural Globalization","Financial Globalization","Technological Globalization"],a:1,
+ e:"Cultural Globalization — penetration of a dominant culture into a localized culture, possibly resulting in fusion."},
+
+{m:"1C",q:"Which typology covers financial investment, monetary exchanges, and equity markets interconnecting across the globe?",
+ o:["Financial Globalization","Economic Globalization","Political Globalization","Ecological Globalization"],a:0,
+ e:"Financial Globalization — interconnection of the global financial system."},
+
+{m:"1C",q:"Which typology is made possible by the innovation and popularization of technological devices and digital social media platforms such as Facebook, Twitter, Instagram and TikTok?",
+ o:["Cultural Globalization","Financial Globalization","Technological Globalization","Political Globalization"],a:2,
+ e:"Technological Globalization — driven by technological devices and digital social media platforms."},
+
+{m:"1C",q:"Which typology refers to the concerted efforts of nation-states and other non-state actors to address global environmental crises such as climate change?",
+ o:["Ecological Globalization","Political Globalization","Economic Globalization","Cultural Globalization"],a:0,
+ e:"Ecological Globalization — addressing problems wrought by global environmental crises such as Climate Change."},
+
+{m:"1C",q:"In the lecture, what does a 'typology' mean?",
+ o:["A metaphor for global conflict","A system of classification used to organize things according to similar or dissimilar characteristics","A measure of economic growth","A form of international treaty"],a:1,
+ e:"A typology is a system of classification used to organize things according to similar or dissimilar characteristics."},
+
+{m:"1C",q:"Which metaphor of globalization refers to the lifting of barriers and easing of rules governing interstate commerce, human flow, and accessibility to communication and information services?",
+ o:["Friction","Flow","Disruption","Connectivity"],a:1,
+ e:"Flow (Daloy) — lifting of barriers and easing of rules."},
+
+{m:"1C",q:"Which is a main argument supporting 'flow' as a metaphor of globalization?",
+ o:["The growth of global trade into several folds compared to half a century ago","The weakening of job markets in advanced economies","The rise of cyberwar as the 5th domain of war","The displacement of workers by automation"],a:0,
+ e:"Flow arguments include the multi-fold growth of global trade, people lifted from poverty in China, India and other emerging economies, and the influx of immigrants welcomed by advanced industrialized economies."},
+
+{m:"1C",q:"Under the metaphor of flow, which countries were cited as having lifted many people out of poverty courtesy of the open market system?",
+ o:["China and India","Germany and France","Brazil and Mexico","Japan and South Korea"],a:0,
+ e:"China, India, and other emerging market economies."},
+
+{m:"1C",q:"Which regional trade agreements were cited under the metaphor of flow as having regional significance but global impact?",
+ o:["EU, ASEAN, NAFTA and APEC","NATO, OPEC, G7 and BRICS","UN, IMF, WHO and WTO","SEATO, CENTO, ANZUS and OAS"],a:0,
+ e:"EU (Europe), ASEAN (Southeast Asia), NAFTA (North America), and APEC (Asia-Pacific)."},
+
+{m:"1C",q:"Which metaphor of globalization arises from the conflict, disparity and crisis generated by the open market system?",
+ o:["Flow","Friction","Acceleration","Dislocation"],a:1,
+ e:"Friction (Alitan) — conflict, disparity and crisis generated by the open market system."},
+
+{m:"1C",q:"Which of these is a main argument under 'friction'?",
+ o:["The decline of income earned by the Middle Class in the First World","The creation of new jobs requiring new competencies","Singapore having the best airport in the world","The review of the Silk Road through One Belt, One Road"],a:0,
+ e:"Friction arguments include weakening job markets in advanced economies, the US–China trade war, terrorist groups exploiting a borderless world, the 1% vs the 99% income gap, racial harassment in America, and cyberwar as the 5th domain of war."},
+
+{m:"1C",q:"Which metaphor refers to the exponential growth of technological capacity, where human beings will co-exist with intelligent machines, possibly generating enormous wealth but threatening massive dislocation?",
+ o:["Acceleration","Disruption","Connectivity","Friction"],a:0,
+ e:"Acceleration (Arangkada/pagbilis) — exponential growth of technological capacity and co-existence with intelligent machines."},
+
+{m:"1C",q:"Under 'acceleration', which two crises were said to accelerate and continuously threaten the extinction of human beings and other species?",
+ o:["Global population and global warming","Trade wars and terrorism","Cyberwar and income inequality","Migration and unemployment"],a:0,
+ e:"Acceleration also covers the problem of global population and global warming."},
+
+{m:"1C",q:"Under 'acceleration', global warming is described as a clear and present danger requiring extraordinary global cooperation especially between which two countries?",
+ o:["USA and China","Russia and India","Germany and Japan","Brazil and Indonesia"],a:0,
+ e:"Global warming requires extraordinary global cooperation especially that of USA and China."},
+
+{m:"1C",q:"Which metaphor is illustrated by start-up innovations such as Uber, Netflix, Airbnb and driverless cars outperforming branded products in markets they long dominated?",
+ o:["Dislocation","Disruption","Flow","Accretion"],a:1,
+ e:"Disruption (Pagkagambala) — start-up innovations outperforming established branded products."},
+
+{m:"1C",q:"According to the lecture, which country is described as the biggest disruption in the global economic system, having a communist political ideology while embracing market capitalism economically?",
+ o:["India","Russia","China","Japan"],a:2,
+ e:"China is the biggest disruption in the global economic system."},
+
+{m:"1C",q:"Which metaphor states that individuals, business organizations, and state economies that cannot keep pace with global changes due to technological, economic and other factors will be displaced?",
+ o:["Dislocation","Friction","Disruption","Acceleration"],a:0,
+ e:"Dislocation (Nalinsad) — those who cannot keep pace with global changes are displaced."},
+
+{m:"1C",q:"Under 'dislocation', which industrial revolutions' jobs were said to be replaced by automation unless the labor market acquires new skills attuned to the Fourth Industrial Revolution?",
+ o:["The First, Second and Third Industrial Revolutions","The Third and Fourth only","The Second only","The Fifth Industrial Revolution"],a:0,
+ e:"Jobs created during the First, Second, and Third Industrial Revolutions will be replaced by automation."},
+
+{m:"1C",q:"Which metaphor refers to the establishment of infrastructures that enhance global competitiveness amid the expanding international market capitalistic system?",
+ o:["Flow","Connectivity","Acceleration","Disruption"],a:1,
+ e:"Connectivity (Pagkakakonekta) — establishment of infrastructures enhancing global competitiveness."},
+
+{m:"1C",q:"Under connectivity, what are the two important dimensions?",
+ o:["Hard infrastructure and soft infrastructure","Economic and political","Local and global","Physical and military"],a:0,
+ e:"HARD INFRASTRUCTURE (airports, bridges, harbors, roads) and SOFT INFRASTRUCTURE (education system and efficient internet access)."},
+
+{m:"1C",q:"Which of the following belongs to SOFT infrastructure under the metaphor of connectivity?",
+ o:["World-class bridges","Harbors and roads","The education system and efficient internet access","World-class airports"],a:2,
+ e:"Soft infrastructure connotes the importance of the education system and efficient internet access."},
+
+{m:"1C",q:"Which country was cited as having the best airport in the world under the metaphor of connectivity?",
+ o:["Singapore (Changi Airport)","China (Beijing Daxing)","Qatar (Hamad International)","Japan (Haneda)"],a:0,
+ e:"Singapore has the best airport in the world (Changi Airport)."},
+
+{m:"1C",q:"Under connectivity, China is said to have revealed the review of the Silk Road through which initiative?",
+ o:["One Belt, One Road","Made in China 2025","Belt of Pearl","Asia-Pacific Gateway"],a:0,
+ e:"China reveals the review of the Silk Road through One Belt, One Road."}
+
+];
+
+/* ORDER NG MODULES: OV → 1A → 1B → 1C */
+const MODORDER = ["OV","1A","1B","1C"];
+const MODNAMES = {
+  "OV":"Overview · The Contemporary World Course",
+  "1A":"Module 1A · Nation, State & Creation of States",
+  "1B":"Module 1B · Globalization Defined & Drivers",
+  "1C":"Module 1C · Typologies & Metaphors"
+};
+const LETTERS = ["A","B","C","D"];
+
+let order = [], idx = 0, correct = 0, wrong = 0, results = [], answered = false;
+const el = id => document.getElementById(id);
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+/* Shuffle choices lang sa loob ng bawat module, pero sunod-sunod ang modules */
+function buildOrder(){
+  let out = [];
+  MODORDER.forEach(m=>{
+    const group = BANK.filter(q=>q.m===m);
+    out = out.concat(shuffle(group));
+  });
+  return out;
+}
+
+function start(){
+  order = buildOrder();
+  idx=0;correct=0;wrong=0;results=[];
+  el('startScreen').classList.add('hidden');
+  el('resultScreen').classList.add('hidden');
+  el('quizScreen').classList.remove('hidden');
+  render();
+}
+
+function render(){
+  answered=false;
+  const q = order[idx];
+  el('qCount').textContent = `Question ${idx+1} of ${order.length}`;
+  el('qMod').textContent = MODNAMES[q.m];
+  el('prog').style.width = (idx/order.length*100)+'%';
+  el('qText').textContent = q.q;
+
+  const packed = shuffle(q.o.map((t,i)=>({t,good:i===q.a})));
+  const correctPos = packed.findIndex(p=>p.good);
+
+  const box = el('opts');
+  box.innerHTML = '';
+  packed.forEach((p,i)=>{
+    const d = document.createElement('div');
+    d.className='opt';
+    d.innerHTML = `<span class="key">${LETTERS[i]}</span><span>${p.t}</span>`;
+    d.onclick = ()=>answer(d,i,correctPos,packed);
+    box.appendChild(d);
+  });
+
+  const fb = el('fb');
+  fb.className='fb'; fb.innerHTML='';
+  el('nextBtn').disabled = true;
+  el('nextBtn').textContent = (idx === order.length-1) ? 'See Results' : 'Next';
+}
+
+function answer(node, chosen, correctPos, packed){
+  if(answered) return;
+  answered = true;
+
+  const q = order[idx];
+  const nodes = el('opts').querySelectorAll('.opt');
+  nodes.forEach(n=>n.classList.add('locked'));
+  nodes[correctPos].classList.add('correct');
+
+  const isRight = chosen === correctPos;
+  const chosenText = packed[chosen].t;
+  const correctText = packed[correctPos].t;
+
+  if(isRight){
+    correct++;
+    el('fb').className = 'fb show good';
+    el('fb').innerHTML = `<b>Correct.</b> ${q.e}`;
+  } else {
+    wrong++;
+    node.classList.add('wrong');
+    el('fb').className = 'fb show bad';
+    el('fb').innerHTML = `<b>Not quite.</b> You chose "${chosenText}". The answer is <b>${correctText}</b>.<br>${q.e}`;
+  }
+
+  results.push({m:q.m,q:q.q,chosen:chosenText,correct:correctText,ok:isRight,e:q.e});
+
+  el('prog').style.width = ((idx+1)/order.length*100)+'%';
+  el('nextBtn').disabled = false;
+}
+
+el('nextBtn').onclick = ()=>{
+  if(!answered) return;
+  idx++;
+  if(idx < order.length){ render(); } else { finish(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+function finish(){
+  el('quizScreen').classList.add('hidden');
+  el('resultScreen').classList.remove('hidden');
+
+  const total = order.length;
+  const pct = Math.round(correct/total*100);
+
+  el('sCorrect').textContent = correct;
+  el('sWrong').textContent = wrong;
+  el('sTotal').textContent = total;
+  el('sPct').textContent = pct+'%';
+
+  const ring = el('ring');
+  ring.textContent = pct+'%';
+  ring.style.background = `conic-gradient(${pct>=75?'#2fbf71':pct>=50?'#e8a33d':'#e5574f'} ${pct*3.6}deg, #1a2540 0deg)`;
+  ring.style.boxShadow = 'inset 0 0 0 10px #131c2e';
+
+  let v,s;
+  if(pct>=90){v='Excellent!';s='You have a very solid grasp of the whole module.';}
+  else if(pct>=75){v='Good work.';s='Strong overall — tighten up on the items below.';}
+  else if(pct>=50){v='Getting there.';s='Review the missed items and retake for a higher score.';}
+  else {v='Needs review.';s='Go back through the lecture slides, then try again.';}
+  el('verdict').textContent = v;
+  el('verdictSub').textContent = s;
+
+  const mods = {};
+  results.forEach(r=>{
+    mods[r.m] = mods[r.m] || {c:0,t:0};
+    mods[r.m].t++;
+    if(r.ok) mods[r.m].c++;
+  });
+  const tb = el('modTable');
+  tb.innerHTML = '';
+  MODORDER.forEach(k=>{
+    if(!mods[k]) return;
+    const c = mods[k].c, t = mods[k].t;
+    const p = Math.round(c/t*100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${MODNAMES[k]}</td>
+      <td class="num">${c} / ${t}</td>
+      <td class="num"><span class="pill ${p>=60?'g':'b'}">${p}%</span></td>`;
+    tb.appendChild(tr);
+  });
+
+  const list = el('reviewList');
+  list.innerHTML = '';
+  const missed = results.filter(r=>!r.ok);
+  el('allGood').style.display = missed.length ? 'none' : 'block';
+  el('reviewCard').querySelector('h2').style.display = missed.length ? 'block' : 'none';
+
+  missed.forEach((r,i)=>{
+    const d = document.createElement('div');
+    d.className='rev';
+    d.innerHTML = `<div class="qq">${i+1}. ${r.q}</div>
+      <small>Your answer: <span style="color:#f39a94">${r.chosen}</span></small>
+      <small>Correct answer: <span style="color:#6ee0a4">${r.correct}</span></small>
+      <small>${r.e}</small>`;
+    list.appendChild(d);
+  });
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+el('startBtn').onclick = start;
+el('retakeBtn').onclick = ()=>{
+  el('resultScreen').classList.add('hidden');
+  el('startScreen').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+</script>
+</body>
+</html>
