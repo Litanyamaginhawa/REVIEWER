@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate of Registration - Quezon City University</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #333;
+            margin: 20px;
+            line-height: 1.3;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 15px;
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 14px;
+            margin: 0 0 2px 0;
+            font-weight: bold;
+        }
+        .header h2 {
+            font-size: 11px;
+            margin: 0 0 5px 0;
+            font-weight: normal;
+        }
+        .header h3 {
+            font-size: 13px;
+            margin: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .meta-column {
+            width: 48%;
+        }
+        .info-row {
+            margin-bottom: 4px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .checkbox-group {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .checkbox {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 10px;
+            font-size: 9px;
+            font-weight: bold;
+            margin-right: 3px;
+        }
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .schedule-section {
+            width: 72%;
+        }
+        .account-section {
+            width: 26%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: left;
+            border: 1px solid #aaa;
+            padding: 4px;
+        }
+        td {
+            border: 1px solid #ccc;
+            padding: 4px;
+            vertical-align: top;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .total-row {
+            font-weight: bold;
+            background-color: #f9f9f9;
+        }
+        .footer-signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 15px;
+        }
+        .signature-block {
+            width: 30%;
+            text-align: center;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+        }
+        .instruction {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            border: 1px dashed #000;
+            padding: 8px;
+        }
+        .copy-type {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+        .graduation-note {
+            font-size: 9px;
+            margin-top: 15px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h1>QUEZON CITY UNIVERSITY</h1>
+        <h2>(Formerly Quezon City Polytechnic University)</h2>
+        <h3>Certificate of Registration</h3>
+        <div>AY: 2026-2027 SEM: 1st</div>
+    </div>
+
+    <div class="meta-info">
+        <div class="meta-column">
+            <div class="info-row"><span class="label">Campus:</span> Batasan</div>
+            <div class="info-row"><span class="label">StudNo:</span> 26-0641</div>
+            <div class="info-row"><span class="label">Course/Year/Section:</span> BSIT / 1st / Yr-BAIT1B</div>
+            <div class="info-row" style="margin-top: 8px;">
+                <span class="label">Name:</span> RAMOS, AMIR ABRAR JOSHUA SABIJON
+            </div>
+            <div class="info-row" style="font-size: 9px; color: #555;">
+                (Family Name) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Given Name) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Middle Name)
+            </div>
+            <div class="info-row" style="margin-top: 8px;">
+                <span class="checkbox-group"><span class="checkbox"></span>New</span>
+                <span class="checkbox-group"><span class="checkbox"></span>Returnee</span>
+                <span class="checkbox-group"><span class="checkbox"></span>Old</span>
+                <span class="checkbox-group"><span class="checkbox"></span>Transferee</span>
+            </div>
+        </div>
+        
+        <div class="meta-column">
+            <div class="info-row">
+                <span class="checkbox-group"><span class="checkbox">X</span>Regular Student</span>
+                <span class="checkbox-group"><span class="checkbox"></span>Irregular Student</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Graduating?</span> 
+                <span class="checkbox-group" style="margin-left: 5px;"><span class="checkbox"></span>Yes</span>
+                <span class="checkbox-group"><span class="checkbox"></span>No</span>
+            </div>
+            <div class="info-row"><span class="label">Date Enrolled:</span> 6/23/2026 12:39:02 PM</div>
+            <div class="info-row"><span class="label">Enlisted by:</span> TONI MARIE L. SALAS</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="schedule-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Section-Subject</th>
+                        <th>Unit</th>
+                        <th>Room</th>
+                        <th>Days</th>
+                        <th>Time</th>
+                        <th>Professor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SOCSCI 3</td>
+                        <td>BAIT1B-The Contemporary World</td>
+                        <td class="text-center">3</td>
+                        <td>IIIA206a</td>
+                        <td class="text-center">F</td>
+                        <td>11:00AM-2:00PM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>RIZAL</td>
+                        <td>BAIT1B-The Life and Works of Rizal</td>
+                        <td class="text-center">3</td>
+                        <td>IIIA206a</td>
+                        <td class="text-center">F</td>
+                        <td>7:00AM-10:00AM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>CC 102</td>
+                        <td>BAIT1B-Fundamentals of Programming</td>
+                        <td class="text-center">3</td>
+                        <td>IIIA201a</td>
+                        <td class="text-center">M</td>
+                        <td>12:00PM-2:00PM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>CC 102</td>
+                        <td>BAIT1B-Fundamentals of Programming</td>
+                        <td class="text-center">0</td>
+                        <td>IIIA103b</td>
+                        <td class="text-center">M</td>
+                        <td>7:30AM-10:30AM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>WS 101</td>
+                        <td>BAIT1B-Web Systems and Technologies 1</td>
+                        <td class="text-center">3</td>
+                        <td>IIIA108</td>
+                        <td class="text-center">T</td>
+                        <td>2:30PM-5:30PM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>WS 101</td>
+                        <td>BAIT1B-Web Systems and Technologies 1</td>
+                        <td class="text-center">0</td>
+                        <td>IIIA103b</td>
+                        <td class="text-center">T</td>
+                        <td>6:00PM-9:00PM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>CC 101</td>
+                        <td>BAIT1B-Introduction to Computing</td>
+                        <td class="text-center">3</td>
+                        <td>IIIA201a</td>
+                        <td class="text-center">TH</td>
+                        <td>11:30AM-1:30PM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>CC 101</td>
+                        <td>BAIT1B-Introduction to Computing</td>
+                        <td class="text-center">0</td>
+                        <td>IIIA103b</td>
+                        <td class="text-center">TH</td>
+                        <td>7:00AM-10:00AM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>PATHFIT 1</td>
+                        <td>BAIT1B-Physical Activities Towards Health and Fitness 1</td>
+                        <td class="text-center">2</td>
+                        <td>OG BA</td>
+                        <td class="text-center">W</td>
+                        <td>12:00PM-2:00PM</td>
+                        <td></td>
+                    </tr>
+                    <tr>
