@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness & Physical Fitness Reviewer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #eef5f4;
+    color: #1e2a2a;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  header {
+    background: #0f766e;
+    color: #fff;
+    padding: 22px 20px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+  }
+  header h1 { font-size: 1.4rem; }
+  header p { font-size: .85rem; opacity: .85; margin-top: 4px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 11px 12px;
+    border: none;
+    border-radius: 10px;
+    background: #fff;
+    color: #0f766e;
+    font-weight: 600;
+    font-size: .88rem;
+    cursor: pointer;
+  }
+  .tab.active { background: #0f766e; color: #fff; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card h2 {
+    font-size: 1.05rem;
+    color: #0f766e;
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #d3e8e5;
+  }
+  .card h3 {
+    font-size: .95rem;
+    color: #134e4a;
+    margin: 12px 0 5px;
+  }
+  .card p { font-size: .92rem; }
+  .card ul { padding-left: 20px; font-size: .92rem; }
+  .card li { margin-bottom: 4px; }
+
+  /* Table */
+  .tbl-scroll { overflow-x: auto; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 700px;
+    font-size: .84rem;
+  }
+  th, td {
+    border: 1px solid #b8d9d5;
+    padding: 9px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  thead th {
+    background: #0f766e;
+    color: #fff;
+    text-align: center;
+    font-size: .82rem;
+  }
+  tbody th {
+    background: #e3f2f0;
+    color: #0f766e;
+    font-weight: 700;
+    width: 90px;
+  }
+
+  /* Flashcards */
+  .fc-tools { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+  .fc-tools span { font-size: .85rem; color: #4a6b68; }
+  .btn {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 9px;
+    background: #0f766e;
+    color: #fff;
+    font-weight: 600;
+    font-size: .85rem;
+    cursor: pointer;
+  }
+  .btn.ghost { background: #fff; color: #0f766e; border: 1.5px solid #0f766e; }
+
+  .flashcard {
+    perspective: 1200px;
+    height: 250px;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+  .fc-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform .5s;
+    transform-style: preserve-3d;
+  }
+  .flashcard.flipped .fc-inner { transform: rotateY(180deg); }
+  .fc-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 26px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    overflow-y: auto;
+  }
+  .fc-front { background: #0f766e; color: #fff; }
+  .fc-front .label { font-size: .72rem; letter-spacing: 1.5px; opacity: .8; margin-bottom: 10px; }
+  .fc-front .q { font-size: 1.1rem; font-weight: 600; }
+  .fc-back { background: #fff; color: #1e2a2a; transform: rotateY(180deg); border: 2px solid #0f766e; }
+  .fc-back p { font-size: .92rem; }
+
+  /* Identification */
+  .id-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .id-meta { font-size: .78rem; color: #4a6b68; margin-bottom: 10px; }
+  .id-q { font-size: 1rem; font-weight: 600; margin-bottom: 14px; }
+  input[type=text] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d3e8e5;
+    border-radius: 9px;
+    font-size: .95rem;
+    font-family: inherit;
+  }
+  input[type=text]:focus { outline: none; border-color: #0f766e; }
+  .feedback { margin-top: 12px; padding: 12px; border-radius: 9px; font-size: .9rem; display: none; }
+  .feedback.ok { background: #d9f2e8; color: #0b5c46; display: block; }
+  .feedback.no { background: #fde3e0; color: #912c1e; display: block; }
+  .feedback .ans { font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Wellness &amp; Physical Fitness Reviewer</h1>
+    <p>Reviewer &middot; FITT Matrix &middot; Flashcards &middot; Identification &mdash; randomized every reload</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="reviewer">Reviewer</button>
+    <button class="tab" data-panel="fitt">FITT Matrix</button>
+    <button class="tab" data-panel="flashcards">Flashcards</button>
+    <button class="tab" data-panel="identify">Identification</button>
+  </div>
+
+  <!-- ============ REVIEWER ============ -->
+  <div class="panel active" id="reviewer">
+
+    <div class="card">
+      <h2>Wellness</h2>
+      <p>Defined wellness is the optimal health and vitality encompassing the dimensions of well-being. Wellness is relatively new concept that expand our idea of health and refers to living life to its fullest.</p>
+    </div>
+
+    <div class="card">
+      <h2>The Eight Dimension of Wellness</h2>
+
+      <h3>1. Occupational Wellness</h3>
+      <ul>
+        <li>Ability to finding fulfillment in one's job; enjoyment in work.</li>
+        <li>Gain personal satisfaction and to find enrichment in one's life through work.</li>
+        <li>Feels a connection with the people in the workplace, and has opportunities to learn and be challenged.</li>
+      </ul>
+
+      <h3>2. Financial Wellness</h3>
+      <ul>
+        <li>Ability to spend no more than the limit of income.</li>
+        <li>Save money for emergency needs.</li>
+      </ul>
+
+      <h3>3. Environmental Wellness</h3>
+      <ul>
+        <li>Ability to take care of the environment.</li>
+        <li>Protecting one's self against environmental hazards.</li>
+        <li>Contributing to make the world clean and safe place.</li>
+      </ul>
+
+      <h3>4. Intellectual Wellness</h3>
+      <p>Refers to active participation in scholastic, cultural, and community activities. It is important to gain and maintain intellectual wellness because it expands knowledge and skills in order to live a stimulating, successful life. Focuses on how you think.</p>
+
+      <h3>5. Spiritual Wellness</h3>
+      <ul>
+        <li>Ability to establish a value system and act on a system of beliefs, faith, values, ethics, principles and morals.</li>
+        <li>Having a guiding principle and philosophy.</li>
+        <li>Find meaning and purpose in one's existence.</li>
+      </ul>
+
+      <h3>6. Social Wellness</h3>
+      <ul>
+        <li>Ability to interact, develop and maintain supportive and satisfying relationship.</li>
+        <li>Positive interaction to other individual.</li>
+        <li>Participating in, and successfully contributing to the needs of the community.</li>
+      </ul>
+
+      <h3>7. Emotional Wellness</h3>
+      <p>Inspires self-care, relaxation, stress reduction and the development of inner strength. It is important to be attentive to both positive and negative feelings and be able to understand how to handle these emotions.</p>
+
+      <h3>8. Physical Wellness</h3>
+      <p>Is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without undue fatigue or physical stress. Focuses on your physical body.</p>
+    </div>
+
+    <div class="card">
+      <h2>Physical Fitness</h2>
+      <ul>
+        <li>State of health and well being</li>
+        <li>Specifically the ability to perform aspects of sports</li>
+        <li>Achieved to proper nutrition</li>
+        <li>Moderate physical exercise</li>
+        <li>Sufficient rest</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Hypokinetic Disease</h2>
+      <p>Condition occur as a result of lack of exercise and movement.</p>
+    </div>
+
+    <div class="card">
+      <h2>11 Components of Physical Fitness</h2>
+
+      <h3>Health Related Components</h3>
+
+      <h3>Cardiovascular Endurance</h3>
+      <p>Ability of the circulatory and respiratory system to supply oxygen during physical activity.</p>
+
+      <h3>Muscular Strength</h3>
+      <p>It is the amount of force a muscle can produce.</p>
+
+      <h3>Muscular Endurance</h3>
+      <p>It is the ability of the muscle to perform continuous without fatiguing.</p>
+
+      <h3>Flexibility</h3>
+      <p>Ability of the muscles and joints to extend themselves through their range of motion.</p>
+
+      <h3>Body Composition</h3>
+      <p>Percent of body weight that is fat compared to other body tissues. (Fat - Skin fold caliper) BMI &ndash; Body Mass Index</p>
+
+      <h3>Skill Related Components</h3>
+
+      <h3>Agility</h3>
+      <p>Ability to change position quickly.</p>
+
+      <h3>Coordination</h3>
+      <p>It's the ability to use the sense of sight and thought together.</p>
+
+      <h3>Reaction time</h3>
+      <p>Is the time taken for a person to respond into a stimulus.</p>
+
+      <h3>Speed</h3>
+      <p>Ability to perform a movement into a short period of time.</p>
+
+      <h3>Power</h3>
+      <p>Ability to do strength performance.</p>
+
+      <h3>Balance</h3>
+      <p>Maintain or regrain the equilibrium while moving or stationary.</p>
+    </div>
+
+    <div class="card">
+      <h2>Circuit Training Exercise</h2>
+      <ul>
+        <li>Consists of a consecutive series of timed exercises performed one after the other, with varying amounts of rest between each exercise.</li>
+        <li>Circuit Training is an excellent way to simultaneously improve mobility, strength, and stamina.</li>
+        <li>Circuit Training is one of the best methods of exercising because it provides excellent all-around fitness, such as tone, strength, and weight reduction. In short, maximum results in minimum time.</li>
+        <li>An example of simple circuit training workout might consist of Push-ups, Sit-ups, Squats, Lunges and High Knees.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Types of Circuit Training</h2>
+
+      <h3>1. Timed circuit</h3>
+      <ul>
+        <li>This type of circuit involves working to a set time period for both rest and exercise intervals.</li>
+        <li>A typical timed circuit is 30 seconds of exercise and 30 seconds rest.</li>
+        <li>While a timed circuit exercise for athlete is 80 seconds of exercise and 20 seconds rest.</li>
+      </ul>
+
+      <h3>2. Competition Circuit</h3>
+      <p>This is similar to a timed circuit but you push yourself to see how many repetitions you can do. For example: You may be able to do complete 12 push-ups in 30 seconds. The idea is to keep the time period the same, but try to increase the number of repetitions you can do in the set time period.</p>
+
+      <h3>Repetition Circuit</h3>
+      <p>The idea is that the Fittest group may do, let's say 20 repetitions of each exercise, the intermediate group might only do 15 repetitions, while the beginners might only do 10 repetitions of each exercise.</p>
+    </div>
+
+    <div class="card">
+      <h2>3 Types of Exercise</h2>
+
+      <h3>1. Warm Up Exercise</h3>
+      <p>A period or act of preparation for a game, performance, or exercise session, involving gentle exercise.</p>
+
+      <h3>2. Work Out Exercise</h3>
+      <p>A practice or exercise to test or improve one's fitness for athletic competition, ability or performance.</p>
+
+      <h3>3. Cool Down Exercise</h3>
+      <p>To allow the body to gradually transition to a resting or near-resting state after an intense exercise.</p>
+    </div>
+
+    <div class="card">
+      <h2>3 Types of Stretching</h2>
+
+      <h3>1. Static Stretching</h3>
+      <p>The most common type of stretching, static stretching, is executed by extending the targeted muscle group to its maximal point and holding it for 16 seconds or more.</p>
+
+      <h3>2. Dynamic Stretching</h3>
+      <p>Dynamic stretches are movements performed at a slower pace than most workouts. People tend to do dynamic stretches to warm up their muscles and prepare for exercise. Dynamic stretching involves making active movements that stretch the muscles to their full range of motion.</p>
+
+      <h3>3. Ballistic Stretching</h3>
+      <p>This type of stretching is typically used for athletic drills and utilizes repeated bouncing movement to stretch the targeted muscle group. While these bouncing movements usually trigger the stretch reflex and may cause increased risk for injury, they can be safely performed if done from low-velocity to high-velocity and preceded by static stretching.</p>
+    </div>
+
+    <div class="card">
+      <h2>F.I.T.T. Principle</h2>
+      <p>F.I.T.T. stands for <strong>Frequency, Intensity, Time, Type</strong> &mdash; the four factors applied across Cardiovascular Endurance, Muscular Endurance, Muscular Strength, and Flexibility.</p>
+
+      <h3>Frequency</h3>
+      <ul>
+        <li>Cardiovascular Endurance: Exercise 3-5 times per week</li>
+        <li>Muscular Endurance: Exercises 2-4 times per week</li>
+        <li>Muscular Strength: Weight train 2-4 times per week</li>
+        <li>Flexibility: Daily stretching</li>
+      </ul>
+
+      <h3>Intensity</h3>
+      <ul>
+        <li>Cardiovascular Endurance: Train at 60-80% of target heart rate</li>
+        <li>Muscular Endurance: Add or maintain weight and repetitions</li>
+        <li>Muscular Strength: 60-75% of max, 3 sets of 8-12 repetitions</li>
+        <li>Flexibility: Stretch muscles and hold beyond its normal length</li>
+      </ul>
+
+      <h3>Time</h3>
+      <ul>
+        <li>Cardiovascular Endurance: 20-60 minutes per session</li>
+        <li>Muscular Endurance: About 30-60 minutes</li>
+        <li>Muscular Strength: About 30-60 minutes</li>
+        <li>Flexibility: Hold each stretch 10-15 seconds</li>
+      </ul>
+
+      <h3>Type</h3>
+      <ul>
+        <li>Cardiovascular Endurance: Any aerobic activity keeping the heart rate within the target zone</li>
+        <li>Muscular Endurance: Resistance training yoga, Pilates, light weights</li>
+        <li>Muscular Strength: Anaerobic activities such as weight lifting and sit ups</li>
+        <li>Flexibility: Stretches that allow the body to move through the full range of motion</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ============ FITT MATRIX ============ -->
+  <div class="panel" id="fitt">
+    <div class="card">
+      <h2>F.I.T.T. Principle</h2>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Cardiovascular Endurance</th>
+              <th>Muscular Endurance</th>
+              <th>Muscular Strength</th>
+              <th>Flexibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Frequency</th>
+              <td>Exercise 3-5 times per week</td>
+              <td>Exercises 2-4 times per week</td>
+              <td>Weight train 2-4 times per week.</td>
+              <td>Daily stretching.</td>
+            </tr>
+            <tr>
+              <th>Intensity</th>
+              <td>Train at 60-80% of target heart rate.</td>
+              <td>Add or maintain weight and repetitions.</td>
+              <td>60-75% of max 3 sets of 8-12 repetitions.</td>
+              <td>Stretch muscles and hold beyond its normal length.</td>
+            </tr>
+            <tr>
+              <th>Time</th>
+              <td>20-60 minutes per session.</td>
+              <td>About 30-60 minutes.</td>
+              <td>About 30-60 minutes.</td>
+              <td>Hold each stretch 10-15 seconds.</td>
+            </tr>
+            <tr>
+              <th>Type</th>
+              <td>Any aerobic activity keeping the heart rate within the target zone.</td>
+              <td>Resistance training yoga, Pilates, light weights.</td>
+              <td>Anaerobic activities such as weight lifting and sit ups.</td>
+              <td>Stretches that allow the body to move through the full range of motion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FLASHCARDS ============ -->
+  <div class="panel" id="flashcards">
+    <div class="fc-tools">
+      <button class="btn" onclick="nextCard(1)">Next &#8594;</button>
+      <button class="btn ghost" onclick="nextCard(-1)">&#8592; Prev</button>
+      <button class="btn ghost" onclick="shuffleDeck()">&#8635; Shuffle</button>
+      <span id="fcCounter"></span>
+    </div>
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="fc-inner">
+        <div class="fc-face fc-front">
+          <div class="label">QUESTION</div>
+          <div class="q" id="fcQ"></div>
+        </div>
+        <div class="fc-face fc-back">
+          <p id="fcA"></p>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:#4a6b68;text-align:center;">Tap the card to reveal the answer.</p>
+  </div>
+
+  <!-- ============ IDENTIFICATION ============ -->
+  <div class="panel" id="identify">
+    <div class="id-card">
+      <div class="id-meta" id="idMeta"></div>
+      <div class="id-q" id="idQ"></div>
+      <input type="text" id="idInput" placeholder="Type your answer..." autocomplete="off">
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn" onclick="checkAnswer()">Check</button>
+        <button class="btn ghost" onclick="showAnswer()">Show Answer</button>
+        <button class="btn ghost" onclick="nextQuestion()">Next &#8594;</button>
+      </div>
+      <div class="feedback" id="idFeedback"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const flashcards = [
+  { q: "What is wellness?", a: "The optimal health and vitality encompassing the dimensions of well-being. It is a relatively new concept that expands our idea of health and refers to living life to its fullest." },
+  { q: "Occupational Wellness", a: "Ability to finding fulfillment in one's job; enjoyment in work. Gain personal satisfaction and find enrichment in one's life through work. Feels a connection with the people in the workplace, and has opportunities to learn and be challenged." },
+  { q: "Financial Wellness", a: "Ability to spend no more than the limit of income. Save money for emergency needs." },
+  { q: "Environmental Wellness", a: "Ability to take care of the environment. Protecting one's self against environmental hazards. Contributing to make the world a clean and safe place." },
+  { q: "Intellectual Wellness", a: "Refers to active participation in scholastic, cultural, and community activities. It is important to gain and maintain intellectual wellness because it expands knowledge and skills in order to live a stimulating, successful life. Focuses on how you think." },
+  { q: "Spiritual Wellness", a: "Ability to establish a value system and act on a system of beliefs, faith, values, ethics, principles and morals. Having a guiding principle and philosophy. Find meaning and purpose in one's existence." },
+  { q: "Social Wellness", a: "Ability to interact, develop and maintain supportive and satisfying relationship. Positive interaction to other individual. Participating in, and successfully contributing to the needs of the community." },
+  { q: "Emotional Wellness", a: "Inspires self-care, relaxation, stress reduction and the development of inner strength. It is important to be attentive to both positive and negative feelings and be able to understand how to handle these emotions." },
+  { q: "Physical Wellness", a: "Is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without undue fatigue or physical stress. Focuses on your physical body." },
+  { q: "Physical Fitness", a: "State of health and well being. Specifically the ability to perform aspects of sports. Achieved to proper nutrition, moderate physical exercise, and sufficient rest." },
+  { q: "Hypokinetic Disease", a: "Condition occur as a result of lack of exercise and movement." },
+  { q: "Cardiovascular Endurance", a: "Ability of the circulatory and respiratory system to supply oxygen during physical activity." },
+  { q: "Muscular Strength", a: "It is the amount of force a muscle can produce." },
+  { q: "Muscular Endurance", a: "It is the ability of the muscle to perform continuous without fatiguing." },
+  { q: "Flexibility", a: "Ability of the muscles and joints to extend themselves through their range of motion." },
+  { q: "Body Composition", a: "Percent of body weight that is fat compared to other body tissues. (Fat - Skin fold caliper) BMI - Body Mass Index" },
+  { q: "Agility", a: "Ability to change position quickly." },
+  { q: "Coordination", a: "It's the ability to use the sense of sight and thought together." },
+  { q: "Reaction time", a: "Is the time taken for a person to respond into a stimulus." },
+  { q: "Speed", a: "Ability to perform a movement into a short period of time." },
+  { q: "Power", a: "Ability to do strength performance." },
+  { q: "Balance", a: "Maintain or regrain the equilibrium while moving or stationary." },
+  { q: "Circuit Training Exercise", a: "Consists of a consecutive series of timed exercises performed one after the other, with varying amounts of rest between each exercise. Excellent way to simultaneously improve mobility, strength, and stamina." },
+  { q: "Timed circuit", a: "Involves working to a set time period for both rest and exercise intervals. A typical timed circuit is 30 seconds of exercise and 30 seconds rest, while for athlete it is 80 seconds of exercise and 20 seconds rest." },
+  { q: "Competition Circuit", a: "Similar to a timed circuit but you push yourself to see how many repetitions you can do; keep the time period the same but try to increase the number of repetitions." },
+  { q: "Repetition Circuit", a: "The Fittest group may do 20 repetitions of each exercise, the intermediate group might only do 15 repetitions, while the beginners might only do 10 repetitions of each exercise." },
+  { q: "Warm Up Exercise", a: "A period or act of preparation for a game, performance, or exercise session, involving gentle exercise." },
+  { q: "Work Out Exercise", a: "A practice or exercise to test or improve one's fitness for athletic competition, ability or performance." },
+  { q: "Cool Down Exercise", a: "To allow the body to gradually transition to a resting or near-resting state after an intense exercise." },
+  { q: "Static Stretching", a: "The most common type of stretching, executed by extending the targeted muscle group to its maximal point and holding it for 16 seconds or more." },
+  { q: "Dynamic Stretching", a: "Movements performed at a slower pace than most workouts; done to warm up muscles and prepare for exercise. Involves making active movements that stretch the muscles to their full range of motion." },
+  { q: "Ballistic Stretching", a: "Typically used for athletic drills and utilizes repeated bouncing movement to stretch the targeted muscle group. Can be safely performed if done from low-velocity to high-velocity and preceded by static stretching." },
+  { q: "F.I.T.T. Principle", a: "Stands for Frequency, Intensity, Time, Type." },
+  { q: "Frequency for Cardiovascular Endurance", a: "Exercise 3-5 times per week." },
+  { q: "Frequency for Muscular Endurance", a: "Exercises 2-4 times per week." },
+  { q: "Frequency for Muscular Strength", a: "Weight train 2-4 times per week." },
+  { q: "Frequency for Flexibility", a: "Daily stretching." },
+  { q: "Intensity for Cardiovascular Endurance", a: "Train at 60-80% of target heart rate." },
+  { q: "Intensity for Muscular Endurance", a: "Add or maintain weight and repetitions." },
+  { q: "Intensity for Muscular Strength", a: "60-75% of max 3 sets of 8-12 repetitions." },
+  { q: "Intensity for Flexibility", a: "Stretch muscles and hold beyond its normal length." },
+  { q: "Time for Cardiovascular Endurance", a: "20-60 minutes per session." },
+  { q: "Time for Muscular Endurance", a: "About 30-60 minutes." },
+  { q: "Time for Muscular Strength", a: "About 30-60 minutes." },
+  { q: "Time for Flexibility", a: "Hold each stretch 10-15 seconds." },
+  { q: "Type for Cardiovascular Endurance", a: "Any aerobic activity keeping the heart rate within the target zone." },
+  { q: "Type for Muscular Endurance", a: "Resistance training yoga, Pilates, light weights." },
+  { q: "Type for Muscular Strength", a: "Anaerobic activities such as weight lifting and sit ups." },
+  { q: "Type for Flexibility", a: "Stretches that allow the body to move through the full range of motion." }
+];
+
+const identification = [
+  { q: "Optimal health and vitality encompassing the dimensions of well-being; living life to its fullest.", a: "Wellness" },
+  { q: "Ability to find fulfillment in one's job; enjoyment in work.", a: "Occupational Wellness" },
+  { q: "Ability to spend no more than the limit of income and save money for emergency needs.", a: "Financial Wellness" },
+  { q: "Ability to take care of the environment and contribute to make the world clean and safe.", a: "Environmental Wellness" },
+  { q: "Active participation in scholastic, cultural, and community activities; focuses on how you think.", a: "Intellectual Wellness" },
+  { q: "Ability to establish a value system and act on beliefs, faith, values, ethics, principles and morals.", a: "Spiritual Wellness" },
+  { q: "Ability to interact, develop and maintain supportive and satisfying relationship.", a: "Social Wellness" },
+  { q: "Inspires self-care, relaxation, stress reduction and the development of inner strength.", a: "Emotional Wellness" },
+  { q: "Ability to maintain a healthy quality of life without undue fatigue or physical stress; focuses on your physical body.", a: "Physical Wellness" },
+  { q: "State of health and well being; achieved through proper nutrition, moderate physical exercise and sufficient rest.", a: "Physical Fitness" },
+  { q: "Condition that occurs as a result of lack of exercise and movement.", a: "Hypokinetic Disease" },
+  { q: "Ability of the circulatory and respiratory system to supply oxygen during physical activity.", a: "Cardiovascular Endurance" },
+  { q: "The amount of force a muscle can produce.", a: "Muscular Strength" },
+  { q: "Ability of the muscle to perform continuous without fatiguing.", a: "Muscular Endurance" },
+  { q: "Ability of the muscles and joints to extend themselves through their range of motion.", a: "Flexibility" },
+  { q: "Percent of body weight that is fat compared to other body tissues.", a: "Body Composition" },
+  { q: "Ability to change position quickly.", a: "Agility" },
+  { q: "Ability to use the sense of sight and thought together.", a: "Coordination" },
+  { q: "The time taken for a person to respond into a stimulus.", a: "Reaction time" },
+  { q: "Ability to perform a movement into a short period of time.", a: "Speed" },
+  { q: "Ability to do strength performance.", a: "Power" },
+  { q: "Maintain or regrain the equilibrium while moving or stationary.", a: "Balance" },
+  { q: "Consecutive series of timed exercises performed one after the other, with varying amounts of rest between each exercise.", a: "Circuit Training Exercise" },
+  { q: "Type of circuit involving a set time period for both rest and exercise intervals (e.g. 30 seconds exercise, 30 seconds rest).", a: "Timed circuit" },
+  { q: "Type of circuit where you push yourself to see how many repetitions you can do in the same time period.", a: "Competition Circuit" },
+  { q: "Type of circuit where the fittest group does 20 reps, intermediate 15, beginners 10.", a: "Repetition Circuit" },
+  { q: "Period or act of preparation for a game, performance, or exercise session, involving gentle exercise.", a: "Warm Up Exercise" },
+  { q: "Practice or exercise to test or improve one's fitness for athletic competition, ability or performance.", a: "Work Out Exercise" },
+  { q: "Allows the body to gradually transition to a resting or near-resting state after an intense exercise.", a: "Cool Down Exercise" },
+  { q: "Extending the targeted muscle group to its maximal point and holding it for 16 seconds or more.", a: "Static Stretching" },
+  { q: "Active movements performed at a slower pace that stretch the muscles to their full range of motion, used to warm up.", a: "Dynamic Stretching" },
+  { q: "Uses repeated bouncing movement to stretch the targeted muscle group; typically used for athletic drills.", a: "Ballistic Stretching" },
+  { q: "The four factors: Frequency, Intensity, Time, Type.", a: "F.I.T.T. Principle" },
+  { q: "Exercise frequency per week for cardiovascular endurance.", a: "3-5 times per week" },
+  { q: "Exercise frequency per week for muscular endurance.", a: "2-4 times per week" },
+  { q: "Weight train frequency per week for muscular strength.", a: "2-4 times per week" },
+  { q: "Stretching frequency for flexibility.", a: "Daily stretching" },
+  { q: "Target heart rate percentage for cardiovascular endurance intensity.", a: "60-80% of target heart rate" },
+  { q: "Intensity for muscular endurance.", a: "Add or maintain weight and repetitions" },
+  { q: "Percentage of max, sets and repetitions for muscular strength intensity.", a: "60-75% of max 3 sets of 8-12 repetitions" },
+  { q: "Intensity for flexibility.", a: "Stretch muscles and hold beyond its normal length" },
+  { q: "Time per session for cardiovascular endurance.", a: "20-60 minutes per session" },
+  { q: "Time for muscular endurance.", a: "About 30-60 minutes" },
+  { q: "Time for muscular strength.", a: "About 30-60 minutes" },
+  { q: "How long each stretch is held for flexibility.", a: "10-15 seconds" },
+  { q: "Type of activity for cardiovascular endurance.", a: "Any aerobic activity keeping the heart rate within the target zone" },
+  { q: "Type of activity for muscular endurance.", a: "Resistance training yoga, Pilates, light weights" },
+  { q: "Type of activity for muscular strength.", a: "Anaerobic activities such as weight lifting and sit ups" },
+  { q: "Type for flexibility.", a: "Stretches that allow the body to move through the full range of motion" }
+];
+
+/* ---------- SHUFFLE (random every reload) ---------- */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.panel).classList.add('active');
+  });
+});
+
+/* ---------- FLASHCARDS ---------- */
+let deck = shuffle(flashcards);
+let fcIndex = 0;
+
+function renderCard() {
+  document.getElementById('fcQ').textContent = deck[fcIndex].q;
+  document.getElementById('fcA').textContent = deck[fcIndex].a;
+  document.getElementById('fcCounter').textContent = (fcIndex + 1) + " / " + deck.length;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function nextCard(dir) {
+  fcIndex = (fcIndex + dir + deck.length) % deck.length;
+  renderCard();
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+
+function shuffleDeck() {
+  deck = shuffle(flashcards);
+  fcIndex = 0;
+  renderCard();
+}
+
+/* ---------- IDENTIFICATION ---------- */
+let quiz = shuffle(identification);
+let qIndex = 0;
+
+function normalize(s) {
+  return s.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function renderQuestion() {
+  document.getElementById('idQ').textContent = quiz[qIndex].q;
+  document.getElementById('idMeta').textContent = "Question " + (qIndex + 1) + " of " + quiz.length;
+  document.getElementById('idInput').value = "";
+  document.getElementById('idFeedback').className = "feedback";
+  document.getElementById('idFeedback').textContent = "";
+}
+
+function checkAnswer() {
+  const user = normalize(document.getElementById('idInput').value);
+  const correct = normalize(quiz[qIndex].a);
+  const fb = document.getElementById('idFeedback');
+  if (!user) return;
+
+  if (user === correct) {
+    fb.className = "feedback ok";
+    fb.textContent = "Correct!";
+  } else {
+    fb.className = "feedback no";
+    fb.innerHTML = "Incorrect. Answer: <span class='ans'>" + quiz[qIndex].a + "</span>";
+  }
+}
+
+function showAnswer() {
+  const fb = document.getElementById('idFeedback');
+  fb.className = "feedback ok";
+  fb.innerHTML = "Answer: <span class='ans'>" + quiz[qIndex].a + "</span>";
+}
+
+function nextQuestion() {
+  qIndex = (qIndex + 1) % quiz.length;
+  if (qIndex === 0) quiz = shuffle(identification);
+  renderQuestion();
+}
+
+document.getElementById('idInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkAnswer();
+});
+
+/* ---------- INIT ---------- */
+renderCard();
+renderQuestion();
+</script>
+</body>
+</html>
