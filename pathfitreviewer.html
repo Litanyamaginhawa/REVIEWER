@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c982a5">
+<title>Physical Education Reviewer — Wellness, Fitness, Training & Circuit Training</title>
+<style>
+:root{
+  --bg:#fff8fb;--card:#fff;--ink:#3f3540;--muted:#817580;
+  --accent:#c982a5;--accent-dark:#a95f84;--accent2:#ead0dc;
+  --border:#eee1e8;--soft:#f7edf2;--good:#2e8b57;--bad:#c94c62;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(255,248,251,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav{max-width:1100px;margin:auto;padding:14px 18px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:800}
+.nav button,.tab{border:1px solid var(--border);background:#fff;padding:9px 13px;border-radius:12px;cursor:pointer;color:var(--ink)}
+.nav button:hover,.tab:hover,.tab.active{background:var(--soft);border-color:var(--accent2)}
+main{max-width:1100px;margin:auto;padding:24px 16px 60px}
+.hero{background:linear-gradient(135deg,#fff,#f8eaf0);border:1px solid var(--border);border-radius:22px;padding:24px;margin-bottom:18px}
+h1{margin:0 0 8px;font-size:clamp(25px,5vw,40px)}
+h2{margin-top:0}.muted{color:var(--muted)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.panel{display:none}.panel.active{display:block}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.info-card,.flashcard,.quizbox,.result{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 5px 20px rgba(63,53,64,.04)}
+.info-card h3{margin-top:0;color:var(--accent-dark)}
+.flash-wrap{max-width:720px;margin:auto}
+.flashcard{min-height:250px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;user-select:none;position:relative}
+.flash-inner{width:100%}.flash-label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.flash-text{font-size:clamp(22px,4vw,32px);font-weight:700;margin:18px 0}
+.flash-hint{color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:14px 0}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button.primary:hover{background:var(--accent-dark)}
+.progress{height:9px;background:var(--soft);border-radius:99px;overflow:hidden;margin:12px 0}
+.progress>div{height:100%;background:var(--accent);width:0}
+.quizbox{max-width:800px;margin:auto}
+.question{font-size:21px;font-weight:700;line-height:1.4}
+.answer-input{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:12px;font-size:16px;margin:14px 0;outline:none}
+.answer-input:focus{border-color:var(--accent)}
+.feedback{min-height:28px;font-weight:700}
+.good{color:var(--good)}.bad{color:var(--bad)}
+.source-note{font-size:13px;color:var(--muted);margin-top:20px}
+ul{line-height:1.6}
+.small{font-size:14px}
+footer{text-align:center;color:var(--muted);padding:20px}
+@media(max-width:600px){main{padding:16px 11px 45px}.hero,.info-card,.quizbox,.flashcard{border-radius:15px}.nav{padding:11px}.nav button{padding:8px 10px}.flashcard{min-height:220px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">PE Reviewer</div>
+    <button onclick="newRound()">New Random Round</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <h1>Physical Education Reviewer</h1>
+  <p class="muted">Wellness • Physical Fitness • 7 Principles of Physical Training • FITT • Circuit Training • Stretching</p>
+  <p class="small">The reviewer uses the source wording as supplied. Identification answers are taken from the source terms.</p>
+</section>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('review',this)">Quick Review</button>
+  <button class="tab" onclick="showTab('flash',this)">Flashcards</button>
+  <button class="tab" onclick="showTab('quiz',this)">Identification Quiz</button>
+</div>
+
+<section id="review" class="panel active">
+  <div class="cardgrid">
+    <div class="info-card">
+      <h3>Wellness</h3>
+      <p>Defined wellness is the optimal health and vitality encompassing the dimensions of well-being. Wellness is relatively new concept that expand our idea of health and refers to living life to its fullest.</p>
+      <p><b>The Eight Dimension of Wellness</b></p>
+      <ol>
+        <li>Occupational Wellness</li><li>Financial Wellness</li><li>Environmental Wellness</li>
+        <li>Intellectual Wellness</li><li>Spiritual Wellness</li><li>Social Wellness</li>
+        <li>Emotional Wellness</li><li>Physical Wellness</li>
+      </ol>
+    </div>
+    <div class="info-card">
+      <h3>Physical Fitness</h3>
+      <p>State of health and well being</p>
+      <ul>
+        <li>Specifically the ability to perform aspects of sports</li>
+        <li>Achieved to proper nutrition</li>
+        <li>Moderate physical exercise</li>
+        <li>Sufficient rest</li>
+      </ul>
+      <p><b>Hypokinetic Disease</b> — Condition occur as a result of lack of exercise and movement</p>
+    </div>
+    <div class="info-card">
+      <h3>11 Components of Physical Fitness</h3>
+      <p><b>Health Related Components:</b> Cardiovascular Endurance, Muscular Strength, Muscular Endurance, Flexibility, Body Composition.</p>
+      <p><b>Skill Related Components:</b> Agility, Coordination, Reaction time, Speed, Power, Balance.</p>
+    </div>
+    <div class="info-card">
+      <h3>7 Principles of Physical Training</h3>
+      <p>1. Progression<br>2. Regularity<br>3. Overload<br>4. Variety<br>5. Recovery<br>6. Balance<br>7. Specificity</p>
+      <p><b>FITT:</b> Frequency — How often; Intensity — How hard; Time — How long; Type — What kind</p>
+    </div>
+    <div class="info-card">
+      <h3>Circuit Training</h3>
+      <p>Consists of a consecutive series of timed exercises performed one after the other, with varying amounts of rest between each exercise.</p>
+      <p>Circuit Training is an excellent way to simultaneously improve mobility, strength, and stamina.</p>
+      <p>An example of simple circuit training workout might consist of <b>Push-ups, Sit-ups, Squats, Lunges and High Knees.</b></p>
+    </div>
+    <div class="info-card">
+      <h3>Types of Circuit Training</h3>
+      <p><b>Timed circuit:</b> working to a set time period for both rest and exercise intervals.</p>
+      <p><b>Competition Circuit:</b> push yourself to see how many repetitions you can do.</p>
+      <p><b>Repetition Circuit:</b> groups may do different repetitions according to level.</p>
+    </div>
+    <div class="info-card">
+      <h3>3 Types of Exercise</h3>
+      <p><b>Warm Up Exercise</b> — A period or act of preparation for a game, performance, or exercise session, involving gentle exercise.</p>
+      <p><b>Work Out Exercise</b> — A practice or exercise to test or improve one’s fitness for athletic competition, ability or performance.</p>
+      <p><b>Cool Down Exercise</b> — To allow the body to gradually transition to a resting or near-resting state after an intense exercise.</p>
+    </div>
+    <div class="info-card">
+      <h3>3 Types of Stretching</h3>
+      <p><b>Static Stretching</b> — executed by extending the targeted muscle group to its maximal point and holding it for 16 seconds or more.</p>
+      <p><b>Dynamic Stretching</b> — active movements that stretch the muscles to their full range of motion.</p>
+      <p><b>Ballistic Stretching</b> — utilizes repeated bouncing movement to stretch the targeted muscle group.</p>
+    </div>
+  </div>
+</section>
+
+<section id="flash" class="panel">
+  <div class="flash-wrap">
+    <h2>Random Flashcards</h2>
+    <p class="muted">Click the card to reveal the answer. The deck is shuffled every new round.</p>
+    <div class="progress"><div id="flashProgress"></div></div>
+    <div class="flashcard" id="flashCard" onclick="flipFlash()">
+      <div class="flash-inner">
+        <div class="flash-label" id="flashLabel">Question</div>
+        <div class="flash-text" id="flashText"></div>
+        <div class="flash-hint" id="flashHint">Click to reveal</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="primary" onclick="prevFlash()">Previous</button>
+      <button onclick="flipFlash()">Reveal</button>
+      <button class="primary" onclick="nextFlash()">Next</button>
+    </div>
+    <div class="result" id="flashStatus"></div>
+  </div>
+</section>
+
+<section id="quiz" class="panel">
+  <div class="quizbox">
+    <h2>Identification Quiz</h2>
+    <p class="muted">Type the exact source term. Capitalization does not matter.</p>
+    <div class="progress"><div id="quizProgress"></div></div>
+    <div class="question" id="quizQuestion"></div>
+    <input class="answer-input" id="answerInput" autocomplete="off" placeholder="Type your answer here">
+    <div class="controls" style="justify-content:flex-start">
+      <button class="primary" onclick="checkAnswer()">Check Answer</button>
+      <button onclick="showQuizAnswer()">Show Answer</button>
+      <button onclick="nextQuiz()">Next</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="result" id="quizScore">Score: 0 / 0</div>
+  </div>
+</section>
+
+<p class="source-note">Source basis: Wellness, Physical Fitness, and 7 Principles of Physical Training documents supplied in this chat, plus the Circuit Training and stretching text supplied in the prompt.</p>
+</main>
+<footer>Randomized reviewer — reload the page or finish a round to shuffle again.</footer>
+
+<script>
+const flashcards = [
+["What is Wellness?","Defined wellness is the optimal health and vitality encompassing the dimensions of well-being."],
+["What does Wellness refer to?","refers to living life to its fullest."],
+["What is Occupational Wellness?","Ability to finding fulfillment in one’s job; enjoyment in work."],
+["What is Financial Wellness?","Ability to spend no more than the limit of income."],
+["What is Environmental Wellness?","Ability to take care of the environment."],
+["What is Intellectual Wellness?","Refers to active participation in scholastic, cultural, and community activities."],
+["What is Spiritual Wellness?","Ability to establish a value system and act on a system of beliefs, faith, values, ethics, principles and morals."],
+["What is Social Wellness?","Ability to interact, develop and maintain supportive and satisfying relationship."],
+["What is Emotional Wellness?","Inspires self-care, relaxation, stress reduction and the development of inner strength."],
+["What is Physical Wellness?","Is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without undue fatigue or physical stress."],
+["What is Physical Fitness?","State of health and well being"],
+["What helps achieve Physical Fitness?","proper nutrition, Moderate physical exercise, Sufficient rest"],
+["What is Hypokinetic Disease?","Condition occur as a result of lack of exercise and movement"],
+["What is Cardiovascular Endurance?","Ability of the circulatory and respiratory system to supply oxygen during physical activity."],
+["What is Muscular Strength?","It is the amount of force a muscle can produce."],
+["What is Muscular Endurance?","It is the ability of the muscle to perform continuous without fatiguing."],
+["What is Flexibility?","Ability of the muscles and joints to extend themselves through their range of motion."],
+["What is Body Composition?","Percent of body weight that is fat compared to other body tissues."],
+["What is Agility?","Ability to change position quickly"],
+["What is Coordination?","It’s the ability to use the sense of sight and thought together."],
+["What is Reaction time?","Is the time taken for a person to respond into a stimulus."],
+["What is Speed?","Ability to perform a movement into a short period of time."],
+["What is Power?","Ability to do strength performance."],
+["What is Balance?","Maintain or regrain the e quilibrium while moving or stationary."],
+["What is Progression?","gradually increase both the intensity and duration of your physical training routine"],
+["What is Regularity?","maintain an exercise regimen that is consistent, with exercise taking place at regular intervals."],
+["What is Overload?","work load of your exercise session exceeds the normal demands you place on your body."],
+["What is Variety?","breaking up your training routine and include different activities."],
+["What is Recovery?","The rest periods between physical training are just as important as the training itself."],
+["What is Total Rest?","It’s the recovery that you will not do any activity or workout"],
+["What is Active Rest?","Recovery but you are in a state of exercise or you want to work out"],
+["What is Balance in physical training?","ensure you're exercising all areas of the body equally to achieve a balanced level of fitness."],
+["What is Specificity?","gear your training toward specific goals."],
+["What does Frequency mean?","How often"],
+["What does Intensity mean?","How hard"],
+["What does Time mean?","How long"],
+["What does Type mean?","What kind"],
+["What is Circuit Training?","Consists of a consecutive series of timed exercises performed one after the other, with varying amounts of rest between each exercise."],
+["What can Circuit Training improve?","mobility, strength, and stamina"],
+["What is a simple circuit training workout example?","Push-ups, Sit-ups, Squats, Lunges and High Knees."],
+["What is Timed circuit?","working to a set time period for both rest and exercise intervals"],
+["What is Competition Circuit?","push yourself to see how many repetitions you can do."],
+["What is Repetition Circuit?","The idea is that the Fittest group may do 20 repetitions, intermediate 15, beginners 10."],
+["What is Warm Up Exercise?","A period or act of preparation for a game, performance, or exercise session, involving gentle exercise."],
+["What is Work Out Exercise?","A practice or exercise to test or improve one’s fitness for athletic competition, ability or performance."],
+["What is Cool Down Exercise?","To allow the body to gradually transition to a resting or near-resting state after an intense exercise"],
+["What is Static Stretching?","extending the targeted muscle group to its maximal point and holding it for 16 seconds or more."],
+["What is Dynamic Stretching?","active movements that stretch the muscles to their full range of motion."],
+["What is Ballistic Stretching?","utilizes repeated bouncing movement to stretch the targeted muscle group."]
+];
+
+const quiz = [
+["Ability to finding fulfillment in one’s job; enjoyment in work.","Occupational Wellness"],
+["Ability to spend no more than the limit of income.","Financial Wellness"],
+["Ability to take care of the environment.","Environmental Wellness"],
+["Refers to active participation in scholastic, cultural, and community activities.","Intellectual Wellness"],
+["Ability to establish a value system and act on a system of beliefs, faith, values, ethics, principles and morals.","Spiritual Wellness"],
+["Ability to interact, develop and maintain supportive and satisfying relationship.","Social Wellness"],
+["Inspires self-care, relaxation, stress reduction and the development of inner strength.","Emotional Wellness"],
+["Is the ability to maintain a healthy quality of life that allows us to get the most out of our daily activities without undue fatigue or physical stress.","Physical Wellness"],
+["State of health and well being","Physical Fitness"],
+["Condition occur as a result of lack of exercise and movement","Hypokinetic Disease"],
+["Ability of the circulatory and respiratory system to supply oxygen during physical activity.","Cardiovascular Endurance"],
+["It is the amount of force a muscle can produce.","Muscular Strength"],
+["It is the ability of the muscle to perform continuous without fatiguing.","Muscular Endurance"],
+["Ability of the muscles and joints to extend themselves through their range of motion.","Flexibility"],
+["Percent of body weight that is fat compared to other body tissues.","Body Composition"],
+["Ability to change position quickly","Agility"],
+["It’s the ability to use the sense of sight and thought together.","Coordination"],
+["Is the time taken for a person to respond into a stimulus.","Reaction time"],
+["Ability to perform a movement into a short period of time.","Speed"],
+["Ability to do strength performance.","Power"],
+["Maintain or regrain the e quilibrium while moving or stationary.","Balance"],
+["to improve your level of fitness, you need to gradually increase both the intensity and duration of your physical training routine","Progression"],
+["exercise taking place at regular intervals","Regularity"],
+["work load of your exercise session exceeds the normal demands you place on your body","Overload"],
+["breaking up your training routine and include different activities","Variety"],
+["The rest periods between physical training are just as important as the training itself","Recovery"],
+["It’s the recovery that you will not do any activity or workout","Total Rest"],
+["Recovery but you are in a state of exercise or you want to work out","Active Rest"],
+["exercising all areas of the body equally to achieve a balanced level of fitness","Balance"],
+["gear your training toward specific goals","Specificity"],
+["How often","Frequency"],
+["How hard","Intensity"],
+["How long","Time"],
+["What kind","Type"],
+["Consists of a consecutive series of timed exercises performed one after the other, with varying amounts of rest between each exercise.","Circuit Training"],
+["working to a set time period for both rest and exercise intervals","Timed circuit"],
+["push yourself to see how many repetitions you can do.","Competition Circuit"],
+["The idea is that the Fittest group may do, let’s say 20 repetitions of each exercise","Repetition Circuit"],
+["A period or act of preparation for a game, performance, or exercise session, involving gentle exercise.","Warm Up Exercise"],
+["A practice or exercise to test or improve one’s fitness for athletic competition, ability or performance.","Work Out Exercise"],
+["To allow the body to gradually transition to a resting or near-resting state after an intense exercise","Cool Down Exercise"],
+["executed by extending the targeted muscle group to its maximal point and holding it for 16 seconds or more.","Static Stretching"],
+["active movements that stretch the muscles to their full range of motion.","Dynamic Stretching"],
+["utilizes repeated bouncing movement to stretch the targeted muscle group.","Ballistic Stretching"]
+];
+
+let flashDeck=[], flashIndex=0, flashRevealed=false;
+let quizDeck=[], quizIndex=0, score=0, answered=false;
+
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+  return a;
+}
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
+}
+function loadFlash(){
+  flashDeck=shuffle([...flashcards]);flashIndex=0;flashRevealed=false;renderFlash();
+}
+function renderFlash(){
+  const c=flashDeck[flashIndex];
+  document.getElementById('flashLabel').textContent=flashRevealed?'Answer':'Question';
+  document.getElementById('flashText').textContent=flashRevealed?c[1]:c[0];
+  document.getElementById('flashHint').textContent=flashRevealed?'Click to flip back':'Click to reveal';
+  document.getElementById('flashProgress').style.width=((flashIndex+1)/flashDeck.length*100)+'%';
+  document.getElementById('flashStatus').textContent=`Card ${flashIndex+1} of ${flashDeck.length}`;
+}
+function flipFlash(){flashRevealed=!flashRevealed;renderFlash()}
+function nextFlash(){
+  if(flashIndex<flashDeck.length-1){flashIndex++;flashRevealed=false;renderFlash()}
+  else{loadFlash();alert('Flashcards completed. A new random round has started.')}
+}
+function prevFlash(){if(flashIndex>0){flashIndex--;flashRevealed=false;renderFlash()}}
+function loadQuiz(){
+  quizDeck=shuffle([...quiz]);quizIndex=0;score=0;answered=false;renderQuiz();
+}
+function normalize(s){
+  return s.trim().toLowerCase().replace(/[“”"']/g,'').replace(/\s+/g,' ');
+}
+function renderQuiz(){
+  document.getElementById('quizQuestion').textContent=quizDeck[quizIndex][0];
+  document.getElementById('answerInput').value='';
+  document.getElementById('answerInput').disabled=false;
+  document.getElementById('feedback').textContent='';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('quizProgress').style.width=((quizIndex+1)/quizDeck.length*100)+'%';
+  document.getElementById('quizScore').textContent=`Score: ${score} / ${quizIndex}`;
+  answered=false;
+  setTimeout(()=>document.getElementById('answerInput').focus(),50);
+}
+function checkAnswer(){
+  if(answered)return;
+  const user=normalize(document.getElementById('answerInput').value);
+  const correct=normalize(quizDeck[quizIndex][1]);
+  const f=document.getElementById('feedback');
+  if(user===correct){
+    score++;f.textContent='Correct!';f.className='feedback good';
+  }else{
+    f.textContent='Incorrect. Use Show Answer to review the source term.';
+    f.className='feedback bad';
+  }
+  answered=true;document.getElementById('answerInput').disabled=true;
+  document.getElementById('quizScore').textContent=`Score: ${score} / ${quizIndex+1}`;
+}
+function showQuizAnswer(){
+  const f=document.getElementById('feedback');
+  f.textContent='Answer: '+quizDeck[quizIndex][1];
+  f.className='feedback';
+  answered=true;document.getElementById('answerInput').disabled=true;
+  document.getElementById('quizScore').textContent=`Score: ${score} / ${quizIndex}`;
+}
+function nextQuiz(){
+  if(!answered){checkAnswer();return}
+  if(quizIndex<quizDeck.length-1){quizIndex++;renderQuiz()}
+  else{
+    const final=score;
+    loadQuiz();
+    alert(`Quiz completed. Score: ${final} / ${quizDeck.length}. A new random round has started.`);
+  }
+}
+document.getElementById('answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkAnswer()});
+function newRound(){loadFlash();loadQuiz();showTab('flash',document.querySelectorAll('.tab')[1])}
+loadFlash();loadQuiz();
+</script>
+</body>
+</html>
