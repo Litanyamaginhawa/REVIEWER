@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HUM 2 Ethics — Complete Reviewer</title>
+<style>
+:root{--bg:#fbf7f3;--card:#fff;--ink:#3d3440;--muted:#7d727c;--accent:#b86d91;--accent2:#ead4df;--good:#2e8b57;--bad:#c94b4b;--shadow:0 12px 30px rgba(70,45,60,.10)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fffafc,#f8f2f6);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+header{position:sticky;top:0;z-index:10;background:rgba(255,250,252,.94);backdrop-filter:blur(12px);border-bottom:1px solid #eadfe5}
+.wrap{max-width:1100px;margin:auto;padding:18px}
+h1{margin:0;font-size:clamp(24px,5vw,38px)}h2{margin-top:0}.sub{color:var(--muted);margin:6px 0 0}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.tab{border:0;border-radius:999px;padding:10px 14px;background:#f1e5eb;color:var(--ink);cursor:pointer;font-weight:700}.tab.active{background:var(--accent);color:white}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card{background:var(--card);border:1px solid #eee3e8;border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.kpi{font-size:30px;font-weight:800}.muted{color:var(--muted)}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--accent);color:#fff;font-weight:800;cursor:pointer}.btn.secondary{background:#eee5e9;color:var(--ink)}.btn.good{background:var(--good)}.btn.bad{background:var(--bad)}
+select,input{border:1px solid #ddd0d8;border-radius:12px;padding:10px;background:#fff;color:var(--ink)}
+.qbox{background:#fff;border:1px solid #eadfe5;border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.qmeta{font-size:13px;color:var(--muted);font-weight:700}.qtext{font-size:20px;font-weight:800;line-height:1.35;margin:8px 0 16px}.option{display:block;width:100%;text-align:left;border:1px solid #e4d9df;background:#fff;border-radius:13px;padding:13px;margin:8px 0;cursor:pointer;color:var(--ink)}.option:hover{background:#faf2f6}.option.correct{border-color:#7bc69a;background:#eefaf2}.option.wrong{border-color:#e39a9a;background:#fff0f0}.option:disabled{cursor:default}
+.explain{margin-top:12px;padding:12px;border-radius:12px;background:#faf5f7}.progress{height:10px;background:#eadfe5;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--accent);width:0}
+.flash{perspective:1000px;max-width:700px;margin:18px auto}.flip{position:relative;min-height:260px;transform-style:preserve-3d;transition:.45s;cursor:pointer}.flip.flipped{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#fff;border:1px solid #eadfe5;box-shadow:var(--shadow)}.back{transform:rotateY(180deg);background:#fff8fb}.face h3{font-size:14px;color:var(--muted);margin:0 0 12px}.face .big{font-size:24px;font-weight:800}.small{font-size:13px;color:var(--muted)}
+.list{line-height:1.65}.notice{padding:14px;border-radius:14px;background:#fff7df;border:1px solid #f0df9b}
+@media(max-width:900px){
+  .wrap{width:100%;padding:14px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .wrap{padding:10px}
+  header .wrap{padding:12px 10px}
+  h1{font-size:24px;line-height:1.15}
+  .sub{font-size:13px}
+  nav{gap:6px;margin-top:12px}
+  .tab{flex:1 1 calc(33.333% - 6px);padding:10px 8px;font-size:13px}
+  .grid{grid-template-columns:1fr}
+  .card,.qbox{border-radius:15px;padding:15px}
+  .qtext{font-size:18px;line-height:1.35}
+  .option{font-size:15px;line-height:1.35;padding:13px 12px;min-height:48px}
+  .controls{width:100%}
+  .controls select,.controls input{width:100%;min-height:44px}
+  .controls .btn{flex:1;min-height:44px}
+  .face{min-height:260px;padding:20px 16px}
+  .face .big{font-size:20px;line-height:1.35}
+}
+@media(max-width:380px){
+  .wrap{padding:8px}
+  .tab{font-size:12px}
+  .qtext{font-size:17px}
+  .option{font-size:14px}
+  .face{min-height:240px}
+}
+@media(min-width:1200px){.wrap{max-width:1150px}}
+
+.source-lock{margin:10px auto 0;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;font-size:12px;opacity:.9}
+.source-lock span{font-weight:800;letter-spacing:.3px}
+.source-lock small{opacity:.78}
+@media(max-width:600px){.source-lock{font-size:11px;gap:5px;text-align:center}.source-lock small{flex-basis:100%}}
+
+
+.study-area{margin:18px auto 24px;max-width:1150px;padding:18px;background:rgba(255,255,255,.72);border:1px solid rgba(120,80,110,.12);border-radius:20px;box-shadow:0 10px 30px rgba(70,45,65,.08)}
+.study-head h2{margin:5px 0 6px}.study-head p{margin:0;color:#766b74}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:1.3px;opacity:.65}
+.study-tabs{position:relative;z-index:20;display:flex;gap:7px;overflow-x:auto;margin:16px 0;padding-bottom:2px}
+.study-tab{position:relative;z-index:21;pointer-events:auto;border:1px solid rgba(120,80,110,.16);background:#fff;border-radius:999px;padding:10px 14px;cursor:pointer;white-space:nowrap;font-weight:700}
+.study-tab.active{background:#c982a5;color:#fff;border-color:#c982a5}
+.study-panel{display:none}.study-panel.active{display:block}
+.study-panel>h3{margin:8px 0 10px;font-size:21px}.study-panel>p{line-height:1.65}
+.study-card{background:#fff;border:1px solid rgba(120,80,110,.11);border-radius:15px;padding:15px;margin:11px 0;line-height:1.62}
+.study-card h4{margin:0 0 7px;font-size:16px}.study-card p{margin:8px 0}.study-card ul,.study-card ol{margin:8px 0 0 20px;padding:0}
+@media(max-width:600px){.study-area{margin:10px 0 16px;padding:13px;border-radius:16px}.study-tab{padding:9px 12px;font-size:13px}.study-panel>h3{font-size:19px}.study-card{padding:13px;font-size:14px;line-height:1.58}}
+
+
+.reviewer-jump{position:relative;z-index:20;display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px}
+.reviewer-jump button{border:1px solid rgba(120,80,110,.16);background:#fff;border-radius:12px;padding:9px 12px;cursor:pointer;font-weight:700}
+.reviewer-jump button:hover{transform:translateY(-1px)}
+.section-anchor{scroll-margin-top:20px}
+@media(max-width:600px){.reviewer-jump{display:grid;grid-template-columns:1fr;gap:7px}.reviewer-jump button{width:100%;min-height:44px}}
+
+</style>
+</head>
+<body>
+<header>
+<div class="source-lock">
+  <span>🔒 SOURCE-LOCKED REVIEWER</span>
+  <small>Only the uploaded Week 3, Week 4, Week 5, and Week 6 modules are used.</small>
+</div>
+<div class="wrap">
+<h1>HUM 2 Ethics — Complete Reviewer</h1>
+<p class="sub">Multiple Choice + Flashcards • Week 3 • Week 4 • Week 5 • Week 6 Moral Agent • Kohlberg (separate)</p>
+
+<nav>
+<button type="button" class="tab active" data-tab="home">Home</button>
+<button class="tab" data-tab="mcq">Multiple Choice</button>
+<button class="tab" data-tab="flash">Flashcards</button>
+</nav>
+</div></header>
+
+<section id="readFirst" class="study-area">
+  <div class="study-head">
+    <div>
+      <span class="eyebrow">READ FIRST</span>
+      <h2>Week 3–6 Important Module Notes</h2>
+      <p>Read the important content and bullet points from the modules before answering the Multiple Choice and Flashcards.</p>
+    </div>
+  </div>
+
+  <div class="study-tabs">
+    <button class="study-tab active" data-week="3">Week 3</button>
+    <button type="button" class="study-tab" data-week="4">Week 4</button>
+    <button type="button" class="study-tab" data-week="5">Week 5</button>
+    <button type="button" class="study-tab" data-week="6">Week 6</button>
+    <button type="button" class="study-tab" data-week="k">Kohlberg</button>
+  </div>
+
+  <div class="reviewer-jump">
+    <button type="button" onclick="document.getElementById('readFirst').scrollIntoView({behavior:'smooth'})">📖 Read</button>
+    <button type="button" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">📝 Multiple Choice</button>
+    <button type="button" onclick="document.getElementById('flashcards').scrollIntoView({behavior:'smooth'})">🃏 Flashcards</button>
+  </div>
+
+  <div class="study-panel active" data-panel="3">
+    <h3>Week 3 — Ethical Levels of Human Existence</h3>
+    <div class="study-card"><h4>Learning Outcomes</h4>
+      <ol>
+        <li>Determine the ethical aspect of human life.</li>
+        <li>Analyze personal, societal, and environmental ethical issues.</li>
+        <li>Use ethical reasoning to solve the ethical issues presented.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>“Think, Choose, Act!”</h4>
+      <ul>
+        <li>You made a mistake on a school project. No one noticed. Would you admit your mistake and take responsibility? Why?</li>
+        <li>You see someone being treated unfairly because of their background. What would you do to promote fairness and respect?</li>
+        <li>You notice that your classmates are leaving trash around the school grounds. What would you do to help keep the environment clean?</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Main Focus</h4>
+      <p>The module discusses levels of ethical life or moral valuation on a <b>personal, societal, and environmental</b> level. Ethical issues happen in these three levels, so reflection or reasoning should be used to address them carefully. Human persons possess reason and use it to think, analyze, and evaluate ethical issues.</p>
+    </div>
+    <div class="study-card"><h4>Personal Level</h4>
+      <p>Personal level is about how you treat yourself and others. Treating yourself raises questions about whether suicide, drug abuse, or other actions that harm the self are morally correct. Treating others is in the realm of relationships or behaviors toward others.</p>
+      <ul>
+        <li>Do we treat others with respect and dignity or use them as an object of our interest?</li>
+        <li>He/She is able to distinguish between good and evil, right and wrong, moral and immoral.</li>
+        <li>He/She feels within himself/herself an obligation to do what is good and to avoid what is evil.</li>
+        <li>He/She feels accountable for his/her actions, expecting reward or punishments for them.</li>
+        <li>Man is endowed by nature with a moral sense.</li>
+        <li>He/She is self-conscious of his dignity and submits to the duty of doing what is good and avoiding what is wrong.</li>
+        <li>He/She conducts himself/herself according to the “dictates of reason.”</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Societal Levels</h4>
+      <p>These are ethical societal concerns that affect society in general.</p>
+      <ul>
+        <li>Corruption</li>
+        <li>Poverty</li>
+        <li>Other issues that society faces</li>
+        <li>Issues may happen in the barangay, town, city, province, whole country, or the world in general.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Environmental Levels</h4>
+      <p>The 21st century’s concern is no longer limited to the personal and societal level but includes environmental concerns.</p>
+      <ul>
+        <li>Global warming</li>
+        <li>Deforestation</li>
+        <li>Taking care of the environment</li>
+        <li>Taking care of other non-human species</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Group Activity — Ethical Decision-Makers</h4>
+      <ul>
+        <li>Form 7 groups. Each group is given an ethical situation related to the Personal, Societal, or Environmental Level of Human Existence.</li>
+        <li>Prepare and perform a short skit lasting 3–5 minutes.</li>
+        <li>The skit should clearly show the ethical dilemma, choices available, and consequences of the decision.</li>
+        <li>After the skit, one representative explains what ethical level is presented and why.</li>
+        <li>Be creative, realistic, and respectful. All group members should participate.</li>
+      </ul>
+      <p><b>Rubrics:</b> Understanding of the Ethical Issue — 10; Connection to the Assigned Ethical Level — 10; Content and Message — 10; Creativity and Presentation — 10; Teamwork and Participation — 10; <b>Total — 50 points.</b></p>
+    </div>
+    <div class="study-card"><h4>Group Situations in the Module</h4>
+      <ul>
+        <li><b>Personal — Academic Honesty:</b> a student can get a higher grade by using unauthorized answers during an examination.</li>
+        <li><b>Personal — Peer Pressure:</b> friends pressure a student to do something they believe is wrong.</li>
+        <li><b>Societal — Discrimination:</b> a student is treated unfairly because of their background.</li>
+        <li><b>Societal — Social Media:</b> a false rumor about a classmate is spreading online; decide whether to share it or stop the spread.</li>
+        <li><b>Societal — Fairness:</b> students disagree about how limited school resources should be distributed fairly.</li>
+        <li><b>Environmental — Waste Management:</b> students notice that their school produces too much plastic waste and decide what actions they can take.</li>
+        <li><b>Environmental — Development vs. Nature:</b> a proposed project will create jobs for the community but may damage the surrounding environment.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Quiz 1 — Important Question</h4>
+      <p>As a college student, how can your everyday decisions demonstrate ethical responsibility at the Personal, Societal, and Environmental levels? Discuss each level and provide at least one concrete example for each.</p>
+      <p><b>Criteria:</b> Understanding of the three ethical levels — 10; Quality and relevance of examples — 8; Explanation and ethical reasoning — 7; Organization and clarity — 3; Grammar and mechanics — 2; <b>Total — 30 points.</b></p>
+    </div>
+  </div>
+
+  <div class="study-panel" data-panel="4">
+    <h3>Week 4 — Sources of Authority in Ethics + Senses of the Self</h3>
+
+    <div class="study-card"><h4>Sources of Authority</h4>
+      <p>Ethics, as a field of inquiry, seeks to establish principles and guidelines for human behavior. Central to this exploration is the question of where these ethical principles derive their authority. Several sources have historically been cited as the foundation of ethical systems.</p>
+    </div>
+    <div class="study-card"><h4>Traditional Sources of Authority</h4>
+      <ul>
+        <li><b>Law</b></li>
+        <li><b>Religion</b></li>
+        <li><b>Culture</b></li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>1. Law</h4>
+      <ul>
+        <li>Legal systems are a significant source of ethical authority.</li>
+        <li>Laws codify societal norms and values.</li>
+        <li>They provide a framework for regulating behavior and ensuring justice.</li>
+        <li>While laws often reflect ethical principles, they can also conflict with individual or moral beliefs.</li>
+        <li>The law does not tell us what we should do; it works by constraining us from performing acts that we should not do.</li>
+        <li>Examples in the module: no drunk driving; no underage drinking.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>2. Religion</h4>
+      <ul>
+        <li>Religion is a particular system of faith and worship.</li>
+        <li>Often considered a primary source of moral authority.</li>
+        <li>Provides ethical codes and principles derived from sacred texts, divine commandments, or prophetic teachings.</li>
+        <li>Offers a framework for understanding right and wrong, good and evil, based on a belief in a higher power.</li>
+        <li><b>Divine Command Theory:</b> the belief that something is ethically right if God orders it, and morally bad if God forbids it. One is obliged to obey his/her God in all things.</li>
+        <li><b>Multiplicity of Religions:</b> each faith places various demands on its followers, resulting in seemingly contradicting ethical standards — “Different religions, different beliefs.”</li>
+        <li>Example in the module: certain religions have prohibitions concerning what food may be consumed while others do not share the same constraints.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>3. Culture</h4>
+      <ul>
+        <li>Culture is the patterns of learned and shared behavior and beliefs of a particular social, ethnic, or age group.</li>
+        <li>Cultural traditions and customs can shape ethical understanding.</li>
+        <li>What is considered right or wrong often varies across cultures, reflecting different values, beliefs, and social practices.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Cultural Relativism</h4>
+      <ul>
+        <li>What is ethically acceptable or unacceptable is relative or dependent on one’s culture.</li>
+        <li>It teaches tolerance of others from different cultures.</li>
+        <li>We are in no position to judge whether the ethical thought or practice of another culture is acceptable or unacceptable.</li>
+        <li>Cultural relativism suggests morality is relative to a particular culture, while <b>ethical universalism</b> argues for shared ethical principles across cultures.</li>
+        <li>It is a principle that an individual's beliefs and activities should be understood by others in terms of that individual's own culture.</li>
+        <li>No culture is superior to another and moral and ethical systems are relative to cultural context.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Cultural Relativism — Important Examples</h4>
+      <ul>
+        <li><b>Arranged marriages:</b> should be understood within the context of a society's traditions, values, and social structures rather than judged against cultures that prioritize individual choice in marriage.</li>
+        <li><b>Dietary restrictions:</b> the prohibition of pork in Islam and Judaism; understand these dietary laws within the framework of each religion's beliefs, history, and cultural significance.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Benefits of Cultural Relativism</h4>
+      <ol>
+        <li><b>Fosters greater cultural understanding and tolerance:</b> different cultures have their own valid ways of life; individuals can become more open-minded and respectful of cultural diversity.</li>
+        <li><b>Helps prevent ethnocentrism:</b> the belief that one's own culture is superior to others; understanding cultural norms and values are relative makes people less likely to impose their own cultural standards on others.</li>
+        <li><b>Promotes anthropological and sociological research:</b> researchers can study cultures without bias, leading to more accurate and nuanced understandings of human societies.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Challenges / Criticisms of Cultural Relativism</h4>
+      <ul>
+        <li>This concept can be seen as endorsing moral relativism.</li>
+        <li>All cultural practices may be deemed equally valid, even those that may violate human rights.</li>
+        <li>Critics argue that this can lead to ethical dilemmas when cultural practices are harmful or oppressive.</li>
+        <li>Cultural relativism can hinder social progress by making it difficult to advocate for changes or improvements within a culture, especially in areas related to gender equality or human rights.</li>
+        <li>It can create challenges in international relations and global governance when applied rigidly, making it difficult to establish common ground or universal standards for issues like human rights, environmental protection, and social justice.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Contemporary Perspectives</h4>
+      <ul>
+        <li><b>Reason and Rationality:</b> there is a growing emphasis on reason and rationality as sources of ethical authority. Ethical theories like utilitarianism and deontology rely on logical reasoning and critical thinking to determine right and wrong. These approaches seek to ground morality in objective principles rather than relying solely on tradition or divine command.</li>
+        <li><b>Individual Conscience:</b> conscience is often described as an inner sense of right and wrong, guiding individual actions and decisions. Its reliability as an ethical compass is debated because it can be influenced by personal biases, upbringing, and social conditioning.</li>
+        <li><b>Expert Opinion:</b> ethical experts, such as philosophers, ethicists, and theologians, can provide valuable insights and guidance on moral issues. Their expertise can help individuals and societies navigate complex ethical dilemmas. Expert opinions should be critically evaluated and multiple perspectives considered.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Challenges and Considerations</h4>
+      <ul>
+        <li>These sources of authority are not mutually exclusive and often overlap.</li>
+        <li>The authority of each source can be questioned and challenged.</li>
+        <li>Religious ethics may face criticisms regarding its applicability to diverse societies.</li>
+        <li>Legal systems can be accused of being unjust or outdated.</li>
+        <li>Determining the ultimate source of ethical authority remains a complex and ongoing philosophical inquiry.</li>
+        <li>A critical and reflective approach, considering multiple perspectives and the potential limitations of each source, is essential for developing a robust ethical framework.</li>
+      </ul>
+    </div>
+
+    <div class="study-card"><h4>Individual Moral Agency</h4>
+      <ul>
+        <li>Ethics inherently revolves around “the self”—the individual agent who reflects, chooses, and acts.</li>
+        <li>How we perceive our identity and underlying motives shapes our sense of moral duty.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Three Key Senses of Self</h4>
+      <ul>
+        <li><b>Subjectivism</b> — personal feeling</li>
+        <li><b>Psychological Egoism</b> — natural motive</li>
+        <li><b>Ethical Egoism</b> — rational duty</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>1. Subjectivism — Moral Authority of the Self</h4>
+      <ul>
+        <li>The individual human subject is the sole starting point and absolute authority for all moral claims.</li>
+        <li><b>Core Premise:</b> Moral claims express personal feelings or individual tastes.</li>
+        <li><b>Key Motto:</b> “What is right for me is right for me; what is right for you is right for you.”</li>
+        <li><b>Implication:</b> Denies objective or universal moral standards outside sentiment.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Subjectivism — Real-World Case</h4>
+      <p><b>Digital Piracy & Academic Honesty:</b> A student illegally downloads expensive copyrighted textbooks and software online without paying creators.</p>
+      <ul>
+        <li><b>Subjectivist Defense:</b> The student says software should be free for students and that, because it feels fine, it is not wrong for them.</li>
+        <li><b>Ethical Flaw:</b> Subjectivism reduces fairness to pure personal preference, making moral dispute resolution impossible.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>2. Psychological Egoism — Human Nature</h4>
+      <ul>
+        <li>A descriptive theory stating that humans are naturally motivated strictly by self-interest in every action.</li>
+        <li><b>Descriptive Claim:</b> Describes how humans actually behave, not how they ought to act.</li>
+        <li><b>Hidden Motives:</b> Sacrificial acts are secretly driven by self-serving motives.</li>
+        <li><b>Primary Drivers:</b> Seeking pride, praise, inner peace, or avoiding guilt and shame.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Psychological Egoism — Real-World Case</h4>
+      <p><b>The Anonymous Disaster Relief Volunteer:</b> A person spends their weekend volunteering in grueling conditions at a flood shelter and refuses public recognition.</p>
+      <ul>
+        <li><b>Egoist Re-Interpretation:</b> Helping granted a “warm glow” of inner emotional relief.</li>
+        <li><b>Ethical Critique:</b> Reduces all emotional satisfaction to selfishness, making genuine altruism impossible by definition.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>3. Ethical Egoism — Self-Interest as Duty</h4>
+      <ul>
+        <li>A normative theory stating that individuals ought to pursue their own self-interest as their primary moral duty.</li>
+        <li><b>Normative Duty:</b> Prescribes how we should act—maximizing long-term flourishing.</li>
+        <li><b>Rational Egoism:</b> Distinguishes short-sighted greed from long-term self-advancement.</li>
+        <li><b>Philosophical View:</b> Altruism demands self-sacrifice; self-reliance is the highest virtue.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Ethical Egoism — Real-World Case</h4>
+      <p><b>Entrepreneurship & Business Growth:</b> A tech founder refuses to surrender company stock to charity out of guilt, choosing to reinvest profits into R&amp;D and company growth.</p>
+      <ul>
+        <li><b>Ethical Egoist Defense:</b> The founder’s highest duty is to build a successful enterprise. Rationally pursuing profit creates jobs and innovation—benefiting society without forced self-sacrifice.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Comparing the Senses of Self</h4>
+      <ul>
+        <li><b>Subjectivism:</b> Morality is strictly a matter of individual feeling and opinion. Real-life manifestation: justifying piracy/cheating because “it feels fine to me.” Limitation: eliminates objective standards and prevents resolving disputes.</li>
+        <li><b>Psychological Egoism:</b> All human actions are secretly motivated by self-interest. Real-life manifestation: interpreting charity work as seeking an internal “warm glow.” Limitation: circular logic; cannot prescribe how we ought to act.</li>
+        <li><b>Ethical Egoism:</b> Individuals have a moral duty to maximize long-term self-interest. Real-life manifestation: prioritizing personal career and financial growth over self-sacrifice. Limitation: fails to resolve conflicting interests fairly when harm occurs.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Beyond Egoism — Developing Moral Maturity</h4>
+      <ul>
+        <li><b>Recognizing Genuine Altruism:</b> Humans can care for others’ well-being for their own sake, beyond personal benefit.</li>
+        <li><b>Balancing Self & Others:</b> Moral maturity requires honoring personal autonomy while respecting universal rights and social duties.</li>
+        <li><b>Shared Rational Dialogue:</b> Moving past subjective opinion toward reasoned ethical discussion that fosters social justice.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="study-panel" data-panel="5">
+    <h3>Week 5 — Ethical Levels of Moral Valuation, Moral Reasoning & Social Responsibility</h3>
+    <div class="study-card"><h4>Ethical Levels of Moral Valuation</h4>
+      <p>Different levels at which human actions, decisions, and behaviors are judged as morally right or wrong. Moral valuation helps people determine whether an act is good, bad, acceptable, or unacceptable according to ethical principles.</p>
+    </div>
+    <div class="study-card"><h4>1. Pre-Moral (Non-Moral) Level</h4>
+      <ul>
+        <li>Actions are evaluated based on personal needs, desires, pleasure, or pain rather than moral principles.</li>
+        <li>Focuses on self-interest.</li>
+        <li>Decisions are based on rewards or avoidance of punishment.</li>
+        <li>Common among young children.</li>
+        <li><b>Examples:</b> a child obeys parents because of a reward or to avoid punishment; a student studies only to avoid failing grades.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>2. Moral Level</h4>
+      <ul>
+        <li>A person recognizes moral rules, duties, and responsibilities.</li>
+        <li>Actions are judged according to what is right and wrong.</li>
+        <li>Considers fairness, justice, and respect for others.</li>
+        <li>Follows ethical principles and social norms.</li>
+        <li>Acknowledges personal responsibility.</li>
+        <li><b>Examples:</b> returning a lost wallet because it is the right thing to do even when no one is watching; following traffic rules even when no police officers are present.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>3. Ethical Level</h4>
+      <ul>
+        <li>The highest level of moral valuation.</li>
+        <li>Individuals critically examine the reasons behind moral rules.</li>
+        <li>Decisions are based on universal ethical principles and human values.</li>
+        <li>Uses reason and critical thinking.</li>
+        <li>Reflects on the consequences of actions.</li>
+        <li>Considers human dignity, rights, and the common good.</li>
+        <li><b>Examples:</b> a whistleblower exposes corruption despite personal risks because public welfare is more important than personal gain; a doctor treats all patients equally regardless of social status.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Moral Reasoning</h4>
+      <p>The process of thinking carefully about what is right and wrong when making decisions. It involves using ethical principles, values, and judgment to determine the best course of action.</p>
+      <ol>
+        <li><b>Recognition of a Moral Issue:</b> identify that a situation involves an ethical concern. Example: discovering that a friend is cheating on an examination.</li>
+        <li><b>Gathering Facts:</b> know the facts before making judgments — What happened? Who is affected? What are the consequences? Are there rules or policies involved? Example: Did the friend intentionally cheat or make an honest mistake?</li>
+        <li><b>Evaluating Alternatives:</b> different actions may be possible — ignore the cheating, talk to the friend privately, or report the incident. Each option has moral implications.</li>
+        <li><b>Applying Ethical Principles:</b> honesty, justice, responsibility, respect, and fairness help determine the best action.</li>
+        <li><b>Making a Moral Judgment:</b> after evaluating the situation, decide what is morally right.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Social Responsibility</h4>
+      <p>The obligation of individuals to act for the benefit of society and contribute to the welfare of others. It means considering how one’s actions affect other people and the community.</p>
+      <ol>
+        <li><b>Concern for Others:</b> cares about the welfare of others. Example: helping victims during natural disasters.</li>
+        <li><b>Accountability:</b> being accountable for one’s actions. Example: a student admits a mistake rather than blaming others.</li>
+        <li><b>Respect for Human Rights:</b> respecting the dignity and rights of every person. Example: treating people equally regardless of religion, gender, or social status.</li>
+        <li><b>Environmental Responsibility:</b> protecting natural resources and the environment. Example: proper waste disposal and recycling.</li>
+        <li><b>Community Participation:</b> active involvement in improving society. Example: joining outreach programs and community projects.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Group Activity — Student Ethics Committee</h4>
+      <ul>
+        <li>Divide the class into 10 groups.</li>
+        <li>You are members of the Student Ethics Committee.</li>
+        <li>Create an Ethical Policy that addresses a current issue affecting students and society.</li>
+        <li>Each group creates an Ethical Policy for one issue:</li>
+      </ul>
+      <ul>
+        <li>Academic Dishonesty</li><li>Cyberbullying</li><li>Fake News</li><li>Social Media Misuse</li>
+        <li>Environmental Responsibility</li><li>AI Misuse</li><li>Discrimination</li>
+        <li>Mental Health Awareness</li><li>Community Responsibility</li><li>Digital Citizenship</li>
+      </ul>
+      <p>The policy must be connected to <b>Ethical Levels of Moral Valuation, Moral Reasoning, and Social Responsibility.</b></p>
+      <p><b>Rubric (100 points):</b> Ethical Levels of Moral Valuation — 25; Moral Reasoning — 25; Social Responsibility — 25; Ethical Policy Content — 15; Presentation and Defense — 10.</p>
+      <p><b>Questions for Defense:</b></p>
+      <ol>
+        <li>Why is your policy better than simply punishing violators?</li>
+        <li>Which Ethical Level should all students aspire to reach? Why?</li>
+        <li>Can a person follow rules but still be unethical?</li>
+        <li>Which is more important: intention or consequence?</li>
+        <li>How does your policy develop moral reasoning among students?</li>
+        <li>How does your policy encourage social responsibility?</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Group Activity — Issues Listed in the Module</h4>
+      <ul>
+        <li>Academic Dishonesty</li><li>Cyberbullying</li><li>Fake News</li><li>Social Media Misuse</li>
+        <li>Environmental Responsibility</li><li>AI Misuse</li><li>Discrimination</li>
+        <li>Mental Health Awareness</li><li>Community Responsibility</li><li>Digital Citizenship</li>
+      </ul>
+      <p>The policy must be connected to Ethical Levels of Moral Valuation, Moral Reasoning, and Social Responsibility.</p>
+    </div>
+  </div>
+
+  <div class="study-panel" data-panel="6">
+    <h3>Week 6 — Moral Agent</h3>
+    <div class="study-card"><h4>Examples of Moral Communities</h4>
+      <ul>
+        <li><b>Family:</b> members are expected to care for, respect, and support one another. Parents have a moral responsibility to provide for their children.</li>
+        <li><b>School Community:</b> students, teachers, and staff share ethical responsibilities such as honesty, fairness, and respect. Students should not cheat because it harms trust within the community.</li>
+        <li><b>Workplace:</b> employers and employees have duties to treat each other fairly and professionally. Employers should provide safe working conditions.</li>
+        <li><b>Nation or Society:</b> citizens are part of a larger moral community where laws and ethical principles guide behavior. People are expected to respect others’ rights and follow just laws.</li>
+        <li><b>Religious Community:</b> members follow shared moral values and responsibilities. Example: helping the poor and practicing compassion.</li>
+        <li><b>Global Human Community:</b> all human beings are considered members of a worldwide moral community. Example: respecting human rights regardless of nationality, race, or religion.</li>
+        <li><b>Animals:</b> many ethicists argue animals deserve moral consideration because they can feel pain and suffering. Example: avoiding cruelty to animals. The module cites Republic Act No. 8485 or Animal Welfare Act of 1998.</li>
+        <li><b>The Environment and Future Generations:</b> environmental ethics expands the moral community to include ecosystems and people who will live in the future. Example: conserving natural resources and reducing pollution.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Moral Agent: Characteristics</h4>
+      <p>A moral agent possesses qualities that enable ethical decision-making and responsible behavior.</p>
+      <ol>
+        <li><b>Rationality:</b> ability to think critically and evaluate situations before acting. Example: verifying information before sharing it online.</li>
+        <li><b>Free Will:</b> capacity to choose among different courses of action. Example: choosing to study honestly or cheat during an examination.</li>
+        <li><b>Moral Awareness:</b> ability to recognize that a situation involves ethical considerations. Example: recognizing that taking office supplies for personal use is unethical.</li>
+        <li><b>Conscience:</b> inner sense that guides a person toward what is right and warns against wrongdoing. Example: feeling guilty after lying and deciding to tell the truth.</li>
+        <li><b>Responsibility:</b> willingness to accept the consequences of one’s actions. Example: admitting a mistake in a group project and helping correct it.</li>
+        <li><b>Empathy:</b> ability to understand and share the feelings of others. Example: supporting a classmate who is being bullied.</li>
+        <li><b>Integrity:</b> consistency between one’s values, words, and actions. Example: refusing to accept a bribe even when no one is watching.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Moral Accountability</h4>
+      <p>Moral accountability refers to the responsibility of individuals for their actions, decisions, and consequences. Since moral agents are capable of making choices, they are answerable for the outcomes of those choices.</p>
+      <h4>Conditions for Moral Accountability</h4>
+      <ol>
+        <li><b>Knowledge:</b> a person must understand what they are doing and recognize its moral implications.</li>
+        <li><b>Freedom:</b> the action must be performed voluntarily and not entirely under force or coercion.</li>
+        <li><b>Intentionality:</b> the action must be done deliberately rather than accidentally.</li>
+        <li><b>Control:</b> the individual must have sufficient control over the action.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Importance of Moral Accountability</h4>
+      <ol>
+        <li><b>Promotes Responsible Behavior:</b> knowing that actions have consequences encourages ethical decision-making.</li>
+        <li><b>Builds Trust:</b> accountability fosters trust in relationships, schools, workplaces, and communities.</li>
+        <li><b>Strengthens Character:</b> accepting responsibility for mistakes helps individuals grow morally and emotionally.</li>
+        <li><b>Supports Justice:</b> people who cause harm should answer for their actions, while those who act ethically deserve recognition.</li>
+      </ol>
+    </div>
+    <div class="study-card"><h4>Carl Rogers</h4>
+      <p>According to Carl Rogers, a fully functioning person:</p>
+      <ul>
+        <li>Understands and accepts their true self.</li>
+        <li>Is aware of their feelings and emotions.</li>
+        <li>Makes decisions based on genuine values and experiences.</li>
+        <li>Continuously grows and develops as a person.</li>
+        <li>Is open to new experiences and learning.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Abraham Maslow</h4>
+      <ul>
+        <li>An American psychologist.</li>
+        <li>Best known for developing the <b>Hierarchy of Needs</b>, a theory that explains what motivates human behavior.</li>
+        <li>Considered one of the founders of <b>Humanistic Psychology</b>.</li>
+        <li>Humanistic Psychology focuses on human potential, personal growth, and self-fulfillment.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Moral Rights, Duties, and Responsibility</h4>
+      <ul>
+        <li>“To be a person is to be a bearer of rights.”</li>
+        <li>Moral rights refer to the moral rights of humans and are identified with human rights.</li>
+        <li>Rights correlate with duties; protecting and promoting other persons’ rights requires duties and responsibilities.</li>
+        <li>Only moral agents have both rights and duties.</li>
+        <li>Only a moral agent can be responsible and accountable to his/her actions.</li>
+        <li>Accountability is a natural product of rationality, which consists of reason (or intelligence) and free will (or freedom).</li>
+        <li>The will is the power of the soul by which a human being is in control of actions.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Man the Moral Agent: Reason, Freedom, and Responsibility</h4>
+      <p>The module points out that being human has limitations but also possesses power and implications in the realm of morality.</p>
+      <p><b>Why live a moral life and be responsible for others? Why care for fellow human beings?</b> Because we are social beings.</p>
+    </div>
+  </div>
+
+  <div class="study-panel" data-panel="k">
+    <h3>Kohlberg — Separate</h3>
+    <div class="study-card"><h4>Lawrence Kohlberg</h4>
+      <p>Lawrence Kohlberg (1927–1987), American psychologist. The module presents <b>six stages of moral development</b> under three levels.</p>
+    </div>
+    <div class="study-card"><h4>Level 1 — Pre-Conventional Morality</h4>
+      <p><b>Stage 1 — Obedience and Punishment Orientation:</b></p>
+      <ul>
+        <li>Powerful authorities hand down a fixed set of rules.</li>
+        <li>The rules must be unquestioningly obeyed.</li>
+        <li>Stealing is bad because you will get punished.</li>
+      </ul>
+      <p><b>Stage 2 — Instrumental-Relativist:</b></p>
+      <ul>
+        <li>There is not just one right view handed down by authorities.</li>
+        <li>Different individuals have different viewpoints.</li>
+        <li>Each person is free to pursue his or her individual interests.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Stage Examples</h4>
+      <ul>
+        <li><b>Stage 1 example:</b> Jairo leaves a classmate’s pencil case alone because he remembers the teacher’s punishment for taking things that do not belong to him.</li>
+        <li><b>Stage 2 example:</b> A student studies hard because parents promised a new toy for a high grade; the behavior is driven by personal reward.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Level 2 — Conventional Morality</h4>
+      <p><b>Stage 3 — Good Interpersonal Relationships:</b></p>
+      <ul>
+        <li>People should live up to the expectations of family and community.</li>
+        <li>Behave in “good” ways.</li>
+        <li>Good motives and interpersonal feelings such as love, empathy, trust, and concern for others matter.</li>
+      </ul>
+      <p><b>Stage 4 — Maintaining the Social Order:</b></p>
+      <ul>
+        <li>Emphasis on obeying laws, respecting authority, and performing duties.</li>
+        <li>Social order should be maintained.</li>
+        <li>Decisions are made from the perspective of society as a whole.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Stage 3 and Stage 4 Examples</h4>
+      <ul>
+        <li><b>Stage 3 example:</b> Randy shares part of his meal with Villa because he cares about his friend and believes good friends should help one another.</li>
+        <li><b>Stage 4 example:</b> A citizen pays taxes honestly even when there is an opportunity to avoid doing so because paying taxes supports public services and society’s welfare.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Level 3 — Post-Conventional Morality</h4>
+      <p><b>Stage 5 — Social Contract Orientation:</b></p>
+      <ul>
+        <li>Considers what makes a good society.</li>
+        <li>Considers the rights and values a society ought to uphold.</li>
+        <li>Existing societies are evaluated using these considerations.</li>
+      </ul>
+      <p><b>Stage 6 — Universal Human Ethics:</b></p>
+      <ul>
+        <li>Principles of justice require treating claims of all parties impartially.</li>
+        <li>Respect the basic dignity of all people.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Stage 5 and Stage 6 Examples</h4>
+      <ul>
+        <li><b>Stage 5 example:</b> A student respectfully advocates changing a school rule that unfairly prevents some students from joining activities so all students have equal opportunities.</li>
+        <li><b>Stage 6 example:</b> A witness testifies in court to protect an innocent person even though powerful people threaten punishment, believing honesty and justice must be upheld regardless of personal consequences.</li>
+      </ul>
+    </div>
+    <div class="study-card"><h4>Heinz Dilemma</h4>
+      <p>A woman is dying and a drug may save her. The druggist charges $2,000 for a small dose that cost $200 to produce. Heinz can raise only $1,000, asks for a cheaper price or payment later, but the druggist refuses. Heinz breaks into the laboratory to steal the drug for his wife.</p>
+      <p><b>Question:</b> Should Heinz have broken into the laboratory to steal the drug for his wife? Why or why not?</p>
+      <ul>
+        <li><b>Pre-Conventional — Obedience:</b> arguments may focus on punishment or prison.</li>
+        <li><b>Pre-Conventional — Self-interest:</b> arguments may focus on being happier if the wife is saved despite consequences.</li>
+        <li><b>Conventional — Conformity:</b> arguments may focus on being a good husband and the wife’s expectations.</li>
+        <li><b>Conventional — Law-and-order:</b> arguments may focus on the law prohibiting stealing and accepting prescribed punishment.</li>
+        <li><b>Post-Conventional — Social contract orientation:</b> arguments may focus on the right to choose life and the scientist’s right to fair compensation.</li>
+        <li><b>Post-Conventional — Universal human ethics:</b> arguments may focus on saving human life as a more fundamental value than property rights.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+<section id="home" class="panel active">
+<div class="notice"><b>Source rule:</b> This reviewer is based only on the four uploaded class materials. I did not add outside concepts. Module 6 Moral Agent and the Lawrence Kohlberg section are kept separate.</div>
+<div class="grid" style="margin-top:16px">
+<div class="card"><div class="kpi" id="qcount">0</div><div class="muted">Multiple-choice questions</div></div>
+<div class="card"><div class="kpi" id="fcount">0</div><div class="muted">Flashcards</div></div>
+<div class="card"><div class="kpi">5</div><div class="muted">Main sections</div></div>
+</div>
+<div class="card" style="margin-top:14px">
+<h2>Coverage</h2>
+<ul class="list">
+<li><b>Week 3:</b> Ethical Levels of Human Existence, Personal/Societal/Environmental levels, examples, activities and quiz points.</li>
+<li><b>Week 4:</b> Sources of Authority (Law, Religion, Culture, Cultural Relativism, contemporary perspectives) + Senses of Self.</li>
+<li><b>Week 5:</b> Ethical Levels of Moral Valuation, Moral Reasoning, Social Responsibility.</li>
+<li><b>Week 6 — Moral Agent:</b> meaning, moral communities, characteristics, accountability, Carl Rogers, Abraham Maslow, rights/duties, reason/freedom/responsibility.</li>
+<li><b>Lawrence Kohlberg — Separate:</b> all 6 stages, 3 levels, examples, and Heinz Dilemma.</li>
+</ul>
+</div>
+</section>
+
+<section id="mcq" class="panel">
+<h2>Multiple Choice Reviewer</h2>
+<div class="controls">
+<select id="catFilter"><option value="ALL">All sections</option></select>
+<button type="button" class="btn secondary" id="shuffleBtn">Shuffle</button>
+<button type="button" class="btn secondary" id="resetBtn">Reset Score</button>
+</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p class="small" id="status"></p>
+<div id="quiz"></div>
+</section>
+
+<section id="flash" class="panel">
+<div id="flashcards" class="section-anchor"></div><h2>Flashcards</h2>
+<div class="controls">
+<select id="fcFilter"><option value="ALL">All sections</option></select>
+<button type="button" class="btn secondary" id="fcShuffle">Shuffle</button>
+</div>
+<p class="small">Tap the card to flip it.</p>
+<div class="flash"><div class="flip" id="flashcard">
+<div class="face front"><h3 id="fcCat"></h3><div class="big" id="fcFront"></div><div class="small">Tap to reveal</div></div>
+<div class="face back"><h3>Answer</h3><div class="big" id="fcBack"></div><div class="small">Tap to return</div></div>
+</div></div>
+<div class="controls" style="justify-content:center">
+<button type="button" class="btn" id="fcPrev">← Previous</button><button type="button" class="btn" id="fcNext">Next →</button>
+</div>
+</section>
+</main>
+
+<script>
+const QUESTIONS = [{"cat": "Week 3", "q": "What are the three levels of ethical life or moral valuation?", "opts": ["The levels of ethical life or moral valuation on a personal, societal, and environmental level.", "The grading system", "Classroom rules", "The history of religion"], "a": 0}, {"cat": "Week 3", "q": "What should be used to address ethical issues carefully?", "opts": ["Reflection or reasoning", "Punishment", "Popularity", "Tradition only"], "a": 0}, {"cat": "Week 3", "q": "What is the Personal Level?", "opts": ["Personal level", "Societal level", "Environmental level", "Global level"], "a": 0}, {"cat": "Week 3", "q": "Treating others at the Personal Level is in the realm of what?", "opts": ["Relationships or behaviors toward others", "Government policy", "Environmental protection", "School grading"], "a": 0}, {"cat": "Week 3", "q": "Which is an example of an action that harms the self?", "opts": ["Suicide or drug abuse", "Tax payment", "Deforestation", "Social media rumor"], "a": 0}, {"cat": "Week 3", "q": "What can a person distinguish according to the ethos/ethics of man?", "opts": ["A revealed ethos/ethics of man", "Environmental responsibility", "Cultural relativism", "Social order"], "a": 0}, {"cat": "Week 3", "q": "What obligation does a person feel within himself/herself?", "opts": ["An obligation to do what is good and avoid what is evil", "An obligation to seek rewards only", "A duty to avoid all social issues", "A need to follow every cultural practice"], "a": 0}, {"cat": "Week 3", "q": "What does a person expect when feeling accountable for his/her actions?", "opts": ["Reward or punishments", "Only praise", "Only punishment", "No consequences"], "a": 0}, {"cat": "Week 3", "q": "What is man endowed with by nature?", "opts": ["A moral sense", "A legal code", "A grading system", "A cultural tradition"], "a": 0}, {"cat": "Week 3", "q": "According to what should a person conduct himself/herself?", "opts": ["Dictates of reason", "Rules of popularity", "Personal pleasure", "Economic status"], "a": 0}, {"cat": "Week 3", "q": "What are Societal Levels?", "opts": ["Ethical concerns that affect society in general", "Only personal choices", "Only environmental concerns", "Only religious beliefs"], "a": 0}, {"cat": "Week 3", "q": "Which is explicitly listed as a societal-level issue?", "opts": ["Corruption", "Drug abuse only", "Deforestation only", "Personal hobbies"], "a": 0}, {"cat": "Week 3", "q": "Societal issues may happen in which scope?", "opts": ["Barangay, town, city, province, country, or world", "Only the classroom", "Only the family", "Only one person"], "a": 0}, {"cat": "Week 3", "q": "Why should environmental issues be given attention?", "opts": ["The 21st century's concern includes environmental concerns", "They replace all personal ethics", "They concern only animals", "They are only school issues"], "a": 0}, {"cat": "Week 3", "q": "Which environmental issue is named in the module?", "opts": ["Global warming", "Academic honesty", "Peer pressure", "Fairness in school resources"], "a": 0}, {"cat": "Week 3", "q": "Which other environmental issue is named?", "opts": ["Deforestation", "Corruption", "Discrimination", "Social media"], "a": 0}, {"cat": "Week 3", "q": "What should we take care of at the Environmental Level?", "opts": ["The environment and other non-human species", "Only ourselves", "Only school rules", "Only laws"], "a": 0}, {"cat": "Week 3", "q": "How long should the Ethical Decision-Makers skit last?", "opts": ["3–5 minutes", "1 minute", "10–15 minutes", "20 minutes"], "a": 0}, {"cat": "Week 3", "q": "What should the skit clearly show?", "opts": ["The ethical dilemma, choices available, and consequences", "Only the final answer", "Only the rules", "Only the characters"], "a": 0}, {"cat": "Week 3", "q": "How many points is the Week 3 skit rubric worth in total?", "opts": ["50 points", "30 points", "60 points", "100 points"], "a": 0}, {"cat": "Week 3", "q": "Which situation is Personal Level – Academic Honesty?", "opts": ["Using unauthorized answers during an examination", "A false online rumor", "Plastic waste at school", "A project that may damage nature"], "a": 0}, {"cat": "Week 3", "q": "Which group situation is Personal Level – Peer Pressure?", "opts": ["Friends pressure a student to do something they believe is wrong", "A school resource dispute", "A proposed development project", "A false online rumor"], "a": 0}, {"cat": "Week 3", "q": "Which group situation is Societal Level – Discrimination?", "opts": ["A student is treated unfairly because of their background", "A student cheats", "Students produce plastic waste", "A project may damage nature"], "a": 0}, {"cat": "Week 3", "q": "Which group situation is Societal Level – Social Media?", "opts": ["A false rumor about a classmate is spreading online", "A student is pressured by friends", "A student uses unauthorized answers", "A project creates jobs"], "a": 0}, {"cat": "Week 3", "q": "Which group situation is Societal Level – Fairness?", "opts": ["Students disagree about how limited school resources should be distributed fairly", "Students leave plastic waste", "A student cheats", "A witness testifies in court"], "a": 0}, {"cat": "Week 3", "q": "Which group situation is Environmental Level – Waste Management?", "opts": ["Students notice that their school produces too much plastic waste", "A false rumor spreads", "A student is treated unfairly", "A friend pressures a student"], "a": 0}, {"cat": "Week 3", "q": "Which group situation is Environmental Level – Development vs. Nature?", "opts": ["A proposed project may create jobs but may damage the surrounding environment", "A student studies for a reward", "A student cheats", "A citizen pays taxes"], "a": 0}, {"cat": "Week 3", "q": "How many points is the Week 3 essay quiz worth?", "opts": ["30 points", "50 points", "100 points", "60 points"], "a": 0}, {"cat": "Week 4", "q": "What does ethics seek to establish according to the Sources of Authority material?", "opts": ["Principles and guidelines for human behavior", "Grading formulas", "Scientific laws", "Political parties"], "a": 0}, {"cat": "Week 4", "q": "What central question does the Sources of Authority material explore?", "opts": ["Where ethical principles derive their authority", "How grades are computed", "How cultures are ranked", "How laws are written"], "a": 0}, {"cat": "Week 4", "q": "Which are the traditional sources of authority listed?", "opts": ["Law, Religion, Culture", "Reason, Conscience, Experts", "Family, School, Workplace", "Animals, Nature, Society"], "a": 0}, {"cat": "Week 4", "q": "Why are legal systems a significant source of ethical authority?", "opts": ["They codify societal norms and values and provide a framework for regulating behavior and ensuring justice", "They eliminate all moral disagreement", "They are always morally correct", "They are based only on religion"], "a": 0}, {"cat": "Week 4", "q": "What limitation of laws is stated?", "opts": ["They can conflict with individual or moral beliefs", "They never regulate behavior", "They are always outdated", "They cannot provide justice"], "a": 0}, {"cat": "Week 4", "q": "What does the material say law does not tell us?", "opts": ["What we should do", "What punishment is possible", "What society values", "What religion teaches"], "a": 0}, {"cat": "Week 4", "q": "How does law work according to the material?", "opts": ["By constraining us from performing acts that we should not do", "By forcing every good action", "By determining personal feelings", "By ranking cultures"], "a": 0}, {"cat": "Week 4", "q": "Which is an example of a legal restriction given?", "opts": ["No drunk driving", "No cultural traditions", "No moral reasoning", "No personal conscience"], "a": 0}, {"cat": "Week 4", "q": "What is religion?", "opts": ["A particular system of faith and worship", "A legal system", "A social class", "A scientific method"], "a": 0}, {"cat": "Week 4", "q": "Religion provides ethical codes and principles derived from what?", "opts": ["Sacred texts, divine commandments, or prophetic teachings", "Only personal taste", "Only government laws", "Only economic goals"], "a": 0}, {"cat": "Week 4", "q": "What does religion offer as a framework?", "opts": ["Understanding right and wrong, good and evil, based on belief in a higher power", "Understanding grades", "Ranking cultures", "Managing traffic"], "a": 0}, {"cat": "Week 4", "q": "What is Divine Command Theory?", "opts": ["Something is ethically right if God orders it, and morally bad if God forbids it", "All laws are morally right", "Morality is based on culture only", "Experts decide all moral questions"], "a": 0}, {"cat": "Week 4", "q": "What does multiplicity of religions mean in the material?", "opts": ["Each faith places various demands on followers, resulting in seemingly contradicting ethical standards", "There is only one ethical code", "All religions have identical rules", "Religion has no ethical role"], "a": 0}, {"cat": "Week 4", "q": "What does culture mean in the material?", "opts": ["Patterns of learned and shared behavior and beliefs of a particular social, ethnic, or age group", "A legal code", "A personal emotion", "A scientific theory"], "a": 0}, {"cat": "Week 4", "q": "What can cultural traditions and customs shape?", "opts": ["Ethical understanding", "Only grades", "Only laws", "Only personal health"], "a": 0}, {"cat": "Week 4", "q": "What is cultural relativism?", "opts": ["What is ethically acceptable or unacceptable is relative or dependent on one's culture", "All cultures are identical", "One culture is superior", "All ethics come from law"], "a": 0}, {"cat": "Week 4", "q": "What does cultural relativism encourage?", "opts": ["Tolerance of others from different cultures", "Ranking cultures", "Rejecting all traditions", "Ignoring cultural context"], "a": 0}, {"cat": "Week 4", "q": "What does cultural relativism suggest about morality?", "opts": ["Morality is relative to a particular culture", "Morality is always universal", "Morality is always legal", "Morality is only personal pleasure"], "a": 0}, {"cat": "Week 4", "q": "What does ethical universalism argue for?", "opts": ["Shared ethical principles across cultures", "Separate rules for every person", "Only religious standards", "Only legal standards"], "a": 0}, {"cat": "Week 4", "q": "What principle is included in cultural relativism?", "opts": ["An individual's beliefs and activities should be understood in terms of that individual's own culture", "One culture must judge all others", "No culture has values", "All practices are illegal"], "a": 0}, {"cat": "Week 4", "q": "According to the material, what does cultural relativism say about cultures?", "opts": ["No culture is superior to another and moral/ethical systems are relative to cultural context", "One culture is superior", "All cultures must follow one law", "Cultures have no ethical systems"], "a": 0}, {"cat": "Week 4", "q": "Which anthropologists are named in the cultural relativism discussion?", "opts": ["Boas's students Ruth Benedict and Margaret Mead", "Carl Rogers and Abraham Maslow", "Lawrence Kohlberg and Heinz", "Evangelista and Mabaquiao"], "a": 0}, {"cat": "Week 4", "q": "What did Boas's students challenge?", "opts": ["Prevailing ethnocentric views of their time", "All legal systems", "All religious beliefs", "Humanistic psychology"], "a": 0}, {"cat": "Week 4", "q": "What did they emphasize?", "opts": ["Understanding cultures on their own terms and within historical and environmental contexts", "Ranking cultures by hierarchy", "Rejecting cultural study", "Using only legal standards"], "a": 0}, {"cat": "Week 4", "q": "Which is a benefit of cultural relativism?", "opts": ["Fosters greater cultural understanding and tolerance", "Eliminates all ethical dilemmas", "Makes all cultures identical", "Prevents research"], "a": 0}, {"cat": "Week 4", "q": "Which is another benefit?", "opts": ["Helps prevent ethnocentrism", "Requires cultural ranking", "Rejects diversity", "Rejects anthropology"], "a": 0}, {"cat": "Week 4", "q": "Which is another benefit?", "opts": ["Promotes anthropological and sociological research", "Stops social research", "Rejects cultural context", "Requires universal law"], "a": 0}, {"cat": "Week 4", "q": "What criticism of cultural relativism is given?", "opts": ["It can endorse moral relativism, including practices that may violate human rights", "It always protects human rights", "It eliminates cultural differences", "It makes research impossible"], "a": 0}, {"cat": "Week 4", "q": "How can cultural relativism hinder social progress?", "opts": ["By accepting all cultural practices as relative, it may become difficult to advocate for changes or improvements", "By forcing universal standards", "By eliminating all traditions", "By requiring laws"], "a": 0}, {"cat": "Week 4", "q": "What global challenge can rigid cultural relativism create?", "opts": ["Difficulty establishing common ground or universal standards for human rights, environmental protection, and social justice", "It makes all laws identical", "It removes global governance", "It guarantees agreement"], "a": 0}, {"cat": "Week 4", "q": "Which is a contemporary source of ethical authority listed?", "opts": ["Reason and Rationality", "Culture only", "Law only", "Religion only"], "a": 0}, {"cat": "Week 4", "q": "What do modern ethical approaches emphasize?", "opts": ["Reason and rationality", "Tradition only", "Personal pleasure only", "Punishment only"], "a": 0}, {"cat": "Week 4", "q": "Which theories are named as relying on logical reasoning and critical thinking?", "opts": ["Utilitarianism and deontology", "Subjectivism and egoism", "Humanism and relativism", "Conformity and obedience"], "a": 0}, {"cat": "Week 4", "q": "What is individual conscience?", "opts": ["An inner sense of right and wrong guiding individual actions and decisions", "A legal code", "A cultural ranking", "A religious institution"], "a": 0}, {"cat": "Week 4", "q": "What can influence conscience?", "opts": ["Personal biases, upbringing, and social conditioning", "Only laws", "Only experts", "Only biology"], "a": 0}, {"cat": "Week 4", "q": "Who can provide valuable insights and guidance on moral issues?", "opts": ["Philosophers, ethicists, and theologians", "Only judges", "Only politicians", "Only teachers"], "a": 0}, {"cat": "Week 4", "q": "What is important when considering expert opinions?", "opts": ["Critically evaluate them and consider multiple perspectives", "Accept every opinion automatically", "Reject every expert", "Use only one perspective"], "a": 0}, {"cat": "Week 4", "q": "Are sources of authority mutually exclusive?", "opts": ["No; they often overlap", "Yes, always", "Only law and religion overlap", "Only culture overlaps"], "a": 0}, {"cat": "Week 4", "q": "What remains a complex and ongoing philosophical inquiry?", "opts": ["Determining the ultimate source of ethical authority", "Determining school grades", "Ranking religions", "Defining culture"], "a": 0}, {"cat": "Week 4", "q": "What does ethics inherently revolve around in the Senses of Self section?", "opts": ["The self—the individual agent who reflects, chooses, and acts", "The government", "The environment only", "The legal system"], "a": 0}, {"cat": "Week 4", "q": "What are the three key senses of self-centered ethical thinking?", "opts": ["Subjectivism, Psychological Egoism, Ethical Egoism", "Law, Religion, Culture", "Reason, Conscience, Experts", "Moral, Social, Environmental"], "a": 0}, {"cat": "Week 4", "q": "What does Subjectivism claim?", "opts": ["The individual human subject is the sole starting point and absolute authority for all moral claims", "Society is the sole authority", "Law is always the authority", "Experts are always the authority"], "a": 0}, {"cat": "Week 4", "q": "What is the core premise of Subjectivism?", "opts": ["Moral claims express personal feelings or individual tastes", "All moral claims are universal", "Moral claims are legal rules", "Moral claims are scientific facts"], "a": 0}, {"cat": "Week 4", "q": "What is the key motto of Subjectivism?", "opts": ["What is right for me is right for me; what is right for you is right for you.", "Everyone must follow the same rule.", "Law defines all morality.", "Experts define all morality."], "a": 0}, {"cat": "Week 4", "q": "What does Subjectivism deny?", "opts": ["Objective or universal moral standards outside sentiment", "Personal feelings", "Individual choice", "Moral disagreement"], "a": 0}, {"cat": "Week 4", "q": "What is Psychological Egoism?", "opts": ["A descriptive theory stating humans are naturally motivated strictly by self-interest in every action", "A theory of universal rights", "A theory of law", "A theory of culture"], "a": 0}, {"cat": "Week 4", "q": "What does Psychological Egoism describe?", "opts": ["How humans actually behave, not how they ought to act", "How laws should work", "How cultures should change", "How people should obey"], "a": 0}, {"cat": "Week 4", "q": "What does Psychological Egoism claim about sacrificial acts?", "opts": ["They are secretly driven by self-serving motives", "They are always altruistic", "They are always illegal", "They are always cultural"], "a": 0}, {"cat": "Week 4", "q": "Which is listed as a primary driver in Psychological Egoism?", "opts": ["Seeking pride, praise, inner peace, or avoiding guilt and shame", "Seeking universal justice only", "Following laws only", "Protecting nature only"], "a": 0}, {"cat": "Week 4", "q": "What is Ethical Egoism?", "opts": ["A normative theory stating individuals ought to pursue their own self-interest as their primary moral duty", "A descriptive theory of culture", "A theory that rejects self-interest", "A legal theory"], "a": 0}, {"cat": "Week 4", "q": "What does Ethical Egoism prescribe?", "opts": ["How we should act—maximizing long-term flourishing", "How people actually behave", "How laws are written", "How cultures form"], "a": 0}, {"cat": "Week 4", "q": "What does Rational Egoism distinguish?", "opts": ["Short-sighted greed from long-term self-advancement", "Law from religion", "Culture from science", "Personal from environmental"], "a": 0}, {"cat": "Week 4", "q": "What does Ethical Egoism say about altruism?", "opts": ["Altruism demands self-sacrifice; self-reliance is the highest virtue", "Altruism is always required", "Altruism is impossible", "Altruism is a legal duty"], "a": 0}, {"cat": "Week 4", "q": "What is the limitation of Subjectivism in the comparison table?", "opts": ["It eliminates objective standards and prevents resolving disputes", "It cannot describe human behavior", "It rejects self-interest", "It requires social order"], "a": 0}, {"cat": "Week 4", "q": "What is the limitation of Psychological Egoism?", "opts": ["Circular logic; it cannot prescribe how we ought to act", "It eliminates personal opinion", "It requires universal rights", "It rejects all motives"], "a": 0}, {"cat": "Week 4", "q": "What is the limitation of Ethical Egoism?", "opts": ["It fails to resolve conflicting interests fairly when harm occurs", "It cannot explain self-interest", "It rejects rationality", "It eliminates all personal goals"], "a": 0}, {"cat": "Week 4", "q": "What does recognizing genuine altruism mean?", "opts": ["Humans can care for others' well-being for their own sake, beyond personal benefit", "All actions are selfish", "Only laws matter", "Self-interest is always wrong"], "a": 0}, {"cat": "Week 4", "q": "What does balancing self and others require?", "opts": ["Honoring personal autonomy while respecting universal rights and social duties", "Ignoring others", "Rejecting autonomy", "Following only personal feelings"], "a": 0}, {"cat": "Week 4", "q": "What does shared rational dialogue move beyond?", "opts": ["Subjective opinion toward reasoned ethical discussion that fosters social justice", "Law toward punishment", "Culture toward ranking", "Religion toward science"], "a": 0}, {"cat": "Week 5", "q": "What are Ethical Levels of Moral Valuation?", "opts": ["Different levels at which human actions, decisions, and behaviors are judged morally right or wrong", "Different school grades", "Different legal systems", "Different religious groups"], "a": 0}, {"cat": "Week 5", "q": "What does moral valuation help determine?", "opts": ["Whether an act is good, bad, acceptable, or unacceptable according to ethical principles", "Whether an act is popular", "Whether an act is profitable", "Whether an act is legal only"], "a": 0}, {"cat": "Week 5", "q": "At what level are actions evaluated based on personal needs, desires, pleasure, or pain rather than moral principles?", "opts": ["Pre-Moral (Non-Moral) Level", "Moral Level", "Ethical Level", "Societal Level"], "a": 0}, {"cat": "Week 5", "q": "What does the Pre-Moral (Non-Moral) Level focus on?", "opts": ["Self-interest", "Human dignity", "Universal principles", "Social justice"], "a": 0}, {"cat": "Week 5", "q": "At the Pre-Moral Level, decisions are based on what?", "opts": ["Rewards or avoidance of punishment", "Universal rights", "Critical reasoning", "Common good"], "a": 0}, {"cat": "Week 5", "q": "The Pre-Moral Level is common among whom?", "opts": ["Young children", "Doctors", "Whistleblowers", "Experts"], "a": 0}, {"cat": "Week 5", "q": "What characterizes the Moral Level?", "opts": ["Recognition of moral rules, duties, and responsibilities", "Only pleasure and pain", "Only personal reward", "Only universal principles"], "a": 0}, {"cat": "Week 5", "q": "What does the Moral Level consider?", "opts": ["Fairness, justice, and respect for others", "Only self-interest", "Only punishment", "Only personal taste"], "a": 0}, {"cat": "Week 5", "q": "What does the Moral Level follow?", "opts": ["Ethical principles and social norms", "Only personal desires", "Only rewards", "Only universal human values"], "a": 0}, {"cat": "Week 5", "q": "What does the Moral Level acknowledge?", "opts": ["Personal responsibility", "Only social status", "Only pleasure", "Only punishment"], "a": 0}, {"cat": "Week 5", "q": "What is the highest level of moral valuation?", "opts": ["Ethical Level", "Pre-Moral Level", "Moral Level", "Societal Level"], "a": 0}, {"cat": "Week 5", "q": "What does the Ethical Level critically examine?", "opts": ["The reasons behind moral rules", "Only rewards", "Only laws", "Only customs"], "a": 0}, {"cat": "Week 5", "q": "What does the Ethical Level use?", "opts": ["Reason and critical thinking", "Punishment only", "Personal taste only", "Popularity"], "a": 0}, {"cat": "Week 5", "q": "What does the Ethical Level reflect on?", "opts": ["Consequences of actions", "Only rewards", "Only rules", "Only social media"], "a": 0}, {"cat": "Week 5", "q": "What does the Ethical Level consider?", "opts": ["Human dignity, rights, and the common good", "Only personal benefit", "Only punishment", "Only cultural preference"], "a": 0}, {"cat": "Week 5", "q": "What is Moral Reasoning?", "opts": ["The process of thinking carefully about what is right and wrong when making decisions", "Following rules without thought", "Avoiding all decisions", "Choosing what is popular"], "a": 0}, {"cat": "Week 5", "q": "What does Moral Reasoning involve?", "opts": ["Ethical principles, values, and judgment", "Only emotion", "Only law", "Only reward"], "a": 0}, {"cat": "Week 5", "q": "What is the first component of Moral Reasoning?", "opts": ["Recognition of a Moral Issue", "Gathering Facts", "Evaluating Alternatives", "Making a Moral Judgment"], "a": 0}, {"cat": "Week 5", "q": "What is the second component of Moral Reasoning?", "opts": ["Gathering Facts", "Recognition of a Moral Issue", "Applying Ethical Principles", "Making a Moral Judgment"], "a": 0}, {"cat": "Week 5", "q": "What is the third component of Moral Reasoning?", "opts": ["Evaluating Alternatives", "Gathering Facts", "Recognition of a Moral Issue", "Social Responsibility"], "a": 0}, {"cat": "Week 5", "q": "What is the fourth component of Moral Reasoning?", "opts": ["Applying Ethical Principles", "Making a Moral Judgment", "Gathering Facts", "Recognition of a Moral Issue"], "a": 0}, {"cat": "Week 5", "q": "What is the fifth component of Moral Reasoning?", "opts": ["Making a Moral Judgment", "Evaluating Alternatives", "Gathering Facts", "Recognition of a Moral Issue"], "a": 0}, {"cat": "Week 5", "q": "Which question belongs to Gathering Facts?", "opts": ["Who is affected?", "What rule feels best?", "Who is most popular?", "What is the easiest choice?"], "a": 0}, {"cat": "Week 5", "q": "Which is an example alternative in the cheating situation?", "opts": ["Talk to the friend privately", "Ignore all facts", "Change the grading system", "Reward the cheating"], "a": 0}, {"cat": "Week 5", "q": "Which is an ethical principle listed?", "opts": ["Honesty", "Popularity", "Wealth", "Comfort"], "a": 0}, {"cat": "Week 5", "q": "What is Social Responsibility?", "opts": ["The obligation of individuals to act for the benefit of society and contribute to the welfare of others", "A duty to seek personal rewards", "A legal code only", "A private feeling"], "a": 0}, {"cat": "Week 5", "q": "What does Social Responsibility mean regarding one's actions?", "opts": ["Considering how one's actions affect other people and the community", "Considering only personal benefit", "Ignoring the community", "Following only traditions"], "a": 0}, {"cat": "Week 5", "q": "Which is a characteristic of Social Responsibility?", "opts": ["Concern for Others", "Self-interest only", "Personal pleasure", "Avoidance of rules"], "a": 0}, {"cat": "Week 5", "q": "What does Accountability mean in Social Responsibility?", "opts": ["Being accountable for one's actions", "Ignoring mistakes", "Blaming others", "Avoiding consequences"], "a": 0}, {"cat": "Week 5", "q": "What does Respect for Human Rights mean?", "opts": ["Respecting the dignity and rights of every person", "Respecting only friends", "Following only laws", "Protecting only oneself"], "a": 0}, {"cat": "Week 5", "q": "What is Environmental Responsibility?", "opts": ["Protecting natural resources and the environment", "Maximizing personal gain", "Following social media trends", "Avoiding community work"], "a": 0}, {"cat": "Week 5", "q": "What is Community Participation?", "opts": ["Active involvement in improving society", "Avoiding society", "Following only personal interests", "Rejecting outreach"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does 'moral' come from in the module?", "opts": ["Latin 'mores'", "Latin 'agere'", "Greek 'ethos'", "Latin 'ratio'"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does 'mores' refer to?", "opts": ["Society's patterns, standards, rules of doing things", "To do or act", "Human rights", "Free will"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does 'agent' come from?", "opts": ["Latin 'agere'", "Latin 'mores'", "Greek 'logos'", "Latin 'ethos'"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does 'agere' mean?", "opts": ["To do, act", "To judge", "To obey", "To feel"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is a moral agent?", "opts": ["A person able to discern right from wrong and be held accountable for his or her own actions", "A person who only follows laws", "A person without responsibility", "A person who avoids decisions"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What moral responsibility does a moral agent have?", "opts": ["Not to cause unjustified harm", "To seek punishment", "To follow every custom", "To avoid all social duties"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is sufficient for moral agency according to the module?", "opts": ["Capacity to conform to some external requirements of morality", "Perfect moral knowledge", "Always acting altruistically", "Never making mistakes"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "Which is an example of an external moral requirement?", "opts": ["Murder is wrong", "Popularity is good", "Profit is good", "Culture is best"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is the ethical responsibility example in the School Community?", "opts": ["Students should not cheat because it harms trust within the community", "Students should avoid all rules", "Teachers should avoid grading", "Schools should rank cultures"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is the ethical responsibility example in the Workplace?", "opts": ["Employers should provide safe working conditions", "Employees should avoid work", "Employers should ignore duties", "Workers should reject laws"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is the ethical responsibility example in the Nation or Society?", "opts": ["Respect others' rights and follow just laws", "Avoid all laws", "Ignore rights", "Follow every custom"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is the ethical responsibility example in the Religious Community?", "opts": ["Helping the poor and practicing compassion", "Paying taxes", "Avoiding animals", "Reducing pollution"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is the ethical responsibility example in the Global Human Community?", "opts": ["Respecting human rights regardless of nationality, race, or religion", "Following one culture", "Ignoring nationality", "Rejecting rights"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "Why do many ethicists say animals deserve moral consideration?", "opts": ["They can feel pain and suffering", "They make laws", "They have jobs", "They belong to schools"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does Environmental Ethics expand the moral community to include?", "opts": ["Ecosystems and people who will live in the future", "Only current citizens", "Only animals", "Only workplaces"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Rationality?", "opts": ["The ability to think critically and evaluate situations before acting", "The capacity to feel guilt", "The ability to obey", "The willingness to accept punishment"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Free Will?", "opts": ["The capacity to choose among different courses of action", "The ability to know facts", "An inner sense of right", "Consistency of values"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Moral Awareness?", "opts": ["The ability to recognize that a situation involves ethical considerations", "The ability to punish", "The ability to persuade", "The ability to rank cultures"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Conscience?", "opts": ["An inner sense that guides a person toward what is right and warns against wrongdoing", "A legal system", "A cultural custom", "A social group"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Responsibility?", "opts": ["The willingness to accept the consequences of one's actions", "Avoiding all consequences", "Following others", "Seeking rewards"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Empathy?", "opts": ["The ability to understand and share the feelings of others", "The ability to obey laws", "The ability to judge cultures", "The ability to avoid action"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Integrity?", "opts": ["Consistency between one's values, words, and actions", "Following rules only", "Avoiding guilt", "Seeking praise"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Moral Accountability?", "opts": ["Responsibility of individuals for their actions, decisions, and consequences", "A system of rewards", "A social custom", "A legal code only"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "Why are moral agents answerable for the outcomes of their choices?", "opts": ["They are capable of making choices", "They are always perfect", "They always know everything", "They never face consequences"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is the first condition for Moral Accountability?", "opts": ["Knowledge", "Freedom", "Intentionality", "Control"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does Knowledge require for Moral Accountability?", "opts": ["Understanding what one is doing and recognizing its moral implications", "Being forced to act", "Acting accidentally", "Having no control"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Freedom as a condition of Moral Accountability?", "opts": ["The action is performed voluntarily and not entirely under force or coercion", "The action is accidental", "The action is unknown", "The action is uncontrolled"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Intentionality as a condition of Moral Accountability?", "opts": ["The action is done deliberately rather than accidentally", "The action is forced", "The action is unknown", "The action is uncontrolled"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Control as a condition of Moral Accountability?", "opts": ["The individual has sufficient control over the action", "The person is forced", "The person is unaware", "The act is accidental"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "Which is an importance of moral accountability?", "opts": ["Promotes responsible behavior", "Eliminates trust", "Weakens character", "Rejects justice"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "How does accountability build trust?", "opts": ["It fosters trust in relationships, schools, workplaces, and communities", "It removes responsibility", "It avoids consequences", "It rejects rules"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "How does accountability strengthen character?", "opts": ["Accepting responsibility for mistakes helps individuals grow morally and emotionally", "Avoiding mistakes makes everyone perfect", "Punishment creates culture", "Ignoring consequences builds trust"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "How does accountability support justice?", "opts": ["People who cause harm should answer for actions, while ethical actors deserve recognition", "No one answers for harm", "Only laws matter", "Ethical actions are ignored"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does a fully functioning person understand and accept?", "opts": ["Their true self", "Only laws", "Only traditions", "Only others' opinions"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is a fully functioning person aware of?", "opts": ["Feelings and emotions", "Only rules", "Only consequences", "Only social norms"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What did Abraham Maslow develop?", "opts": ["Hierarchy of Needs", "Six Stages of Moral Development", "Cultural Relativism", "Divine Command Theory"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What does the Hierarchy of Needs explain?", "opts": ["What motivates human behavior", "How laws are written", "How cultures are ranked", "How moral disputes are resolved"], "a": 0}, {"cat": "Week 6 – Moral Agent", "q": "What is Abraham Maslow considered one of the founders of?", "opts": ["Humanistic Psychology", "Legal Philosophy", "Social Contract Theory", "Cultural Anthropology"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "Who developed the Six Stages of Moral Development?", "opts": ["Lawrence Kohlberg", "Carl Rogers", "Abraham Maslow", "Ruth Benedict"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What years are given for Lawrence Kohlberg?", "opts": ["1927–1987", "1908–1970", "1958–1983", "1920–2000"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What level contains Stages 1 and 2?", "opts": ["Level 1. Preconventional Morality", "Level 2. Conventional Morality", "Level 3. Postconventional Morality", "Ethical Level"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is Stage 1?", "opts": ["Obedience and Punishment Orientation", "Instrumental-Relativist", "Good Interpersonal Relationships", "Universal Principles"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Stage 1, why is stealing bad in the example?", "opts": ["Because you'll get punished", "Because society benefits", "Because rights are universal", "Because friends expect it"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What does Jairo do in the Stage 1 example?", "opts": ["Leaves the pencil case alone because he does not want to be punished", "Takes the pen", "Reports the teacher", "Changes the school rule"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is Stage 2?", "opts": ["Instrumental-Relativist", "Obedience and Punishment Orientation", "Maintaining the Social Order", "Social Contract and Individual Rights"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What drives the Stage 2 exam-study example?", "opts": ["Personal reward", "Universal justice", "Social order", "Civil disobedience"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is Stage 3?", "opts": ["Good Interpersonal Relationships", "Maintaining the Social Order", "Universal Principles", "Social Contract and Individual Rights"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What does Stage 3 emphasize?", "opts": ["Good motives and interpersonal feelings such as love, empathy, trust, and concern for others", "Punishment only", "Universal rights only", "Civil disobedience"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is Stage 4?", "opts": ["Maintaining the Social Order", "Good Interpersonal Relationships", "Instrumental-Relativist", "Universal Principles"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What does Stage 4 emphasize?", "opts": ["Obeying laws, respecting authority, and performing duties so social order is maintained", "Personal reward", "Only friendship", "Self-interest only"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is the example for Stage 4?", "opts": ["Paying taxes honestly", "Stealing medicine", "Sharing lunch", "Changing a school rule"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What level contains Stages 5 and 6?", "opts": ["Level 3. Postconventional Morality", "Level 1. Preconventional Morality", "Level 2. Conventional Morality", "Pre-Moral Level"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is Stage 5?", "opts": ["Social Contract and Individual Rights", "Maintaining the Social Order", "Good Interpersonal Relationships", "Obedience and Punishment Orientation"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What question does Stage 5 begin to ask?", "opts": ["What makes for a good society?", "Who will punish me?", "Who will reward me?", "Who is my friend?"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is the Stage 5 example?", "opts": ["Advocating to change an unfair school rule so all students have equal opportunities", "Paying taxes", "Avoiding punishment", "Sharing lunch"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is Stage 6?", "opts": ["Universal Principles", "Social Contract and Individual Rights", "Maintaining the Social Order", "Instrumental-Relativist"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What does Stage 6 emphasize?", "opts": ["Impartial justice and basic dignity of all people as individuals", "Personal reward", "Obeying authority only", "Following friends"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What distinguishes Stage 5 from Stage 6 in the material?", "opts": ["Civil disobedience", "Personal reward", "Punishment", "Friendship"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "What is the Stage 6 example?", "opts": ["A witness testifies to protect an innocent person despite threats", "A student studies for a toy", "A citizen pays taxes", "A child avoids punishment"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "In the Heinz Dilemma, how much did the druggist pay for the radium?", "opts": ["$200", "$1,000", "$2,000", "$20"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "How much did the druggist charge for a small dose?", "opts": ["$2,000", "$200", "$1,000", "$500"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "How much money could Heinz gather?", "opts": ["About $1,000", "$200", "$2,000", "$500"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "Why did Heinz break into the laboratory?", "opts": ["To steal the drug for his dying wife", "To make money", "To avoid paying taxes", "To protect the druggist"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Pre-Conventional Obedience in the Heinz table, why should Heinz steal?", "opts": ["The drug is only worth $200 and he offered to pay", "The law requires it", "His wife expects it", "Universal ethics requires it"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Pre-Conventional Obedience, why should Heinz not steal?", "opts": ["He will consequently be put in prison and be a bad person", "His wife will benefit", "Everyone has equal rights", "He should change the law"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Conventional Conformity, why should Heinz steal?", "opts": ["His wife expects it; he wants to be a good husband", "The drug is cheap", "Universal ethics", "He wants punishment"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Conventional Law-and-order, why should Heinz not steal?", "opts": ["The law prohibits stealing and actions have consequences", "His wife expects it", "The drug is worth $200", "All rights are equal"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Post-Conventional Social Contract orientation, why should Heinz steal?", "opts": ["Everyone has a right to choose life, regardless of the law", "Because prison is bad", "Because his wife expects it", "Because the druggist is rich"], "a": 0}, {"cat": "Kohlberg — Separate", "q": "At Post-Conventional Universal human ethics, why should Heinz not steal?", "opts": ["The scientist has a right to fair compensation and others may need the medicine too", "Because punishment is scary", "Because his wife expects it", "Because the drug costs $200"], "a": 0}];
+const FLASHCARDS = [{"cat": "Week 3", "front": "What are the three ethical levels?", "back": "Personal, societal, and environmental."}, {"cat": "Week 3", "front": "What is the Personal Level?", "back": "How you treat yourself and others."}, {"cat": "Week 3", "front": "What is the Societal Level?", "back": "Ethical concerns that affect society in general."}, {"cat": "Week 3", "front": "What is the Environmental Level?", "back": "Ethical concerns involving the environment and non-human species."}, {"cat": "Week 3", "front": "What does moral sense mean in the module?", "back": "A person is self-conscious of dignity and duty to do good and avoid wrong."}, {"cat": "Week 3", "front": "What are the three main ethical capacities listed?", "back": "Distinguish good/evil; feel obligation; feel accountable."}, {"cat": "Week 4", "front": "What are the traditional sources of authority?", "back": "Law, religion, and culture."}, {"cat": "Week 4", "front": "What is Law as ethical authority?", "back": "A significant source that codifies norms and values and regulates behavior."}, {"cat": "Week 4", "front": "What is Divine Command Theory?", "back": "Right if God orders it; morally bad if God forbids it."}, {"cat": "Week 4", "front": "What is Cultural Relativism?", "back": "Ethical acceptability depends on one's culture."}, {"cat": "Week 4", "front": "What is Ethical Universalism?", "back": "Shared ethical principles across cultures."}, {"cat": "Week 4", "front": "What are three benefits of cultural relativism?", "back": "Tolerance; prevents ethnocentrism; promotes research."}, {"cat": "Week 4", "front": "What is Reason and Rationality?", "back": "Using logical reasoning and critical thinking to determine right and wrong."}, {"cat": "Week 4", "front": "What is Individual Conscience?", "back": "An inner sense of right and wrong guiding actions and decisions."}, {"cat": "Week 4", "front": "What is Expert Opinion?", "back": "Guidance from philosophers, ethicists, and theologians, evaluated critically."}, {"cat": "Week 4", "front": "What is Subjectivism?", "back": "Moral claims express personal feelings or individual tastes."}, {"cat": "Week 4", "front": "What is Psychological Egoism?", "back": "Humans are naturally motivated strictly by self-interest in every action."}, {"cat": "Week 4", "front": "What is Ethical Egoism?", "back": "Individuals ought to pursue self-interest as their primary moral duty."}, {"cat": "Week 4", "front": "What is Genuine Altruism?", "back": "Caring for others' well-being for their own sake, beyond personal benefit."}, {"cat": "Week 5", "front": "What is Pre-Moral Level?", "back": "Actions judged by needs, desires, pleasure, pain, rewards, or punishment."}, {"cat": "Week 5", "front": "What is Moral Level?", "back": "Recognizes rules, duties, responsibilities, fairness, justice, and respect."}, {"cat": "Week 5", "front": "What is Ethical Level?", "back": "Highest level; critically examines moral rules using universal principles and human values."}, {"cat": "Week 5", "front": "What is Moral Reasoning?", "back": "Thinking carefully about right and wrong using principles, values, and judgment."}, {"cat": "Week 5", "front": "What is the first step in Moral Reasoning?", "back": "Recognition of a Moral Issue."}, {"cat": "Week 5", "front": "What is the second step?", "back": "Gathering Facts."}, {"cat": "Week 5", "front": "What is the third step?", "back": "Evaluating Alternatives."}, {"cat": "Week 5", "front": "What is the fourth step?", "back": "Applying Ethical Principles."}, {"cat": "Week 5", "front": "What is the fifth step?", "back": "Making a Moral Judgment."}, {"cat": "Week 5", "front": "What is Social Responsibility?", "back": "The obligation to act for society's benefit and others' welfare."}, {"cat": "Week 5", "front": "What are the five characteristics of Social Responsibility?", "back": "Concern for Others; Accountability; Human Rights; Environmental Responsibility; Community Participation."}, {"cat": "Week 6 – Moral Agent", "front": "What does 'mores' mean?", "back": "Society's patterns, standards, and rules of doing things."}, {"cat": "Week 6 – Moral Agent", "front": "What does 'agere' mean?", "back": "To do, act."}, {"cat": "Week 6 – Moral Agent", "front": "What is a Moral Agent?", "back": "A person able to discern right from wrong and be accountable for actions."}, {"cat": "Week 6 – Moral Agent", "front": "What is Rationality?", "back": "Ability to think critically and evaluate situations before acting."}, {"cat": "Week 6 – Moral Agent", "front": "What is Free Will?", "back": "Capacity to choose among different courses of action."}, {"cat": "Week 6 – Moral Agent", "front": "What is Moral Awareness?", "back": "Ability to recognize ethical considerations in a situation."}, {"cat": "Week 6 – Moral Agent", "front": "What is Conscience?", "back": "An inner sense guiding toward right and warning against wrongdoing."}, {"cat": "Week 6 – Moral Agent", "front": "What is Responsibility?", "back": "Willingness to accept consequences of one's actions."}, {"cat": "Week 6 – Moral Agent", "front": "What is Empathy?", "back": "Ability to understand and share others' feelings."}, {"cat": "Week 6 – Moral Agent", "front": "What is Integrity?", "back": "Consistency between values, words, and actions."}, {"cat": "Week 6 – Moral Agent", "front": "What is Moral Accountability?", "back": "Responsibility for actions, decisions, and consequences."}, {"cat": "Week 6 – Moral Agent", "front": "What are the four conditions for accountability?", "back": "Knowledge, Freedom, Intentionality, and Control."}, {"cat": "Week 6 – Moral Agent", "front": "What are four importance of accountability?", "back": "Responsible behavior, trust, stronger character, and justice."}, {"cat": "Week 6 – Moral Agent", "front": "What does Carl Rogers describe?", "back": "A fully functioning person understands the true self, feelings, values, growth, and new experiences."}, {"cat": "Week 6 – Moral Agent", "front": "What did Abraham Maslow develop?", "back": "Hierarchy of Needs."}, {"cat": "Kohlberg — Separate", "front": "Who is Lawrence Kohlberg?", "back": "American psychologist (1927–1987)."}, {"cat": "Kohlberg — Separate", "front": "What are the three levels of Kohlberg's moral development?", "back": "Preconventional, Conventional, and Postconventional Morality."}, {"cat": "Kohlberg — Separate", "front": "What is Stage 1?", "back": "Obedience and Punishment Orientation."}, {"cat": "Kohlberg — Separate", "front": "What is Stage 2?", "back": "Instrumental-Relativist."}, {"cat": "Kohlberg — Separate", "front": "What is Stage 3?", "back": "Good Interpersonal Relationships."}, {"cat": "Kohlberg — Separate", "front": "What is Stage 4?", "back": "Maintaining the Social Order."}, {"cat": "Kohlberg — Separate", "front": "What is Stage 5?", "back": "Social Contract and Individual Rights."}, {"cat": "Kohlberg — Separate", "front": "What is Stage 6?", "back": "Universal Principles."}, {"cat": "Kohlberg — Separate", "front": "What does Stage 1 focus on?", "back": "Fixed rules from powerful authorities and consequences such as punishment."}, {"cat": "Kohlberg — Separate", "front": "What does Stage 2 focus on?", "back": "Different viewpoints and pursuing individual interests."}, {"cat": "Kohlberg — Separate", "front": "What does Stage 3 focus on?", "back": "Family/community expectations, good motives, love, empathy, trust, and concern."}, {"cat": "Kohlberg — Separate", "front": "What does Stage 4 focus on?", "back": "Laws, authority, duties, and maintaining social order."}, {"cat": "Kohlberg — Separate", "front": "What does Stage 5 ask?", "back": "What makes for a good society?"}, {"cat": "Kohlberg — Separate", "front": "What does Stage 6 emphasize?", "back": "Impartial justice and the basic dignity of all people."}, {"cat": "Kohlberg — Separate", "front": "What is the Heinz Dilemma about?", "back": "Whether Heinz should steal an expensive drug to save his dying wife."}];
+let qList=[...QUESTIONS], qIndex=0, score=0, answered=0;
+let fcList=[...FLASHCARDS], fcIndex=0;
+
+const tabs=document.querySelectorAll('.tab');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById(b.dataset.tab);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+const cats=[...new Set(QUESTIONS.map(x=>x.cat))];
+cats.forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;catFilter.appendChild(o)});
+const fCats=[...new Set(FLASHCARDS.map(x=>x.cat))];
+fCats.forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;fcFilter.appendChild(o)});
+qcount.textContent=QUESTIONS.length; fcount.textContent=FLASHCARDS.length;
+
+function renderQ(){
+ if(!qList.length){quiz.innerHTML='<div class="card">No questions in this section.</div>';return}
+ const x=qList[qIndex];
+ status.textContent=`Question ${qIndex+1} of ${qList.length} • Score ${score}/${answered}`;
+ bar.style.width=((qIndex)/qList.length*100)+'%';
+ let opts=x.opts.map((o,i)=>({o,i}));
+ // Shuffle options on each question render, but preserve correct index.
+ opts.sort(()=>Math.random()-.5);
+ quiz.innerHTML='';
+ const box=document.createElement('div');box.className='qbox';
+ box.innerHTML=`<div class="qmeta">${escapeHtml(x.cat)}</div><div class="qtext">${escapeHtml(x.q)}</div>`;
+ opts.forEach(item=>{
+   const b=document.createElement('button');b.type='button';b.className='option';b.textContent=item.o;
+   b.onclick=()=>{
+     [...box.querySelectorAll('.option')].forEach(z=>z.disabled=true);
+     answered++;
+     if(item.i===x.a){b.classList.add('correct');score++}
+     else{
+       b.classList.add('wrong');
+       [...box.querySelectorAll('.option')].forEach(z=>{if(z.textContent===x.opts[x.a])z.classList.add('correct')});
+     }
+const ex=document.createElement('div');ex.className='explain';
+     ex.innerHTML='<b>Correct answer:</b> '+escapeHtml(x.opts[x.a]);
+     box.appendChild(ex);
+
+     const next=document.createElement('button');
+     next.className='btn';
+     next.style.marginTop='14px';
+     next.textContent=(qIndex<qList.length-1)?'Next →':'Finish Review';
+     next.onclick=()=>{
+       if(qIndex<qList.length-1){qIndex++;renderQ();}
+       else{
+         bar.style.width='100%';
+         quiz.innerHTML=`<div class="card"><h2>Finished!</h2><p>Your score: <b>${score}/${answered}</b></p><div class="controls"><button class="btn" onclick="resetQuiz()">Review Again</button></div></div>`;
+         status.textContent=`Finished • Score ${score}/${answered}`;
+       }
+     };
+     box.appendChild(next);
+   };
+   box.appendChild(b);
+ });
+ quiz.appendChild(box);
+}
+function resetQuiz(){score=0;answered=0;qIndex=0;qList=[...filteredQuestions()];renderQ()}
+function filteredQuestions(){let f=catFilter.value;return f==='ALL'?[...QUESTIONS]:QUESTIONS.filter(x=>x.cat===f)}
+catFilter.onchange=resetQuiz;
+shuffleBtn.onclick=()=>{qList.sort(()=>Math.random()-.5);qIndex=0;score=0;answered=0;renderQ()};
+resetBtn.onclick=resetQuiz;
+
+function renderFC(){
+ if(!fcList.length)return;
+ const x=fcList[fcIndex]; flashcard.classList.remove('flipped');
+ fcCat.textContent=x.cat;fcFront.textContent=x.front;fcBack.textContent=x.back;
+}
+flashcard.onclick=()=>flashcard.classList.toggle('flipped');
+fcPrev.onclick=()=>{fcIndex=(fcIndex-1+fcList.length)%fcList.length;renderFC()};
+fcNext.onclick=()=>{fcIndex=(fcIndex+1)%fcList.length;renderFC()};
+fcFilter.onchange=()=>{let f=fcFilter.value;fcList=f==='ALL'?[...FLASHCARDS]:FLASHCARDS.filter(x=>x.cat===f);fcIndex=0;renderFC()};
+fcShuffle.onclick=()=>{fcList.sort(()=>Math.random()-.5);fcIndex=0;renderFC()};
+
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+renderQ();renderFC();
+</script>
+
+<script>
+document.querySelectorAll('.study-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const w=btn.dataset.week;
+    document.querySelectorAll('.study-tab').forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('.study-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===w));
+  });
+});
+</script>
+
+</body></html>
