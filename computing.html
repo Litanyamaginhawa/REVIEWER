@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Number Systems Master Reviewer</title>
+<style>
+:root{--bg:#f7f4f8;--card:#fff;--ink:#2f2930;--muted:#766d75;--accent:#b96f91;--good:#2f8f5b;--bad:#c74d5d;--line:#eadfe5;--shadow:0 10px 30px rgba(60,35,50,.1)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#fff9fc,var(--bg));color:var(--ink)}
+header{padding:28px 18px 20px;text-align:center;background:linear-gradient(135deg,#f1dce6,#fff)}h1{margin:0 0 8px;font-size:clamp(25px,5vw,42px)}header p{margin:0;color:var(--muted)}
+nav{position:sticky;top:0;z-index:5;background:#ffffffed;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:7px;overflow:auto;padding:10px}nav button{border:0;border-radius:999px;padding:10px 14px;background:#f1e6eb;color:#493b44;cursor:pointer;white-space:nowrap;font-weight:700}nav button.active{background:var(--accent);color:#fff}
+main{max-width:1050px;margin:auto;padding:18px}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border-radius:20px;padding:20px;margin:14px 0;box-shadow:var(--shadow);border:1px solid #eee4e9}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.small{color:var(--muted);font-size:.93rem}
+.formula{background:#fbf3f7;border-left:4px solid var(--accent);padding:12px;border-radius:10px;margin:10px 0;font-family:ui-monospace,monospace;white-space:pre-wrap}.step{padding:12px;background:#faf7f9;border-radius:12px;margin:8px 0}
+.controls{display:flex;gap:8px;flex-wrap:wrap}select{padding:10px;border:1px solid #ddd2d9;border-radius:10px;background:#fff}.primary{background:var(--accent);color:#fff;border:0;border-radius:12px;padding:11px 15px;font-weight:800;cursor:pointer}
+.question{border:1px solid #eee2e8;border-radius:17px;padding:17px;margin:14px 0}.qhead{display:flex;justify-content:space-between;gap:10px}.badge{font-size:.75rem;padding:5px 9px;border-radius:999px;background:#eee5ea;white-space:nowrap}
+.option{display:block;width:100%;text-align:left;margin:8px 0;padding:12px;border:1px solid #ddd2d9;background:#fff;border-radius:12px;cursor:pointer}.option:hover{border-color:var(--accent)}.option.correct{background:#e9f7ef;border-color:var(--good)}.option.wrong{background:#fff0f2;border-color:var(--bad)}.explain{display:none;padding:10px;border-radius:10px;background:#f7f5f6;margin-top:8px}.explain.show{display:block}
+.score{position:sticky;bottom:10px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);padding:12px 15px;border-radius:15px;display:flex;justify-content:space-between;align-items:center;z-index:4}
+.flashgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}.flash{height:150px;perspective:900px;cursor:pointer}.flashin{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}.flash.flipped .flashin{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:18px;display:flex;align-items:center;justify-content:center;text-align:center}.back{transform:rotateY(180deg);background:#fbf3f7}
+table{width:100%;border-collapse:collapse;text-align:center}th,td{padding:9px;border-bottom:1px solid var(--line)}@media(max-width:600px){main{padding:11px}.card{padding:15px}}
+
+.callout{padding:14px;border-radius:14px;background:#f8edf3;border:1px solid #ead5df}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}.highlight{background:#fff5c7;font-weight:900}.method-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.method{padding:15px;border:1px solid var(--line);border-radius:15px;background:#fff}.method h3{margin:0 0 7px;color:#6e3f56}.quizbox{max-width:800px;margin:auto}.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.timer{font-size:1.25rem;font-weight:900;padding:9px 13px;border-radius:12px;background:#f4edf0;min-width:94px;text-align:center}.timer.danger{background:#ffe6e8;color:#a92f40;animation:pulse 1s infinite}@keyframes pulse{50%{transform:scale(1.03)}}.progress{height:9px;background:#eee4e9;border-radius:99px;overflow:hidden;margin:12px 0}.progress>div{height:100%;background:var(--accent);width:0}.qtext{font-size:1.15rem;font-weight:800;line-height:1.45}.timeout{padding:11px;border-radius:10px;background:#fff4d8;border:1px solid #efd38b;margin-top:10px}.result{text-align:center;padding:20px;background:#fbf3f7;border-radius:18px}@media(max-width:600px){.timer{width:100%}}
+.conversionTag{display:inline-block;background:#f1e6eb;color:#6e3f56;border-radius:999px;padding:6px 10px;font-size:.82rem;font-weight:900;margin-bottom:9px}.method p{line-height:1.5}
+.diagram{width:100%;max-width:620px;height:auto;margin:10px 0;background:#fffafc;border:1px solid var(--line);border-radius:14px;padding:8px}
+.diagram text{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:22px;fill:#4b3b45}
+.diagram rect{fill:#f1e6eb;stroke:#c982a5;stroke-width:2}
+.rule{background:#fff5c7;padding:10px;border-radius:10px;font-weight:700}
+.hero{background:linear-gradient(135deg,#fff,#f8edf3)}
+</style></head><body>
+<header><h1>Number Systems Master Reviewer</h1><p>Binary • Octal • Decimal • Hexadecimal • Conversion • Easy → Hard</p></header>
+<nav>
+<button class="active" onclick="showTab('tutorial',this)">Tutorial</button>
+<button onclick="showTab('quiz',this)">Multiple Choice Quiz</button>
+<button onclick="showTab('flash',this)">Flashcards</button>
+<button onclick="showTab('cheat',this)">Cheat Sheet</button>
+</nav><main>
+
+<section id="tutorial" class="panel active">
+<div class="card hero"><h2>📘 Number Systems — Clean Conversion Guide</h2>
+<p>12 conversion directions, organized by the number system you start with. Use the selector in the quiz to practice one conversion at a time.</p>
+<div class="grid">
+<div class="callout"><b>Binary (Base 2)</b><br>0, 1</div>
+<div class="callout"><b>Octal (Base 8)</b><br>0–7</div>
+<div class="callout"><b>Decimal (Base 10)</b><br>0–9</div>
+<div class="callout"><b>Hexadecimal (Base 16)</b><br>0–9, A–F</div>
+</div></div>
+
+<div class="card"><h2>📊 Quick Reference: 0–16</h2>
+<div class="table-wrap"><table><thead><tr><th>Decimal<br>Base-10</th><th>Binary<br>Base-2</th><th>Octal<br>Base-8</th><th>Hexadecimal<br>Base-16</th></tr></thead><tbody>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>10</td><td>2</td><td>2</td></tr><tr><td>3</td><td>11</td><td>3</td><td>3</td></tr><tr><td>4</td><td>100</td><td>4</td><td>4</td></tr><tr><td>5</td><td>101</td><td>5</td><td>5</td></tr><tr><td>6</td><td>110</td><td>6</td><td>6</td></tr><tr><td>7</td><td>111</td><td>7</td><td>7</td></tr><tr><td>8</td><td>1000</td><td>10</td><td>8</td></tr><tr><td>9</td><td>1001</td><td>11</td><td>9</td></tr><tr><td>10</td><td>1010</td><td>12</td><td>A</td></tr><tr><td>11</td><td>1011</td><td>13</td><td>B</td></tr><tr><td>12</td><td>1100</td><td>14</td><td>C</td></tr><tr><td>13</td><td>1101</td><td>15</td><td>D</td></tr><tr><td>14</td><td>1110</td><td>16</td><td>E</td></tr><tr><td>15</td><td>1111</td><td>17</td><td>F</td></tr><tr class="highlight"><td>16</td><td>10000</td><td>20</td><td>10</td></tr>
+</tbody></table></div></div>
+
+<div class="card"><h2>🔄 Binary Conversions</h2><div class="method-grid">
+<div class="method"><h3>Binary → Octal</h3><p class="rule">Easy rule: <b>3 bits = 1 octal digit.</b></p>
+<svg class="diagram" viewBox="0 0 620 160" role="img" aria-label="Binary to octal grouping"><text x="20" y="35">101111₂</text><line x1="105" y1="20" x2="105" y2="55"/><line x1="205" y1="20" x2="205" y2="55"/><text x="20" y="85">101</text><text x="135" y="85">111</text><text x="45" y="125">5</text><text x="160" y="125">7</text><text x="250" y="85">→ 57₈</text></svg>
+<p>Group from the <b>right</b> in 3s. If the left group is short, add zeros on the left.</p></div>
+
+<div class="method"><h3>Binary → Decimal</h3><p class="rule">Easy rule: <b>Multiply by powers of 2, then add.</b></p>
+<svg class="diagram" viewBox="0 0 620 160"><text x="20" y="35">1 0 1 1</text><text x="20" y="80">× 8 4 2 1</text><text x="20" y="125">8 + 0 + 2 + 1 = 11₁₀</text></svg>
+<p>Start with 2⁰ at the rightmost bit, then 2¹, 2², 2³...</p></div>
+
+<div class="method"><h3>Binary → Hexadecimal</h3><p class="rule">Easy rule: <b>4 bits = 1 hex digit.</b></p>
+<svg class="diagram" viewBox="0 0 620 160"><text x="20" y="35">1010</text><text x="170" y="35">1111</text><rect x="10" y="50" width="100" height="55"/><rect x="160" y="50" width="100" height="55"/><text x="45" y="90">A</text><text x="195" y="90">F</text><text x="300" y="90">→ AF₁₆</text></svg>
+<p>Group from the right in 4s and use the hex table for 0–F.</p></div>
+</div></div>
+
+<div class="card"><h2>🔢 Decimal Conversions</h2><div class="method-grid">
+<div class="method"><h3>Decimal → Binary</h3><p class="rule">Easy rule: <b>Divide by 2.</b> Keep remainders. Read them bottom → top.</p>
+<svg class="diagram" viewBox="0 0 620 190"><text x="20" y="30">13 ÷ 2 = 6 r1</text><text x="20" y="65">6 ÷ 2 = 3 r0</text><text x="20" y="100">3 ÷ 2 = 1 r1</text><text x="20" y="135">1 ÷ 2 = 0 r1</text><text x="300" y="100">↑ read up</text><text x="300" y="135">1101₂</text></svg></div>
+
+<div class="method"><h3>Decimal → Octal</h3><p class="rule">Easy rule: <b>Divide by 8.</b> Read remainders bottom → top.</p>
+<div class="formula">83 ÷ 8 = 10 r3
+10 ÷ 8 = 1 r2
+1 ÷ 8 = 0 r1
+Answer: 123₈</div></div>
+
+<div class="method"><h3>Decimal → Hexadecimal</h3><p class="rule">Easy rule: <b>Divide by 16.</b> Remainders 10–15 become A–F.</p>
+<div class="formula">47 ÷ 16 = 2 r15 = F
+2 ÷ 16 = 0 r2
+Answer: 2F₁₆</div></div>
+</div></div>
+
+<div class="card"><h2>🟠 Octal Conversions</h2><div class="method-grid">
+<div class="method"><h3>Octal → Binary</h3><p class="rule"><b>Each octal digit = exactly 3 bits.</b></p><div class="formula">57₈
+5 → 101
+7 → 111
+= 101111₂</div></div>
+<div class="method"><h3>Octal → Decimal</h3><p class="rule"><b>Multiply by powers of 8 + add.</b></p><div class="formula">157₈
+= 1×8² + 5×8¹ + 7×8⁰
+= 64+40+7
+= 111₁₀</div></div>
+<div class="method"><h3>Octal → Hexadecimal</h3><p class="rule"><b>Use Binary as the bridge.</b></p><div class="formula">57₈ → 101111₂
+→ 0010 1111₂
+→ 2F₁₆</div></div>
+</div></div>
+
+<div class="card"><h2>🟣 Hexadecimal Conversions</h2><div class="method-grid">
+<div class="method"><h3>Hexadecimal → Binary</h3><p class="rule"><b>Each hex digit = exactly 4 bits.</b></p><div class="formula">B6₁₆
+B → 1011
+6 → 0110
+= 10110110₂</div></div>
+<div class="method"><h3>Hexadecimal → Octal</h3><p class="rule"><b>Hex → Binary → Octal.</b></p><div class="formula">2F₁₆ → 00101111₂
+→ 000|101|111
+→ 57₈</div></div>
+<div class="method"><h3>Hexadecimal → Decimal</h3><p class="rule"><b>Multiply by powers of 16 + add.</b></p><div class="formula">2F₁₆
+= 2×16 + F(15)
+= 32+15
+= 47₁₀</div></div>
+</div></div>
+
+<div class="card"><h2>⭐ Super Easy Cheat Rules</h2>
+<div class="formula">TO DECIMAL → Multiply by powers of the starting base, then ADD.</div>
+<div class="formula">FROM DECIMAL → Divide repeatedly by the target base; read remainders BOTTOM → TOP.</div>
+<div class="formula">BINARY ↔ OCTAL → 3-bit groups.</div>
+<div class="formula">BINARY ↔ HEX → 4-bit groups.</div>
+<div class="formula">OCTAL ↔ HEX → go through BINARY.</div>
+</div>
+</section>
+
+
+<section id="quiz" class="panel"><div class="card quizbox">
+<div class="quiz-top"><div><h2 style="margin:0">📝 Conversion Quiz</h2>
+<div class="small" id="quizMeta"></div><div class="small">Every question has a fresh <b>1:00 timer</b>. Answer → new question → timer resets to 1:00.</div></div><div class="timer" id="timer">01:00</div></div>
+<div class="progress"><div id="progressBar"></div></div>
+<div class="controls">
+<label>Conversion:
+<select id="conversionFilter" onchange="startNewQuiz()">
+<option value="All">All 12 Conversions</option>
+<option>Binary → Octal</option><option>Binary → Decimal</option><option>Binary → Hexadecimal</option>
+<option>Octal → Binary</option><option>Octal → Decimal</option><option>Octal → Hexadecimal</option>
+<option>Decimal → Binary</option><option>Decimal → Octal</option><option>Decimal → Hexadecimal</option>
+<option>Hexadecimal → Binary</option><option>Hexadecimal → Octal</option><option>Hexadecimal → Decimal</option>
+</select></label>
+<label>Difficulty:
+<select id="difficultyFilter" onchange="startNewQuiz()"><option value="All">Easy + Medium + Hard</option><option>Easy</option><option>Medium</option><option>Hard</option></select></label>
+<button class="primary" onclick="shuffleQuiz()">🔀 Shuffle</button><button class="secondary" onclick="resetQuiz()">↻ Reset</button>
+</div>
+<div id="quizArea"></div><div class="score"><span>Score: <b id="score">0</b> / <b id="answered">0</b></span><span id="percent">0%</span></div>
+</div></section>
+
+<section id="flash" class="panel"><div class="card"><h2>Flashcards</h2><p class="small">Tap a card to flip it.</p><div class="flashgrid" id="flashgrid"></div></div></section>
+<section id="cheat" class="panel"><div class="card"><h2>Quick Conversion Table</h2>
+<table><tr><th>Decimal</th><th>Binary</th><th>Octal</th><th>Hex</th></tr>
+<tr><td>0</td><td>0000</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0001</td><td>1</td><td>1</td></tr><tr><td>2</td><td>0010</td><td>2</td><td>2</td></tr><tr><td>3</td><td>0011</td><td>3</td><td>3</td></tr><tr><td>4</td><td>0100</td><td>4</td><td>4</td></tr><tr><td>5</td><td>0101</td><td>5</td><td>5</td></tr><tr><td>6</td><td>0110</td><td>6</td><td>6</tr><tr><td>7</td><td>0111</td><td>7</td><td>7</td></tr><tr><td>8</td><td>1000</td><td>10</td><td>8</td></tr><tr><td>9</td><td>1001</td><td>11</td><td>9</td></tr><tr><td>10</td><td>1010</td><td>12</td><td>A</td></tr><tr><td>11</td><td>1011</td><td>13</td><td>B</td></tr><tr><td>12</td><td>1100</td><td>14</td><td>C</td></tr><tr><td>13</td><td>1101</td><td>15</td><td>D</td></tr><tr><td>14</td><td>1110</td><td>16</td><td>E</td></tr><tr><td>15</td><td>1111</td><td>17</td><td>F</td></tr></table></div>
+<div class="card"><h2>Fast Rules</h2><div class="formula">Any base → Decimal: multiply by powers of the base, then add.</div><div class="formula">Decimal → Any base: repeated division; read remainders bottom → top.</div><div class="formula">Binary ↔ Octal: groups of 3 bits.</div><div class="formula">Binary ↔ Hex: groups of 4 bits.</div><div class="formula">Octal ↔ Hex: go through Binary.</div></div></section>
+</main>
+
+<script>
+const QUESTIONS=[{"q": "Convert 101101₂ to decimal.", "opts": ["41₁₀", "43₁₀", "45₁₀", "47₁₀"], "ans": 2, "diff": "Easy", "conversion": "Binary → Decimal", "exp": "101101₂ = 32 + 8 + 4 + 1 = 45₁₀."}, {"q": "Convert 1100101₂ to decimal.", "opts": ["97₁₀", "99₁₀", "101₁₀", "103₁₀"], "ans": 2, "diff": "Medium", "conversion": "Binary → Decimal", "exp": "64 + 32 + 4 + 1 = 101₁₀."}, {"q": "Convert 11101110₂ to decimal.", "opts": ["236₁₀", "238₁₀", "240₁₀", "242₁₀"], "ans": 1, "diff": "Hard", "conversion": "Binary → Decimal", "exp": "128 + 64 + 32 + 8 + 4 + 2 = 238₁₀."}, {"q": "Convert 37₁₀ to binary.", "opts": ["100101₂", "100111₂", "101001₂", "101101₂"], "ans": 0, "diff": "Easy", "conversion": "Decimal → Binary", "exp": "37÷2 remainders read bottom-to-top = 100101₂."}, {"q": "Convert 58₁₀ to binary.", "opts": ["111000₂", "111010₂", "111100₂", "110110₂"], "ans": 1, "diff": "Medium", "conversion": "Decimal → Binary", "exp": "58÷2 repeatedly gives remainders 0,1,0,1,1,1 from bottom-to-top = 111010₂."}, {"q": "Convert 173₁₀ to binary.", "opts": ["10101101₂", "10101111₂", "10110101₂", "10111001₂"], "ans": 0, "diff": "Hard", "conversion": "Decimal → Binary", "exp": "173 = 128+32+8+4+1, so 10101101₂."}, {"q": "Convert 101101₂ to octal.", "opts": ["53₈", "54₈", "55₈", "56₈"], "ans": 2, "diff": "Easy", "conversion": "Binary → Octal", "exp": "Group from the right: 101|101 → 5|5 → 55₈."}, {"q": "Convert 1101011₂ to octal.", "opts": ["153₈", "153₈", "155₈", "157₈"], "ans": 0, "diff": "Medium", "conversion": "Binary → Octal", "exp": "Pad left: 001|101|011 → 1|5|3 → 153₈."}, {"q": "Convert 111001101₂ to octal.", "opts": ["715₈", "713₈", "705₈", "701₈"], "ans": 0, "diff": "Hard", "conversion": "Binary → Octal", "exp": "111|001|101 → 7|1|5 → 715₈."}, {"q": "Convert 10101111₂ to hexadecimal.", "opts": ["AE₁₆", "AF₁₆", "BF₁₆", "A7₁₆"], "ans": 1, "diff": "Easy", "conversion": "Binary → Hexadecimal", "exp": "Group in 4: 1010|1111 → A|F → AF₁₆."}, {"q": "Convert 11011010₂ to hexadecimal.", "opts": ["DA₁₆", "DB₁₆", "CA₁₆", "D2₁₆"], "ans": 0, "diff": "Medium", "conversion": "Binary → Hexadecimal", "exp": "1101|1010 → D|A → DA₁₆."}, {"q": "Convert 111101011001₂ to hexadecimal.", "opts": ["F59₁₆", "F5A₁₆", "F5B₁₆", "E59₁₆"], "ans": 0, "diff": "Hard", "conversion": "Binary → Hexadecimal", "exp": "1111|0101|1001 → F|5|9 → F59₁₆."}, {"q": "Convert 57₈ to binary.", "opts": ["101101₂", "101111₂", "111101₂", "110111₂"], "ans": 1, "diff": "Easy", "conversion": "Octal → Binary", "exp": "5→101 and 7→111, so 57₈ = 101111₂."}, {"q": "Convert 246₈ to binary.", "opts": ["10100110₂", "010100110₂", "101001110₂", "110100110₂"], "ans": 2, "diff": "Medium", "conversion": "Octal → Binary", "exp": "2→010, 4→100, 6→110 → 010100110₂; dropping the leading 0 gives 10100110₂."}, {"q": "Convert 731₈ to binary.", "opts": ["111011001₂", "111101001₂", "111011101₂", "111001001₂"], "ans": 0, "diff": "Hard", "conversion": "Octal → Binary", "exp": "7→111, 3→011, 1→001 → 111011001₂."}, {"q": "Convert 157₈ to decimal.", "opts": ["109₁₀", "111₁₀", "113₁₀", "115₁₀"], "ans": 1, "diff": "Easy", "conversion": "Octal → Decimal", "exp": "1×8² + 5×8 + 7 = 64+40+7 = 111₁₀."}, {"q": "Convert 246₈ to decimal.", "opts": ["158₁₀", "166₁₀", "170₁₀", "174₁₀"], "ans": 1, "diff": "Medium", "conversion": "Octal → Decimal", "exp": "2×64 + 4×8 + 6 = 128+32+6 = 166₁₀."}, {"q": "Convert 735₈ to decimal.", "opts": ["475₁₀", "477₁₀", "479₁₀", "481₁₀"], "ans": 1, "diff": "Hard", "conversion": "Octal → Decimal", "exp": "7×64 + 3×8 + 5 = 448+24+5 = 477₁₀."}, {"q": "Convert 57₈ to hexadecimal.", "opts": ["2D₁₆", "2E₁₆", "2F₁₆", "30₁₆"], "ans": 2, "diff": "Easy", "conversion": "Octal → Hexadecimal", "exp": "57₈→101111₂→0010|1111→2F₁₆."}, {"q": "Convert 73₈ to hexadecimal.", "opts": ["3A₁₆", "3B₁₆", "3C₁₆", "3D₁₆"], "ans": 1, "diff": "Medium", "conversion": "Octal → Hexadecimal", "exp": "73₈→111011₂→0011|1011→3B₁₆."}, {"q": "Convert 725₈ to hexadecimal.", "opts": ["1D5₁₆", "1D4₁₆", "1C5₁₆", "1E5₁₆"], "ans": 0, "diff": "Hard", "conversion": "Octal → Hexadecimal", "exp": "725₈→111010101₂→0001|1101|0101→1D5₁₆."}, {"q": "Convert 83₁₀ to octal.", "opts": ["121₈", "122₈", "123₈", "124₈"], "ans": 2, "diff": "Easy", "conversion": "Decimal → Octal", "exp": "83÷8=10 r3; 10÷8=1 r2; 1÷8=0 r1 → 123₈."}, {"q": "Convert 156₁₀ to octal.", "opts": ["232₈", "234₈", "236₈", "240₈"], "ans": 1, "diff": "Medium", "conversion": "Decimal → Octal", "exp": "156÷8=19 r4; 19÷8=2 r3; 2÷8=0 r2 → 234₈."}, {"q": "Convert 511₁₀ to octal.", "opts": ["777₈", "775₈", "767₈", "757₈"], "ans": 0, "diff": "Hard", "conversion": "Decimal → Octal", "exp": "511 = 7×64+7×8+7 → 777₈."}, {"q": "Convert 47₁₀ to hexadecimal.", "opts": ["2D₁₆", "2E₁₆", "2F₁₆", "30₁₆"], "ans": 2, "diff": "Easy", "conversion": "Decimal → Hexadecimal", "exp": "47÷16=2 r15(F) → 2F₁₆."}, {"q": "Convert 125₁₀ to hexadecimal.", "opts": ["7B₁₆", "7C₁₆", "7D₁₆", "7E₁₆"], "ans": 2, "diff": "Medium", "conversion": "Decimal → Hexadecimal", "exp": "125÷16=7 r13(D) → 7D₁₆."}, {"q": "Convert 254₁₀ to hexadecimal.", "opts": ["FC₁₆", "FD₁₆", "FE₁₆", "FF₁₆"], "ans": 2, "diff": "Hard", "conversion": "Decimal → Hexadecimal", "exp": "254÷16=15 r14(E); 15=F → FE₁₆."}, {"q": "Convert B6₁₆ to binary.", "opts": ["10100110₂", "10110110₂", "11010110₂", "10111010₂"], "ans": 1, "diff": "Easy", "conversion": "Hexadecimal → Binary", "exp": "B→1011 and 6→0110 → 10110110₂."}, {"q": "Convert 3A₁₆ to binary.", "opts": ["00111010₂", "00110110₂", "00111011₂", "01111010₂"], "ans": 0, "diff": "Medium", "conversion": "Hexadecimal → Binary", "exp": "3→0011 and A→1010 → 00111010₂."}, {"q": "Convert C7F₁₆ to binary.", "opts": ["110001111111₂", "110001111110₂", "101001111111₂", "110011111111₂"], "ans": 0, "diff": "Hard", "conversion": "Hexadecimal → Binary", "exp": "C→1100, 7→0111, F→1111 → 110001111111₂."}, {"q": "Convert 2F₁₆ to octal.", "opts": ["55₈", "56₈", "57₈", "60₈"], "ans": 2, "diff": "Easy", "conversion": "Hexadecimal → Octal", "exp": "2F₁₆→00101111₂→000|101|111→57₈."}, {"q": "Convert A5₁₆ to octal.", "opts": ["245₈", "246₈", "247₈", "250₈"], "ans": 0, "diff": "Medium", "conversion": "Hexadecimal → Octal", "exp": "A5₁₆→10100101₂→010|100|101→245₈."}, {"q": "Convert 3B7₁₆ to octal.", "opts": ["1667₈", "1677₈", "1657₈", "1707₈"], "ans": 0, "diff": "Hard", "conversion": "Hexadecimal → Octal", "exp": "3B7₁₆→0011|1011|0111₂→001|110|110|111→1667₈."}, {"q": "Convert 2F₁₆ to decimal.", "opts": ["45₁₀", "46₁₀", "47₁₀", "48₁₀"], "ans": 2, "diff": "Easy", "conversion": "Hexadecimal → Decimal", "exp": "2×16 + F(15) = 32+15 = 47₁₀."}, {"q": "Convert 7B₁₆ to decimal.", "opts": ["121₁₀", "123₁₀", "125₁₀", "127₁₀"], "ans": 1, "diff": "Medium", "conversion": "Hexadecimal → Decimal", "exp": "7×16 + B(11) = 112+11 = 123₁₀."}, {"q": "Convert A5C₁₆ to decimal.", "opts": ["2620₁₀", "2652₁₀", "2668₁₀", "2684₁₀"], "ans": 1, "diff": "Hard", "conversion": "Hexadecimal → Decimal", "exp": "A×256 + 5×16 + C = 2560+80+12 = 2652₁₀."}, {"q": "Which method is easiest for Binary → Octal?", "opts": ["3-bit grouping", "Divide by 8 repeatedly", "Powers of 16", "4-bit grouping"], "ans": 0, "diff": "Easy", "conversion": "Binary → Octal", "exp": "Group binary digits in sets of 3 from the right."}, {"q": "Which method is easiest for Binary → Hexadecimal?", "opts": ["3-bit grouping", "4-bit grouping", "Divide by 16", "Powers of 8"], "ans": 1, "diff": "Easy", "conversion": "Binary → Hexadecimal", "exp": "Group binary digits in sets of 4 from the right."}, {"q": "For Decimal → Binary, what should you do with the remainders?", "opts": ["Read top-to-bottom", "Ignore them", "Read bottom-to-top", "Add them together"], "ans": 2, "diff": "Easy", "conversion": "Decimal → Binary", "exp": "Repeated division produces remainders that are read bottom-to-top."}, {"q": "For Decimal → Hexadecimal, what base do you divide by?", "opts": ["2", "8", "10", "16"], "ans": 3, "diff": "Easy", "conversion": "Decimal → Hexadecimal", "exp": "Decimal to hexadecimal uses repeated division by 16."}, {"q": "What is the easiest bridge for Octal → Hexadecimal?", "opts": ["Binary", "Roman numerals", "ASCII", "Only decimal"], "ans": 0, "diff": "Easy", "conversion": "Octal → Hexadecimal", "exp": "Convert Octal → Binary, then Binary → Hex."}, {"q": "In hexadecimal, what does F represent in decimal?", "opts": ["12", "13", "14", "15"], "ans": 3, "diff": "Easy", "conversion": "Hexadecimal → Decimal", "exp": "A=10, B=11, C=12, D=13, E=14, F=15."}, {"q": "When converting a binary number to octal, where do you start grouping?", "opts": ["From the left", "From the right", "From the middle", "Anywhere"], "ans": 1, "diff": "Easy", "conversion": "Binary → Octal", "exp": "Groups of 3 are made starting from the right; pad zeros on the left if needed."}, {"q": "When converting binary to hexadecimal and the left group is short, what do you add?", "opts": ["Zeros on the left", "Zeros on the right", "Letters", "Nothing and delete bits"], "ans": 0, "diff": "Easy", "conversion": "Binary → Hexadecimal", "exp": "Pad with leading zeros so the leftmost group has 4 bits."}, {"q": "Convert 100110₂ to Decimal.", "opts": ["36₁₀", "37₁₀", "38₁₀", "39₁₀"], "ans": 2, "diff": "Easy", "conversion": "Binary → Decimal", "exp": "Use the easiest method for Binary → Decimal: 38."}, {"q": "Convert 1010110₂ to Decimal.", "opts": ["84₁₀", "85₁₀", "86₁₀", "87₁₀"], "ans": 2, "diff": "Medium", "conversion": "Binary → Decimal", "exp": "Use the easiest method for Binary → Decimal: 86."}, {"q": "Convert 11011101₂ to Decimal.", "opts": ["219₁₀", "220₁₀", "221₁₀", "222₁₀"], "ans": 2, "diff": "Hard", "conversion": "Binary → Decimal", "exp": "Use the easiest method for Binary → Decimal: 221."}, {"q": "Convert 44 to Binary.", "opts": ["1011000₂", "101101₂₂", "101110₂₂", "101100₂"], "ans": 3, "diff": "Easy", "conversion": "Decimal → Binary", "exp": "Use the easiest method for Decimal → Binary: 101100₂."}, {"q": "Convert 91 to Binary.", "opts": ["10110110₂", "1011010₂₂", "1011001₂₂", "1011011₂"], "ans": 3, "diff": "Medium", "conversion": "Decimal → Binary", "exp": "Use the easiest method for Decimal → Binary: 1011011₂."}, {"q": "Convert 200 to Binary.", "opts": ["110010000₂", "11001001₂₂", "11001010₂₂", "11001000₂"], "ans": 3, "diff": "Hard", "conversion": "Decimal → Binary", "exp": "Use the easiest method for Decimal → Binary: 11001000₂."}, {"q": "Convert 100111₂ to Octal.", "opts": ["470₈", "40₂₈", "07₂₈", "47₈"], "ans": 3, "diff": "Easy", "conversion": "Binary → Octal", "exp": "Use the easiest method for Binary → Octal: 47₈."}, {"q": "Convert 1110101₂ to Octal.", "opts": ["1650₈", "160₂₈", "105₂₈", "165₈"], "ans": 3, "diff": "Medium", "conversion": "Binary → Octal", "exp": "Use the easiest method for Binary → Octal: 165₈."}, {"q": "Convert 101110011₂ to Octal.", "opts": ["5630₈", "560₂₈", "503₂₈", "563₈"], "ans": 3, "diff": "Hard", "conversion": "Binary → Octal", "exp": "Use the easiest method for Binary → Octal: 563₈."}, {"q": "Convert 34₈ to Binary.", "opts": ["111000₂", "11101₂₂", "11110₂₂", "11100₂"], "ans": 3, "diff": "Easy", "conversion": "Octal → Binary", "exp": "Use the easiest method for Octal → Binary: 11100₂."}, {"q": "Convert 152₈ to Binary.", "opts": ["11010100₂", "1101011₂₂", "1101000₂₂", "1101010₂"], "ans": 3, "diff": "Medium", "conversion": "Octal → Binary", "exp": "Use the easiest method for Octal → Binary: 1101010₂."}, {"q": "Convert 604₈ to Binary.", "opts": ["1100001000₂", "110000101₂₂", "110000110₂₂", "110000100₂"], "ans": 3, "diff": "Hard", "conversion": "Octal → Binary", "exp": "Use the easiest method for Octal → Binary: 110000100₂."}, {"q": "Convert 10011110₂ to Hexadecimal.", "opts": ["90₁₆", "0E₁₆", "0E₁₆", "9E₁₆"], "ans": 3, "diff": "Easy", "conversion": "Binary → Hexadecimal", "exp": "Use the easiest method for Binary → Hexadecimal: 9E₁₆."}, {"q": "Convert 101101101₂ to Hexadecimal.", "opts": ["160₁₆", "10D₁₆", "06D₁₆", "16D₁₆"], "ans": 3, "diff": "Medium", "conversion": "Binary → Hexadecimal", "exp": "Use the easiest method for Binary → Hexadecimal: 16D₁₆."}, {"q": "Convert 110010101101₂ to Hexadecimal.", "opts": ["CA0₁₆", "C0D₁₆", "0AD₁₆", "CAD₁₆"], "ans": 3, "diff": "Hard", "conversion": "Binary → Hexadecimal", "exp": "Use the easiest method for Binary → Hexadecimal: CAD₁₆."}, {"q": "Convert 4D₁₆ to Binary.", "opts": ["010011010₂", "01001100₂₂", "01001111₂₂", "01001101₂"], "ans": 3, "diff": "Easy", "conversion": "Hexadecimal → Binary", "exp": "Use the easiest method for Hexadecimal → Binary: 01001101₂."}, {"q": "Convert 8E₁₆ to Binary.", "opts": ["100011100₂", "10001111₂₂", "10001100₂₂", "10001110₂"], "ans": 3, "diff": "Medium", "conversion": "Hexadecimal → Binary", "exp": "Use the easiest method for Hexadecimal → Binary: 10001110₂."}, {"q": "Convert D2A₁₆ to Binary.", "opts": ["1101001010100₂", "110100101011₂₂", "110100101000₂₂", "110100101010₂"], "ans": 3, "diff": "Hard", "conversion": "Hexadecimal → Binary", "exp": "Use the easiest method for Hexadecimal → Binary: 110100101010₂."}, {"q": "Convert 64₈ to Decimal.", "opts": ["50₁₀", "51₁₀", "52₁₀", "53₁₀"], "ans": 2, "diff": "Easy", "conversion": "Octal → Decimal", "exp": "Use the easiest method for Octal → Decimal: 52."}, {"q": "Convert 321₈ to Decimal.", "opts": ["207₁₀", "208₁₀", "209₁₀", "210₁₀"], "ans": 2, "diff": "Medium", "conversion": "Octal → Decimal", "exp": "Use the easiest method for Octal → Decimal: 209."}, {"q": "Convert 654₈ to Decimal.", "opts": ["426₁₀", "427₁₀", "428₁₀", "429₁₀"], "ans": 2, "diff": "Hard", "conversion": "Octal → Decimal", "exp": "Use the easiest method for Octal → Decimal: 428."}, {"q": "Convert 74 to Octal.", "opts": ["1120₈", "110₂₈", "102₂₈", "112₈"], "ans": 3, "diff": "Easy", "conversion": "Decimal → Octal", "exp": "Use the easiest method for Decimal → Octal: 112₈."}, {"q": "Convert 99 to Octal.", "opts": ["1430₈", "140₂₈", "103₂₈", "143₈"], "ans": 3, "diff": "Medium", "conversion": "Decimal → Octal", "exp": "Use the easiest method for Decimal → Octal: 143₈."}, {"q": "Convert 300 to Octal.", "opts": ["4540₈", "450₂₈", "404₂₈", "454₈"], "ans": 3, "diff": "Hard", "conversion": "Decimal → Octal", "exp": "Use the easiest method for Decimal → Octal: 454₈."}, {"q": "Convert 64₈ to Hexadecimal.", "opts": ["30₁₆", "04₁₆", "04₁₆", "34₁₆"], "ans": 3, "diff": "Easy", "conversion": "Octal → Hexadecimal", "exp": "Use the easiest method for Octal → Hexadecimal: 34₁₆."}, {"q": "Convert 125₈ to Hexadecimal.", "opts": ["50₁₆", "05₁₆", "05₁₆", "55₁₆"], "ans": 3, "diff": "Medium", "conversion": "Octal → Hexadecimal", "exp": "Use the easiest method for Octal → Hexadecimal: 55₁₆."}, {"q": "Convert 346₈ to Hexadecimal.", "opts": ["E0₁₆", "06₁₆", "06₁₆", "E6₁₆"], "ans": 3, "diff": "Hard", "conversion": "Octal → Hexadecimal", "exp": "Use the easiest method for Octal → Hexadecimal: E6₁₆."}, {"q": "Convert 63 to Hexadecimal.", "opts": ["30₁₆", "0F₁₆", "0F₁₆", "3F₁₆"], "ans": 3, "diff": "Easy", "conversion": "Decimal → Hexadecimal", "exp": "Use the easiest method for Decimal → Hexadecimal: 3F₁₆."}, {"q": "Convert 100 to Hexadecimal.", "opts": ["60₁₆", "04₁₆", "04₁₆", "64₁₆"], "ans": 3, "diff": "Medium", "conversion": "Decimal → Hexadecimal", "exp": "Use the easiest method for Decimal → Hexadecimal: 64₁₆."}, {"q": "Convert 200 to Hexadecimal.", "opts": ["C0₁₆", "08₁₆", "08₁₆", "C8₁₆"], "ans": 3, "diff": "Hard", "conversion": "Decimal → Hexadecimal", "exp": "Use the easiest method for Decimal → Hexadecimal: C8₁₆."}, {"q": "Convert 34₁₆ to Octal.", "opts": ["640₈", "60₂₈", "04₂₈", "64₈"], "ans": 3, "diff": "Easy", "conversion": "Hexadecimal → Octal", "exp": "Use the easiest method for Hexadecimal → Octal: 64₈."}, {"q": "Convert 55₁₆ to Octal.", "opts": ["1250₈", "120₂₈", "105₂₈", "125₈"], "ans": 3, "diff": "Medium", "conversion": "Hexadecimal → Octal", "exp": "Use the easiest method for Hexadecimal → Octal: 125₈."}, {"q": "Convert E6₁₆ to Octal.", "opts": ["3460₈", "340₂₈", "306₂₈", "346₈"], "ans": 3, "diff": "Hard", "conversion": "Hexadecimal → Octal", "exp": "Use the easiest method for Hexadecimal → Octal: 346₈."}, {"q": "Convert 4D₁₆ to Decimal.", "opts": ["75₁₀", "76₁₀", "77₁₀", "78₁₀"], "ans": 2, "diff": "Easy", "conversion": "Hexadecimal → Decimal", "exp": "Use the easiest method for Hexadecimal → Decimal: 77."}, {"q": "Convert 8E₁₆ to Decimal.", "opts": ["140₁₀", "141₁₀", "142₁₀", "143₁₀"], "ans": 2, "diff": "Medium", "conversion": "Hexadecimal → Decimal", "exp": "Use the easiest method for Hexadecimal → Decimal: 142."}, {"q": "Convert D2A₁₆ to Decimal.", "opts": ["3368₁₀", "3369₁₀", "3370₁₀", "3371₁₀"], "ans": 2, "diff": "Hard", "conversion": "Hexadecimal → Decimal", "exp": "Use the easiest method for Hexadecimal → Decimal: 3370."}];
+let quiz={list:[],index:0,score:0,answered:0,timer:null,locked:false};
+
+function showTab(id,btn){
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ if(btn)btn.classList.add('active');
+ if(id!=='quiz')stopTimer();
+ if(id==='quiz'&&quiz.list.length===0)startNewQuiz();
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pool(){
+ const c=document.getElementById('conversionFilter').value;
+ const d=document.getElementById('difficultyFilter').value;
+ return QUESTIONS.filter(q=>(c==='All'||q.conversion===c)&&(d==='All'||q.diff===d));
+}
+function startNewQuiz(){
+ stopTimer();
+ quiz={list:shuffle(pool().slice()),index:0,score:0,answered:0,timer:null,locked:false};
+ renderQuestion();
+}
+function shuffleQuiz(){startNewQuiz()}
+function resetQuiz(){startNewQuiz()}
+function stopTimer(){if(quiz.timer){clearInterval(quiz.timer);quiz.timer=null}}
+function timeText(n){return '00:'+String(Math.max(0,n)).padStart(2,'0')}
+function renderQuestion(){
+ stopTimer();quiz.locked=false;
+ const total=quiz.list.length;
+ if(!total){document.getElementById('quizArea').innerHTML='<div class="result"><h2>No questions found.</h2><p>Try All Conversions or All Difficulties.</p></div>';return}
+ if(quiz.index>=total){finishQuiz();return}
+ const q=quiz.list[quiz.index];
+ document.getElementById('quizMeta').textContent='Question '+(quiz.index+1)+' of '+total+' • '+q.diff+' • '+q.conversion;
+ document.getElementById('progressBar').style.width=(quiz.index/total*100)+'%';
+ const area=document.getElementById('quizArea');area.innerHTML='';
+ const box=document.createElement('div');box.className='question';
+ const tag=document.createElement('div');tag.className='conversionTag';tag.textContent='🔄 '+q.conversion+' • '+q.diff;box.appendChild(tag);
+ const qt=document.createElement('div');qt.className='qtext';qt.textContent=q.q;box.appendChild(qt);
+ const opts=document.createElement('div');
+ q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='option';b.textContent=String.fromCharCode(65+i)+'. '+o;b.onclick=()=>answerQuestion(i);opts.appendChild(b)});
+ box.appendChild(opts);
+ const fb=document.createElement('div');fb.id='feedback';box.appendChild(fb);area.appendChild(box);
+ let left=60;const timer=document.getElementById('timer');timer.textContent='01:00';timer.classList.remove('danger');
+ quiz.timer=setInterval(()=>{left--;timer.textContent=timeText(left);if(left<=10)timer.classList.add('danger');if(left<=0){stopTimer();timeOut()}},1000);
+}
+function answerQuestion(i){
+ if(quiz.locked)return;
+ quiz.locked=true;stopTimer();
+ const q=quiz.list[quiz.index],buttons=document.querySelectorAll('.option'),ok=i===q.ans;
+ buttons.forEach((b,n)=>{b.disabled=true;if(n===q.ans)b.classList.add('correct');if(n===i&&!ok)b.classList.add('wrong')});
+ if(ok)quiz.score++;
+ quiz.answered++;
+ document.getElementById('feedback').innerHTML='<div class="explain">'+(ok?'✅ Correct! ':'❌ Not quite. ')+'<b>How:</b> '+q.exp+'</div>';
+ updateScore();
+ setTimeout(()=>{quiz.index++;renderQuestion()},650);
+}
+function timeOut(){
+ if(quiz.locked)return;
+ quiz.locked=true;
+ const q=quiz.list[quiz.index];quiz.answered++;
+ document.querySelectorAll('.option').forEach((b,n)=>{b.disabled=true;if(n===q.ans)b.classList.add('correct')});
+ document.getElementById('feedback').innerHTML='<div class="timeout">⏰ Time is up! Automatic next question.<br><b>Answer:</b> '+String.fromCharCode(65+q.ans)+'. '+q.opts[q.ans]+'<br><b>How:</b> '+q.exp+'</div>';
+ updateScore();
+ setTimeout(()=>{quiz.index++;renderQuestion()},850);
+}
+function updateScore(){
+ document.getElementById('score').textContent=quiz.score;
+ document.getElementById('answered').textContent=quiz.answered;
+ document.getElementById('percent').textContent=(quiz.answered?Math.round(quiz.score/quiz.answered*100):0)+'%';
+}
+function finishQuiz(){
+ stopTimer();
+ const total=quiz.list.length,p=total?Math.round(quiz.score/total*100):0;
+ document.getElementById('progressBar').style.width='100%';
+ document.getElementById('quizMeta').textContent='Quiz finished';
+ document.getElementById('quizArea').innerHTML='<div class="result"><h2>🎉 Finished!</h2><p style="font-size:1.3rem"><b>'+quiz.score+' / '+total+'</b> ('+p+'%)</p><p>'+(p>=90?'Excellent! 🔥':p>=75?'Good job! 💗':p>=60?'Keep practicing! 📚':'Review the tutorial and try again! 💪')+'</p><button class="primary" onclick="startNewQuiz()">🔄 Try Again</button></div>';
+ updateScore();
+}
+function makeFlash(){
+ const cards=[['Binary → Octal','Group 3 bits'],['Binary → Decimal','Powers of 2: multiply + add'],['Binary → Hex','Group 4 bits'],['Octal → Binary','3 bits per octal digit'],['Octal → Decimal','Powers of 8'],['Octal → Hex','Octal → Binary → Hex'],['Decimal → Binary','Divide by 2; reverse remainders'],['Decimal → Octal','Divide by 8; reverse remainders'],['Decimal → Hex','Divide by 16; reverse remainders'],['Hex → Binary','4 bits per hex digit'],['Hex → Octal','Hex → Binary → Octal'],['Hex → Decimal','Powers of 16; A=10…F=15']];
+ const g=document.getElementById('flashgrid');g.innerHTML='';
+ cards.forEach(c=>{const d=document.createElement('div');d.className='flash';d.innerHTML='<div class="flashin"><div class="face"><b>'+c[0]+'</b></div><div class="face back">'+c[1]+'</div></div>';d.onclick=()=>d.classList.toggle('flipped');g.appendChild(d)})
+}
+function makeCheat(){
+ const rows=[[0,'0','0','0'],[1,'1','1','1'],[2,'10','2','2'],[3,'11','3','3'],[4,'100','4','4'],[5,'101','5','5'],[6,'110','6','6'],[7,'111','7','7'],[8,'1000','10','8'],[9,'1001','11','9'],[10,'1010','12','A'],[11,'1011','13','B'],[12,'1100','14','C'],[13,'1101','15','D'],[14,'1110','16','E'],[15,'1111','17','F'],[16,'10000','20','10']];
+ document.getElementById('cheatBody').innerHTML=rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>').join('');
+}
+makeFlash();makeCheat();startNewQuiz();
+</script>
+</body></html>
