@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#c982a5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Litanya Safespace">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="litanya-build" content="PROFILE-VIEWS-PHOTOS-LIKES-2026-10-07">
+<link rel="preconnect" href="https://gmjtpvxwymevjsicbwlh.supabase.co" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<title>Litanya Safespace</title>
+<!-- Cloudflare static site entry: this file must be named index.html. -->
+<style>
+:root{
+ --bg:#f8f5f7;--card:#fff;--ink:#29242a;--muted:#777078;--line:#e9e1e6;
+ --accent:#c982a5;--accent2:#f7e8ef;--accentDark:#9f5d7c;--green:#4c9b69;
+ --danger:#b34e63;--shadow:0 8px 28px rgba(64,38,52,.08);--radius:18px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#fffafd,#f5f1f4);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}
+.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:13px}.tiny{font-size:11px;color:var(--muted)}
+.link{cursor:pointer;border:0;background:none;padding:0;color:inherit;font:inherit}.link:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{max-width:1320px;margin:auto;min-height:68px;padding:9px 16px;display:flex;align-items:center;gap:12px}
+.logo{font-weight:900;font-size:20px;white-space:nowrap;color:#66495a}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:4px;overflow:visible;flex:1;scrollbar-width:none;min-width:0}.navlinks::-webkit-scrollbar{display:none}
+.navbtn{border:0;background:transparent;color:#625a60;padding:10px 12px;border-radius:999px;font-weight:750;white-space:nowrap}
+.navbtn:hover,.navbtn.active{background:var(--accent2);color:var(--accentDark)}
+.moreNav{position:relative}.moreNavBtn{display:inline-flex;align-items:center;gap:7px}.moreMenu{position:absolute;right:0;top:48px;width:220px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:15px;padding:6px;display:none;z-index:2000}.moreNav.open .moreMenu{display:block}.moreMenu .navbtn{width:100%;justify-content:flex-start;border-radius:10px}.moreMenu .navbtn:hover,.moreMenu .navbtn.active{background:var(--accent2)}
+.fb-upload{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}.fb-upload>div:last-of-type{display:flex;flex-direction:column}.fb-upload strong{font-size:12px}.fb-upload span{font-size:10px;color:var(--muted)}.upload-circle{width:32px;height:32px;border-radius:50%;background:#f5edf1;display:grid;place-items:center;color:var(--accentDark)}.music-preview{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:13px;background:#fcf7fa;display:flex;align-items:center;gap:8px}.music-preview audio{width:100%}.ytmusic{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000}.ytmusic iframe{display:block;width:100%;height:210px;border:0}.ytmusic .music-name{background:#fff;padding:7px 10px;margin:0}.postaudio{width:100%;margin-top:10px;border-radius:12px}.music-name{font-size:11px;color:var(--muted);margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.navright{display:flex;gap:6px}.icon{width:42px;height:42px;border:0;border-radius:50%;background:#f5edf1;color:#654b59;position:relative}
+.badge{position:absolute;right:-2px;top:-2px;background:#d95872;color:white;min-width:17px;height:17px;border-radius:20px;font-size:10px;display:grid;place-items:center;padding:0 4px}
+.container{width:min(1320px,100%);margin:auto;padding:24px 16px 70px}.page{display:none}.page.active{display:block;animation:in .2s ease}
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.btn{border:0;border-radius:12px;padding:10px 15px;font-weight:800}.primary{background:var(--accent);color:#fff}.secondary{background:#f3edf0;color:#654d59}.danger{background:#fff0f2;color:var(--danger)}
+.input,textarea,select{width:100%;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:11px 13px;outline:none}
+.input:focus,textarea:focus,select:focus{border-color:#d6a0b9;box-shadow:0 0 0 3px var(--accent2)}
+textarea{resize:vertical;min-height:100px}.empty{text-align:center;padding:38px;color:var(--muted)}.loader{text-align:center;padding:30px;color:var(--muted)}
+.hero{text-align:center;padding:55px 10px 30px}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:900}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1;margin:12px 0}.hero p{max-width:720px;margin:auto;line-height:1.7;color:var(--muted);font-size:17px}
+.homegrid{max-width:1050px;margin:10px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.homecard{padding:24px;text-align:center}.homecard .big{font-size:30px}
+.pagehead{max-width:850px;margin:10px auto 18px}.pagehead h2{margin:0;font-size:30px}.pagehead p{margin:5px 0;color:var(--muted)}
+.feed{width:min(820px,100%);margin:auto}.toolbar{display:flex;gap:8px;align-items:center;margin-bottom:12px}.toolbar .search{flex:1}.toolbar select{width:auto}
+.composer{padding:16px;margin-bottom:14px}.composehead{display:flex;gap:10px;align-items:center}.avatar{width:44px;height:44px;border-radius:50%;background:var(--accent2);color:#79536a;display:grid;place-items:center;font-weight:900;flex:none;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}
+.composer textarea{margin-top:12px}.composefoot{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:9px}
+.post{padding:0;margin:13px 0;overflow:visible}.posthead{display:flex;gap:10px;align-items:center;padding:15px 16px 7px}.postmeta{min-width:0;flex:1}.postmeta strong{display:block}.postmeta .time{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.postmenu{position:relative}.more{border:0;background:transparent;font-size:22px;color:#777;border-radius:9px;padding:3px 8px}.menu{position:absolute;right:0;top:34px;z-index:50;width:180px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:13px;padding:6px;display:none}.postmenu.open .menu{display:block}.menu button{display:block;width:100%;text-align:left;border:0;background:#fff;padding:9px;border-radius:8px}.menu button:hover{background:#faf3f7}
+.postbody{padding:8px 16px 13px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;cursor:pointer}
+.postimg{width:100%;max-height:560px;object-fit:cover;border-radius:14px;margin-top:10px;display:block;background:#faf6f8}
+.composer-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.iconbtn{width:42px;height:42px;border:0;border-radius:12px;background:#f5edf1;color:#654b59;display:inline-grid;place-items:center;transition:.18s}
+.iconbtn:hover{background:var(--accent2);color:var(--accentDark);transform:translateY(-1px)}
+.iconbtn svg,.navbtn svg,.btn svg,.actions svg,.more svg,.send svg{width:18px;height:18px;display:block}
+.navbtn{display:inline-flex;align-items:center;gap:7px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.upload-label{display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.upload-name{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.image-preview{position:relative;margin-top:10px}
+.image-preview{border:1px solid var(--line);border-radius:16px;padding:6px;background:#faf7f9}.image-preview img{width:100%;max-height:420px;object-fit:cover;border-radius:12px;display:block}
+.image-preview .remove-image{position:absolute;right:8px;top:8px}
+.update-card{border-left:4px solid var(--accent)}
+
+.actions{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.actions button{flex:1;border:0;background:#fff;padding:11px 5px;color:#686168;font-weight:750}.actions button:hover,.actions button.active{background:#fcf5f8;color:var(--accentDark)}
+.comments{padding:10px 16px 14px}.comment{display:flex;gap:8px;margin:9px 0}.comment .avatar{width:34px;height:34px;font-size:12px}.bubble{background:#f3f0f2;border-radius:15px;padding:8px 11px;min-width:0}.bubble strong{font-size:12px}.bubble p{margin:3px 0 0;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.commenttools{font-size:11px;color:#777;margin:3px 0 0 4px;display:flex;gap:10px}.commentform{display:flex;gap:6px;margin-top:8px}.commentform input{flex:1}.comment.reply{margin-left:42px}.replybox{margin:6px 0 0 4px;display:flex;gap:6px}.replybox input{flex:1;min-width:0}.reply-btn{border:0;background:transparent;color:var(--accentDark);font-size:11px;font-weight:800;padding:0}.notification-target{outline:3px solid #dca9bf;box-shadow:0 0 0 6px #f8e8ef;transition:.2s}
+.layout{display:grid;grid-template-columns:250px minmax(0,820px) 260px;gap:16px;max-width:1280px;margin:auto}.side{padding:16px;position:sticky;top:84px;height:max-content}.side h3{margin:0 0 10px}.sideitem{display:flex;gap:9px;align-items:center;padding:9px;border-radius:11px;cursor:pointer}.sideitem:hover{background:#faf3f7}
+.profilegrid{display:grid;grid-template-columns:300px 1fr;gap:16px;max-width:1050px;margin:auto}.profilecard{padding:24px;text-align:center}.bigavatar{width:100px;height:100px;border-radius:50%;background:var(--accent2);display:grid;place-items:center;margin:0 auto 12px;font-size:36px;font-weight:900;overflow:hidden}.bigavatar img{width:100%;height:100%;object-fit:cover}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:15px}.stat{background:#faf6f8;padding:9px;border-radius:10px}.stat strong{display:block}.stat span{font-size:10px;color:var(--muted)}
+.messenger{height:calc(100vh - 120px);min-height:600px;display:grid;grid-template-columns:300px 1fr;overflow:hidden}.chatlist{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}.chatlisthead{padding:15px;border-bottom:1px solid var(--line)}.chatitems{overflow:auto}.chatitem{display:flex;gap:9px;padding:11px 13px;cursor:pointer}.chatitem:hover,.chatitem.active{background:#faf3f7}.chattext{min-width:0;flex:1}.chattext strong,.chattext span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chattext span{font-size:11px;color:var(--muted);margin-top:2px}
+.chatmain{display:flex;flex-direction:column;min-width:0}.chathead{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}.chathead .grow{flex:1}.chatmsgs{flex:1;overflow:auto;padding:18px;background:linear-gradient(180deg,#fff,#fbf6f8)}.msgrow{display:flex;margin:7px 0;align-items:flex-end;gap:6px}.msgrow.mine{justify-content:flex-end}.msg{max-width:min(72%,560px);padding:9px 12px;border-radius:17px 17px 17px 5px;background:#eee9ec;white-space:pre-wrap;overflow-wrap:anywhere}.mine .msg{background:var(--accent);color:#fff;border-radius:17px 17px 5px 17px}.msg time{display:block;font-size:9px;opacity:.65;margin-top:4px}.chatcompose{padding:10px;border-top:1px solid var(--line);display:flex;gap:7px}.chatcompose input{flex:1;border-radius:22px;background:#f3f1f2;border:0}.send{width:44px;height:44px;border:0;border-radius:50%;background:var(--accent);color:#fff;font-weight:900}
+.notice{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}.notice.unread{background:#fff8fb;padding-left:10px;padding-right:10px;border-radius:10px}.noticebody{flex:1}.noticebody p{margin:3px 0;font-size:13px;color:#625a60}
+.modalback{position:fixed;inset:0;background:rgba(30,23,28,.5);z-index:5000;display:grid;place-items:center;padding:16px}.modal{width:min(500px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;padding:22px;box-shadow:0 20px 70px #0003}.modal h2{margin-top:0}.formrow{margin:10px 0}.modalfoot{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}
+.toastwrap{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:6000;width:min(430px,calc(100% - 30px));display:flex;flex-direction:column;gap:7px}.toast{background:#312a2f;color:#fff;padding:12px 15px;border-radius:13px;box-shadow:0 8px 30px #0003}.toast.ok{background:#486c50}.toast.err{background:#873e50}
+.auth{min-height:78vh;display:grid;place-items:center}.authbox{width:min(440px,100%);padding:26px}.authbox h1{margin-top:0}.switch{text-align:center;margin-top:13px}.linkbtn{border:0;background:transparent;color:var(--accentDark);font-weight:800;cursor:pointer;padding:0 2px;text-decoration:none}.linkbtn:hover{text-decoration:underline}.linkbtn:focus{outline:2px solid #d6a0b9;outline-offset:2px;border-radius:4px}
+.searchresults{position:absolute;top:50px;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);z-index:100;padding:5px;max-height:360px;overflow:auto}.searchwrap{position:relative;max-width:360px;width:100%}.result{display:flex;gap:9px;padding:9px;border-radius:10px;cursor:pointer}.result:hover{background:#faf3f7}
+.cover{height:150px;background:linear-gradient(120deg,#f4dce7,#ead8e3,#f8eee9);border-radius:18px 18px 0 0}.profiletop{margin-top:-48px;padding:0 22px 20px;position:relative}.profiletop .bigavatar{margin:0 0 8px;border:4px solid #fff}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.side{display:none}.homegrid{grid-template-columns:1fr 1fr}}
+@media(max-width:850px){.nav{flex-wrap:wrap}.logo{width:100%;text-align:center}.navright{position:absolute;right:10px;top:12px}.navlinks{order:3;width:100%}.messenger{grid-template-columns:1fr}.chatlist{display:flex}.messenger.chatopen .chatlist{display:none}.profilegrid{grid-template-columns:1fr}}
+@media(max-width:560px){.container{padding:14px 9px 55px}.homegrid{grid-template-columns:1fr}.hero{padding:40px 5px 25px}.hero h1{font-size:43px}.toolbar{flex-wrap:wrap}.toolbar .search{min-width:100%}.toolbar select{flex:1}.composer{padding:13px}.posthead,.postbody,.comments{padding-left:12px;padding-right:12px}.actions button{font-size:12px}.messenger{height:calc(100vh - 105px);min-height:520px;border-radius:14px}.chatmsgs{padding:12px 9px}.msg{max-width:84%}.layout{display:block}}
+
+/* --- Social/profile enhancements --- */
+.fb-upload{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:#faf7f9;border-radius:14px;padding:10px 12px;cursor:pointer;transition:.18s}
+.fb-upload:hover{background:var(--accent2);border-color:#dfb4c7}
+.fb-upload .upload-circle{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#ead8e2;color:var(--accentDark);font-weight:900}
+.fb-upload strong{display:block;font-size:13px}.fb-upload span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.profile-actions{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+.following-panel{margin-top:16px;text-align:left;border-top:1px solid var(--line);padding-top:14px}
+.following-panel h4{margin:0 0 8px}.person-row{display:flex;align-items:center;gap:9px;padding:8px;border-radius:11px;cursor:pointer}.person-row:hover{background:#faf3f7}
+.person-row .person-info{min-width:0;flex:1}.person-row strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.person-row span{font-size:11px;color:var(--muted)}
+.view-row{display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid var(--line);cursor:pointer}.view-row:hover{background:#fff8fb}.view-row .view-info{flex:1;min-width:0}.view-row strong{display:block}.view-row span{font-size:11px;color:var(--muted)}
+.view-badge{background:#d95872;color:#fff;min-width:18px;height:18px;padding:0 5px;border-radius:20px;font-size:10px;display:inline-grid;place-items:center}
+.profile-view-empty{padding:30px;text-align:center;color:var(--muted)}
+.post .postimg{cursor:zoom-in}
+.actions button.active .svgicon{display:none}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="nav">
+  <div class="logo">Litanya<span>Safespace</span></div>
+  <div class="navlinks" id="navlinks">
+   <button class="navbtn active" data-page="home"><span class="svgicon" data-icon="home"></span>Home</button>
+   <button class="navbtn" data-page="wall"><span class="svgicon" data-icon="heart"></span>Freedom Wall</button>
+   <button class="navbtn" data-page="realizations"><span class="svgicon" data-icon="spark"></span>Realizations</button>
+   <button class="navbtn" data-page="messenger"><span class="svgicon" data-icon="message"></span>Messenger</button>
+   <div class="moreNav" id="moreNav">
+    <button class="navbtn moreNavBtn" id="moreNavBtn" type="button"><span class="svgicon" data-icon="more"></span>More</button>
+    <div class="moreMenu" id="moreMenu">
+     <button class="navbtn" data-page="updates"><span class="svgicon" data-icon="megaphone"></span>Updates</button>
+     <button class="navbtn" data-page="notifications"><span class="svgicon" data-icon="bell"></span>Notifications <span class="badge hidden" id="notifBadge">0</span></button>
+     <button class="navbtn" data-page="profileViews"><span class="svgicon" data-icon="user"></span>Profile Views <span class="badge hidden" id="profileViewBadge">0</span></button>
+     <button class="navbtn" data-page="profile"><span class="svgicon" data-icon="user"></span>Profile</button>
+    </div>
+   </div>
+  </div>
+  <div class="navright">
+   <button class="icon" id="globalSearchBtn" title="Search"><span class="svgicon" data-icon="search"></span></button>
+   <button class="icon" id="authBtn" title="Account" style="display:none" aria-hidden="true">☻</button>
+  </div>
+ </div>
+</header>
+<main class="container">
+<section class="page active" id="home">
+ <div class="hero">
+  <div class="eyebrow">a gentle corner for you</div>
+  <h1>You deserve a safe space.</h1>
+  <p>Share what you feel, meet people who listen, write realizations, and have conversations without turning the space into noise.</p>
+  <div id="heroAuth" style="margin-top:22px"><button class="btn primary" style="padding:13px 22px;font-size:16px" onclick="openAuth('signup')">Create a username or nickname</button></div>
+ </div>
+ <div class="homegrid">
+  <div class="card homecard"><div class="big">♡</div><h3>Freedom Wall</h3><p class="small">Post thoughts, react, comment, save, share, and follow conversations.</p><button class="btn primary" onclick="go('wall')"><span class="svgicon" data-icon="arrow"></span>Open Wall</button></div>
+  <div class="card homecard"><div class="big">✦</div><h3>Realizations</h3><p class="small">A dedicated feed for lessons, clarity, changes, and things you finally understood.</p><button class="btn primary" onclick="go('realizations')"><span class="svgicon" data-icon="arrow"></span>Open Realizations</button></div>
+  <div class="card homecard"><div class="big">◌</div><h3>Messenger</h3><p class="small">One-to-one and group conversations with realtime updates.</p><button class="btn primary" onclick="go('messenger')"><span class="svgicon" data-icon="message"></span>Open Messenger</button></div>
+ </div>
+ <div class="card" style="max-width:1050px;margin:18px auto;padding:22px;text-align:center">
+  <h3>Built for people, not metrics.</h3><p class="small">Follow people you want to hear from, bookmark posts, report harmful content, block accounts, and control your own profile.</p>
+ </div>
+</section>
+<section class="page" id="authPage">
+ <div class="auth">
+  <div class="card authbox hidden" id="loginScreen">
+   <h1>Welcome back</h1>
+   <p class="muted">Sign in with your username and password.</p>
+   <form id="loginForm">
+    <div class="formrow"><label class="small">Username or nickname</label><input id="loginUsername" class="input" maxlength="30" placeholder="your username or nickname" autocomplete="username" required></div>
+    <div class="formrow"><label class="small">Password</label><input id="loginPassword" class="input" type="password" required minlength="8" autocomplete="current-password"></div>
+    <button class="btn primary" style="width:100%" id="loginSubmit" type="submit">Sign in</button>
+   </form>
+   <div class="switch"><span>New here?</span> <button type="button" class="linkbtn" id="openSignup">Create an account</button></div>
+  </div>
+  <div class="card authbox hidden" id="signupScreen">
+   <h1>Create your account</h1>
+   <p class="muted">Choose the username or nickname you want to use across LitanyaSafespace. Remember your password: there is no email, so it can't be recovered.</p>
+   <form id="signupForm">
+    <div class="formrow"><label class="small">Username or nickname</label><input id="signupUsername" class="input" maxlength="30" placeholder="your username or nickname" autocomplete="username" required></div>
+    <button class="btn primary" style="width:100%" id="signupSubmit" type="submit">Create an account</button>
+   </form>
+  </div>
+ </div>
+</section>
+<section class="page" id="wall">
+ <div class="pagehead"><h2>Freedom Wall</h2><p>Say something you want the room to hear.</p></div>
+ <div class="feed">
+  <div class="toolbar"><input id="wallSearch" class="input search" placeholder="Search posts..."><select id="wallSort"><option value="latest">Latest</option><option value="oldest">Oldest</option><option value="liked">Most liked</option><option value="commented">Most commented</option></select></div>
+  <div class="card composer">
+   <form id="postForm"><div class="composehead"><div class="avatar" id="postAvatar">?</div><strong id="postUsername">Username</strong></div>
+   <textarea id="postContent" maxlength="3000" required placeholder="What's on your mind?"></textarea>
+   <div class="image-preview hidden" id="postImagePreview"></div><div class="music-preview hidden" id="postMusicPreview"></div>
+   <div class="card hidden" id="youtubeMusicPanel" style="margin-top:10px;padding:12px;background:#fcf7fa">
+    <div style="display:flex;gap:7px;align-items:center"><input id="youtubeMusicUrl" class="input" placeholder="Paste a YouTube music URL"><button type="button" class="btn secondary" id="youtubeSearchBtn">Search</button></div>
+    <div class="tiny" style="margin-top:7px">Search opens YouTube. Use music you have permission to use. The clip plays from your chosen start to end time without downloading the song.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px"><label class="small">Start (seconds)<input id="youtubeStart" class="input" type="number" min="0" step="1" value="0"></label><label class="small">End (seconds)<input id="youtubeEnd" class="input" type="number" min="1" step="1" placeholder="e.g. 15"></label></div>
+    <div class="modalfoot" style="margin-top:9px"><button type="button" class="btn secondary" id="youtubeCancel">Cancel</button><button type="button" class="btn primary" id="youtubeUse">Use this clip</button></div>
+   </div>
+   <div class="composefoot">
+    <div class="composer-tools">
+     <label class="fb-upload" title="Add a photo"><div class="upload-circle"><span class="svgicon" data-icon="image"></span></div><div><strong>Photo</strong><span>Add a photo to your post</span></div><input id="postImage" type="file" accept="image/*" hidden></label><label class="fb-upload" title="Add music file"><div class="upload-circle">♫</div><div><strong>Music file</strong><span>Upload royalty-free/open music</span></div><input id="postMusic" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" hidden></label>
+     <button type="button" class="fb-upload" id="youtubeMusicBtn" title="Use a YouTube music clip"><div class="upload-circle">▶</div><div><strong>YouTube clip</strong><span>Search, choose, then set a short part</span></div></button>
+     <span class="upload-name tiny" id="postImageName"></span>
+     <label class="small"><input type="checkbox" id="postAnon"> Post anonymously</label>
+    </div>
+    <button class="btn primary" type="submit"><span class="svgicon" data-icon="send"></span>Post</button>
+   </div></form>
+  </div>
+  <div id="wallFeed"><div class="loader">Loading...</div></div>
+ </div>
+</section>
+<section class="page" id="realizations">
+ <div class="pagehead"><h2>Realizations</h2><p>Thoughts that changed something inside you.</p></div>
+ <div class="feed">
+  <div class="toolbar"><input id="realSearch" class="input search" placeholder="Search realizations..."><select id="realSort"><option value="latest">Latest</option><option value="oldest">Oldest</option><option value="liked">Most liked</option><option value="commented">Most commented</option></select></div>
+  <div class="card composer"><form id="realForm"><div class="composehead"><div class="avatar" id="realAvatar">?</div><strong id="realUsername">Username</strong></div><textarea id="realContent" maxlength="3000" required placeholder="What did you finally realize?"></textarea>
+   <div class="image-preview hidden" id="realImagePreview"></div><div class="music-preview hidden" id="realMusicPreview"></div>
+   <div class="composefoot"><div class="composer-tools"><label class="fb-upload" title="Add a photo"><div class="upload-circle"><span class="svgicon" data-icon="image"></span></div><div><strong>Photo</strong><span>Add a photo to your realization</span></div><input id="realImage" type="file" accept="image/*" hidden></label><label class="fb-upload" title="Add music"><div class="upload-circle">♫</div><div><strong>Music</strong><span>Add music to your realization</span></div><input id="realMusic" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" hidden></label><span class="upload-name tiny" id="realImageName"></span><label class="small"><input type="checkbox" id="realAnon"> Post anonymously</label></div><button class="btn primary" type="submit"><span class="svgicon" data-icon="send"></span>Share realization</button></div></form></div>
+  <div id="realFeed"><div class="loader">Loading...</div></div>
+ </div>
+</section>
+<section class="page" id="updates">
+ <div class="pagehead"><h2>Updates</h2><p>Share announcements, news, reminders, or anything you want everyone in Litanya to see.</p></div>
+ <div class="feed">
+  <div class="toolbar"><input id="updateSearch" class="input search" placeholder="Search updates..."><select id="updateSort"><option value="latest">Latest</option><option value="oldest">Oldest</option><option value="liked">Most liked</option><option value="commented">Most commented</option></select></div>
+  <div class="card composer">
+   <form id="updateForm"><div class="composehead"><div class="avatar" id="updateAvatar">?</div><strong id="updateUsername">Username</strong></div>
+   <textarea id="updateContent" maxlength="3000" required placeholder="Write an update for the community..."></textarea>
+   <div class="image-preview hidden" id="updateImagePreview"></div><div class="music-preview hidden" id="updateMusicPreview"></div>
+   <div class="composefoot"><div class="composer-tools"><label class="fb-upload" title="Add a photo"><div class="upload-circle"><span class="svgicon" data-icon="image"></span></div><div><strong>Photo</strong><span>Add a photo to your update</span></div><input id="updateImage" type="file" accept="image/*" hidden></label><label class="fb-upload" title="Add music"><div class="upload-circle">♫</div><div><strong>Music</strong><span>Add music to your update</span></div><input id="updateMusic" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" hidden></label><span class="upload-name tiny" id="updateImageName"></span></div><button class="btn primary" type="submit"><span class="svgicon" data-icon="send"></span>Post update</button></div>
+   </form>
+  </div>
+  <div id="updateFeed"><div class="loader">Loading...</div></div>
+ </div>
+</section>
+<section class="page" id="messenger">
+ <div class="pagehead"><h2>Messenger</h2><p>Private conversations and group chats.</p></div>
+ <div class="card messenger" id="messengerBox">
+  <aside class="chatlist">
+   <div class="chatlisthead"><input id="peopleSearch" class="input" placeholder="Search people..."><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="btn primary" id="publicChatBtn" type="button">Public Chat</button><button class="btn secondary" id="newGroupBtn" type="button">+ Group</button><button class="btn secondary" id="refreshChats" type="button">↻</button></div></div>
+   <div class="chatitems" id="chatItems"><div class="empty">No conversations yet.</div></div>
+  </aside>
+  <section class="chatmain">
+   <div class="chathead"><button class="btn secondary" id="chatBack" style="display:none">←</button><div class="avatar" id="chatAvatar">L</div><div class="grow"><strong id="chatTitle">Litanya Messenger</strong><div class="tiny" id="chatSubtitle">Choose a conversation.</div></div><button class="btn secondary" id="chatInfo">ⓘ</button></div>
+   <div class="chatmsgs" id="chatMessages"><div class="empty">Choose a conversation to begin.</div></div>
+   <form class="chatcompose" id="messageForm"><input id="messageInput" maxlength="4000" placeholder="Type a message..." disabled><button class="send" id="sendBtn" disabled>➤</button></form>
+  </section>
+ </div>
+</section>
+<section class="page" id="notifications">
+ <div style="max-width:800px;margin:auto">
+  <div class="pagehead"><h2>Notifications</h2><p>Likes, comments, follows, and messages.</p></div>
+  <div class="card" style="padding:14px;margin-bottom:12px;background:linear-gradient(135deg,#fff8fb,#f8f1f5)">
+   <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <div style="font-size:28px">🔔</div>
+    <div style="flex:1;min-width:220px"><strong>Phone notifications</strong><div class="tiny" id="pushStatus">Enable notifications to get alerts for new posts even when Litanya Safespace is not open.</div></div>
+    <button class="btn primary" id="enablePushBtn" type="button">Enable notifications</button>
+   </div>
+   <div class="tiny" id="pushHelp" style="margin-top:9px"></div>
+  </div>
+  <div class="card" style="padding:16px" id="notificationList"><div class="loader">Loading...</div></div>
+ </div>
+</section>
+<section class="page" id="profileViews">
+ <div style="max-width:800px;margin:auto">
+  <div class="pagehead"><h2>Profile Views</h2><p>Here are the users who viewed your profile.</p></div>
+  <div class="card" style="padding:16px" id="profileViewList"><div class="loader">Loading...</div></div>
+ </div>
+</section>
+<section class="page" id="profile">
+ <div class="profilegrid">
+  <div class="card profilecard"><div class="bigavatar" id="profileAvatar">?</div>
+  <label class="fb-upload" title="Upload a profile picture">
+   <div class="upload-circle"><span class="svgicon" data-icon="image"></span></div>
+   <div><strong>Choose profile picture</strong><span>Upload a custom photo from your device</span></div>
+   <input id="profileImage" type="file" accept="image/*" hidden>
+  </label>
+  <h2 id="profileName">@username</h2><p id="profileBio" class="muted">No bio yet.</p>
+  <div class="profile-actions"><button class="btn primary" id="editProfile"><span class="svgicon" data-icon="edit"></span>Edit profile</button></div>
+  <div class="stats"><div class="stat"><strong id="statPosts">0</strong><span>Posts</span></div><div class="stat"><strong id="statFollowers">0</strong><span>Followers</span></div><div class="stat"><strong id="statFollowing">0</strong><span>Following</span></div></div></div>
+  <div><div class="pagehead"><h2>Your posts</h2><p>Everything you shared publicly on Litanya.</p></div><div id="profileFeed"></div></div>
+ </div>
+</section>
+<section class="page" id="publicProfile"><div style="max-width:800px;margin:auto"><button class="btn secondary" id="publicBack">← Back</button><div id="publicProfileBox" style="margin-top:12px"></div><div id="publicPosts"></div></div></section>
+<section class="page" id="singlePost"><div style="max-width:800px;margin:auto"><button class="btn secondary" id="singleBack">← Back</button><div id="singlePostBox" style="margin-top:12px"></div></div></section>
+</main>
+<div id="modalRoot"></div><div class="toastwrap" id="toastWrap"></div>
+<script>
+(() => {
+"use strict";
+// Safe logger: some sandboxes/extensions replace `console` with an incomplete object.
+const log=(...a)=>{try{if(window.console&&typeof console.log==="function")console.log(...a)}catch(_){}};
+log("Litanya Safespace build: PROFILE-VIEWS-PHOTOS-LIKES-2026-10-07");
+const safeHist=(fn,...a)=>{try{history[fn](...a)}catch(_){}};
+function showFatal(msg){
+  try{
+    let b=document.getElementById("fatalBanner");
+    if(!b){b=document.createElement("div");b.id="fatalBanner";b.style.cssText="position:fixed;left:8px;right:8px;top:8px;z-index:99999;background:#873e50;color:#fff;padding:10px 14px;border-radius:12px;font:13px/1.4 system-ui,sans-serif;cursor:pointer";b.title="Tap to dismiss";b.onclick=()=>b.remove();document.body.appendChild(b)}
+    b.textContent="Error: "+String(msg||"unknown")+"  (tap to dismiss)";
+  }catch(_){}
+}
+window.addEventListener("error",e=>showFatal(e.message||e.error));
+window.addEventListener("unhandledrejection",e=>showFatal(e.reason?.message||e.reason));
+// ---- Supabase configuration -------------------------------------------
+const SUPABASE_URL='https://gmjtpvxwymevjsicbwlh.supabase.co';
+const SUPABASE_KEY='sb_publishable_1kBhcictacKY7udPWDlZ6A_5vorzbDi';
+// Internal-only login identifiers. Users never see them (they only type a username).
+// Supabase rejects fake TLDs like ".local", so these use real TLDs. No email is ever sent
+// (Confirm email is OFF). Signup uses the first domain Supabase accepts; sign-in tries them in order.
+const AUTH_EMAIL_DOMAINS=['litanya-safespace.com','litanya.app','litanya-app.net'];
+// Web Push configuration. The public VAPID key is safe to ship to browsers.
+// The matching PRIVATE key stays only in Supabase Edge Function secrets.
+const VAPID_PUBLIC_KEY='BKfmrPxLjOsN9VSgfeT3-iGeJbO9Y5AiQsQ6urZvBbZBNy7klTHvgk9Hz1QJk0dL_iNvSKE7ueuFPlWDRNSSqig';
+let pushRegistration=null;
+let pushRegistrationError=null;
+let pushRegistrationPromise=null;
+function base64ToUint8Array(base64){
+  const padding='='.repeat((4-base64.length%4)%4);
+  const b64=(base64+padding).replace(/-/g,'+').replace(/_/g,'/');
+  const raw=atob(b64);const out=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);return out;
+}
+function isIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)||(/macintosh/i.test(navigator.userAgent)&&navigator.maxTouchPoints>1)}
+function isStandalone(){return window.matchMedia?.('(display-mode: standalone)').matches||window.navigator.standalone===true}
+async function registerPushServiceWorker(){
+  // Reuse one in-flight registration. The page calls this from startup, auth,
+  // status refresh, and the button; concurrent calls can otherwise race on mobile.
+  if(pushRegistration && pushRegistration.active) return pushRegistration;
+  if(pushRegistrationPromise) return pushRegistrationPromise;
+  pushRegistrationError=null;
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)){
+    pushRegistrationError=new Error('This browser does not support Service Worker or PushManager.');
+    return null;
+  }
+  pushRegistrationPromise=(async()=>{
+    try{
+      const reg=await navigator.serviceWorker.register('/sw.js',{scope:'/',updateViaCache:'none'});
+      // Wait for the registration to be ready, but preserve the registration itself
+      // if an unrelated worker state causes ready to reject.
+      await navigator.serviceWorker.ready;
+      pushRegistration=reg;
+      return reg;
+    }catch(e){
+      pushRegistrationError=e;
+      log('Push service worker registration failed',{name:e?.name||'UnknownError',message:e?.message||String(e)});
+      return null;
+    }finally{pushRegistrationPromise=null;}
+  })();
+  return pushRegistrationPromise;
+}
+async function savePushSubscription(sub){
+  const j=sub.toJSON();
+  if(!j.endpoint||!j.keys?.p256dh||!j.keys?.auth)throw new Error('Browser did not return a complete push subscription.');
+  const r=await client.from('push_subscriptions').upsert({user_id:uid(),endpoint:j.endpoint,p256dh:j.keys.p256dh,auth:j.keys.auth,user_agent:navigator.userAgent,updated_at:new Date().toISOString()},{onConflict:'endpoint'});
+  if(r.error)throw r.error;
+}
+async function enablePushNotifications(){
+  if(!uid()){toast('Please log in first.','error');return}
+  if(!window.isSecureContext){toast('Notifications require a secure HTTPS connection.','error',5000);return}
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)||!('Notification' in window)){
+    toast('Push notifications are not supported by this browser.','error',5000);return
+  }
+  const btn=$('enablePushBtn'),status=$('pushStatus'),help=$('pushHelp');
+  if(btn)btn.disabled=true;
+  let pushStage='checking device support';
+  try{
+    if(isIOS()&&!isStandalone()){
+      if(help)help.textContent='On iPhone/iPad: add Litanya Safespace to your Home Screen first, open it from there, then tap Enable notifications.';
+      toast('For iPhone/iPad, add this site to your Home Screen first.','error',6000);
+      return;
+    }
+    pushStage='registering service worker';
+    const reg=await registerPushServiceWorker();
+    if(!reg){
+      const cause=pushRegistrationError;
+      const detail=cause ? `${cause.name||'Error'}: ${cause.message||String(cause)}` : 'No additional browser error was provided.';
+      throw new Error(`Could not register the notification service worker. ${detail}`);
+    }
+    pushStage='requesting notification permission';
+    let permission=Notification.permission;
+    if(permission==='default')permission=await Notification.requestPermission();
+    if(permission!=='granted'){
+      if(status)status.textContent='Notifications are blocked. Allow notifications in your browser/site settings, then try again.';
+      return;
+    }
+    pushStage='creating browser push subscription';
+    let sub=await reg.pushManager.getSubscription();
+    if(!sub){
+      const applicationServerKey=base64ToUint8Array(VAPID_PUBLIC_KEY);
+      if(applicationServerKey.length!==65)throw new Error(`Invalid VAPID public key length (${applicationServerKey.length} bytes; expected 65).`);
+      try{sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey});}
+      catch(e){
+        if(e?.name==='AbortError')throw new Error('The browser push service aborted subscription creation. Check that this deployed VAPID public key matches the Supabase VAPID_PUBLIC_KEY secret, then retry in Chrome. Original error: '+(e.message||'AbortError'));
+        throw e;
+      }
+    }
+    pushStage='saving subscription to Supabase';
+    await savePushSubscription(sub);
+    if(status)status.textContent='Phone notifications are enabled on this device.';
+    if(help)help.textContent='This device will receive alerts for new Litanya posts while notifications are allowed.';
+    if(btn){btn.textContent='Notifications enabled';btn.disabled=true}
+    toast('Phone notifications enabled.','success');
+  }catch(e){
+    const errorName=e?.name||'UnknownError';
+    const errorMessage=e?.message||String(e)||'No error message available.';
+    // Show actionable diagnostics without logging keys, endpoints, or subscription data.
+    log('Push enable failed', {name:errorName,message:errorMessage});
+    if(status)status.textContent=`Push setup failed while ${pushStage} (${errorName}): ${errorMessage}`;
+    toast(`Push setup failed while ${pushStage} (${errorName}): ${errorMessage}`,'error',10000);
+  }finally{if(btn&&!btn.textContent.includes('enabled'))btn.disabled=false}
+}
+async function refreshPushUI(){
+  const btn=$('enablePushBtn'),status=$('pushStatus'),help=$('pushHelp');
+  if(!btn||!status)return;
+  if(!uid()){btn.classList.add('hidden');return}
+  btn.classList.remove('hidden');
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)||!('Notification' in window)){
+    btn.disabled=true;status.textContent='This browser does not support web push notifications.';return;
+  }
+  if(isIOS()&&!isStandalone())help.textContent='iPhone/iPad: add this website to your Home Screen before enabling notifications.';
+  try{
+    const reg=await registerPushServiceWorker();const sub=reg?await reg.pushManager.getSubscription():null;
+    if(sub){btn.textContent='Notifications enabled';btn.disabled=true;status.textContent='Phone notifications are enabled on this device.'}
+    else if(Notification.permission==='denied')status.textContent='Notifications are blocked. Allow them in browser/site settings to enable them again.';
+  }catch(_){ }
+}
+
+let client=null, session=null, me=null;
+let activeChat=null, chatChannel=null, liveChannels=[];
+const cache={posts:new Map(),profiles:new Map(),chats:new Map()};
+const $=id=>document.getElementById(id);
+const ICONS={
+ home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>',
+ heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6c0 5.5-8.8 11-8.8 11S3.2 14.1 3.2 8.6A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.8 2.3Z"/></svg>',
+ spark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></svg>',
+ megaphone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h2l2 5h2l-1.8-5.1L20 18V6L9 9H5a2 2 0 0 0-2 2Z"/><path d="M20 10v4"/></svg>',
+ message:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a7.5 7.5 0 0 1-7.8 7.5 8.2 8.2 0 0 1-3.3-.7L4 20l1.7-4.2A7.3 7.3 0 0 1 4 11.5 7.5 7.5 0 0 1 20 11.5Z"/></svg>',
+ bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>',
+ user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+ more:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>',
+ search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>',
+ image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/></svg>',
+ send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2.8-7.2L3 11Z"/><path d="m10.2 13.8 4.2-4.2"/></svg>',
+ arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m13 6 6 6-6 6"/></svg>',
+ edit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z"/><path d="m13.5 7.5 3 3"/></svg>',
+ like:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5"><path d="M7 10v10H4V10h3Zm3 10h6.2c1.1 0 2-.8 2.2-1.9l1-6A2.1 2.1 0 0 0 17.3 9H14l.5-3.2A2.4 2.4 0 0 0 12.1 3L10 9.2V20Z"/></svg>',
+ comment:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a7.5 7.5 0 0 1-7.8 7.5 8.2 8.2 0 0 1-3.3-.7L4 20l1.7-4.2A7.3 7.3 0 0 1 4 11.5 7.5 7.5 0 0 1 20 11.5Z"/></svg>',
+ close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>',
+ bookmark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-6-3-6 3V4Z"/></svg>'
+};
+function paintIcons(root=document){root.querySelectorAll(".svgicon[data-icon]").forEach(el=>{const k=el.dataset.icon;if(ICONS[k])el.innerHTML=ICONS[k]});}
+
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const attr=v=>esc(v).replace(/\r?\n/g,"&#10;");
+const uid=()=>session?.user?.id||null;
+function toast(msg,type="",ms=2800){const x=document.createElement("div");x.className="toast "+(type==="error"?"err":type==="success"?"ok":"");x.textContent=msg;$("toastWrap").appendChild(x);setTimeout(()=>x.remove(),ms)}
+function initials(n){return String(n||"?").trim().slice(0,1).toUpperCase()||"?"}
+function ago(v){if(!v)return"";let s=Math.floor((Date.now()-new Date(v).getTime())/1000);if(s<10)return"just now";if(s<60)return s+"s";let m=Math.floor(s/60);if(m<60)return m+"m";let h=Math.floor(m/60);if(h<24)return h+"h";let d=Math.floor(h/24);if(d<7)return d+"d";return new Date(v).toLocaleDateString("en-PH",{month:"short",day:"numeric"})}
+function fmt(v){return new Date(v).toLocaleString("en-PH",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"})}
+function setPage(id){
+  document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));
+  document.querySelectorAll(".navbtn").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
+  if(!client)return;
+  if(id==="wall")loadFeed("wall");
+  if(id==="realizations")loadFeed("realization");
+  if(id==="updates")loadFeed("update");
+  if(id==="profile")loadMyProfile();
+  if(id==="notifications"){loadNotifications();refreshPushUI();}
+  if(id==="profileViews")loadProfileViews();
+  if(id==="messenger")loadChats();
+}
+window.go=id=>{
+  if(!uid() && ["wall","realizations","updates","messenger","profile","notifications","profileViews"].includes(id)){setPage("authPage");return}
+  setPage(id);safeHist("replaceState",{page:id},"","#"+id);window.scrollTo(0,0)
+};
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".navbtn");if(b&&b.dataset.page){document.getElementById("moreNav")?.classList.remove("open");go(b.dataset.page)}});
+$("moreNavBtn").onclick=e=>{e.preventDefault();e.stopPropagation();const n=$("moreNav");n.classList.toggle("open")};
+document.addEventListener("click",e=>{if(!e.target.closest("#moreNav"))$("moreNav")?.classList.remove("open")});
+paintIcons();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>registerPushServiceWorker());}
+// ---- Init --------------------------------------------------------------
+let supabaseLoading=null;
+function loadScriptOnce(src){
+  return new Promise((resolve,reject)=>{
+    const x=document.createElement("script");x.src=src;x.async=true;
+    const t=setTimeout(()=>{x.remove();reject(new Error("timeout: "+src))},12000);
+    x.onload=()=>{clearTimeout(t);resolve(true)};
+    x.onerror=()=>{clearTimeout(t);x.remove();reject(new Error("blocked/failed: "+src))};
+    document.head.appendChild(x);
+  });
+}
+async function loadSupabaseLibrary(){
+  if(window.supabase && typeof window.supabase.createClient==="function")return;
+  const urls=[
+    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
+    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js",
+    "https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.39.3/umd/supabase.min.js"
+  ];
+  const errs=[];
+  for(const u of urls){
+    try{await loadScriptOnce(u);if(window.supabase&&typeof window.supabase.createClient==="function")return}
+    catch(e){errs.push(e.message);log("Supabase load failed",e.message)}
+  }
+  throw new Error("Could not load the Supabase library from any CDN ("+errs.join(" | ")+"). Check your internet/ad-blocker/VPN and try again.");
+}
+async function initSupabase(){
+  if(client)return true;
+  if(!supabaseLoading){
+    supabaseLoading=(async()=>{
+      await loadSupabaseLibrary();
+      client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
+    })().finally(()=>{supabaseLoading=null});
+  }
+  try{await supabaseLoading;return !!client}
+  catch(e){log("Supabase init failed",e);client=null;toast(e?.message||"Could not connect to the database.","error",10000);return false}
+}
+async function refreshSession(){
+  if(!client)return;
+  const r=await client.auth.getSession();
+  if(r.error){log(r.error);toast(r.error.message||"Could not read the session.","error");return}
+  session=r.data.session;
+  // NOTE: never await Supabase calls inside this callback (can deadlock the client).
+  client.auth.onAuthStateChange((event,s)=>{
+    session=s;
+    if(event==="SIGNED_OUT"){me=null;updateAuthUI()}
+  });
+  if(session){await loadMe();afterLogin()}else updateAuthUI();
+}
+function updateAuthUI(){
+  const b=$("authBtn");if(b)b.style.display="none";
+  const ha=$("heroAuth");if(ha)ha.classList.toggle("hidden",!!session);
+}
+async function loadMe(){
+  if(!uid())return null;
+  const {data,error}=await client.from("profiles").select("*").eq("id",uid()).maybeSingle();
+  if(error){toast(error.message,"error");return null}
+  me=data||null; if(me)cache.profiles.set(me.id,me); updateAuthUI(); return me
+}
+function afterLogin(){
+  updateAuthUI();applyProfileUI();go("home");loadNotifications();loadProfileViewBadge();startRealtime();registerPushServiceWorker();refreshPushUI();
+}
+function stopRealtime(){
+  liveChannels.forEach(x=>client.removeChannel(x));liveChannels=[];
+  if(chatChannel){client.removeChannel(chatChannel);chatChannel=null}
+}
+// Account/sign-out control is intentionally removed from the top navigation.
+// The username-only session stays active in this browser.
+$("authBtn").onclick=null;
+$("enablePushBtn")?.addEventListener("click",enablePushNotifications);
+
+function openLoginScreen(){
+  $("loginScreen").classList.remove("hidden");
+  $("signupScreen").classList.add("hidden");
+  setTimeout(()=>$("loginUsername")?.focus(),0);
+}
+function openSignupScreen(){
+  $("loginScreen").classList.add("hidden");
+  $("signupScreen").classList.remove("hidden");
+  setTimeout(()=>$("signupUsername")?.focus(),0);
+}
+window.openAuth=m=>{setPage("authPage");openSignupScreen()};
+// ---- Auth (username + password, no email shown to the user) ------------
+function authEmailFor(username,domain){return `${username.toLowerCase()}@${domain}`}
+const isInvalidEmailErr=e=>/email.*(invalid|not valid)|invalid.*email|email_address_invalid/i.test(String(e?.message||e?.code||""));
+const USERNAME_RE=/^[A-Za-z0-9_.-]{3,30}$/;
+const USERNAME_MSG="Username must be 3–30 characters using letters, numbers, _, ., or -.";
+async function ensureProfileAfterAuth(user,username){
+  // The DB trigger creates the profile inside the signup transaction, so it already exists.
+  // Use it immediately (no waiting), then verify/create it in the background.
+  me={id:user.id,username:username.toLowerCase(),display_name:username,bio:"",avatar_url:null};
+  cache.profiles.set(me.id,me);
+  (async()=>{
+    try{
+      const {data}=await client.from("profiles").select("*").eq("id",user.id).maybeSingle();
+      if(data){me=data;cache.profiles.set(me.id,me);applyProfileUI();return}
+      const {error}=await client.from("profiles").upsert({id:user.id,username:username.toLowerCase(),display_name:username,bio:"",avatar_url:null},{onConflict:"id"});
+      if(error)toast("Profile could not be saved: "+error.message,"error",7000);
+    }catch(e){log("profile verify failed",e)}
+  })();
+}
+// Remember which internal domain worked so the next signup/login needs only one request.
+function orderedDomains(){
+  let c=null;try{c=localStorage.getItem("litanya_dom")}catch(_){}
+  return c&&AUTH_EMAIL_DOMAINS.includes(c)?[c,...AUTH_EMAIL_DOMAINS.filter(d=>d!==c)]:AUTH_EMAIL_DOMAINS;
+}
+function rememberDomain(d){try{localStorage.setItem("litanya_dom",d)}catch(_){}}
+function friendlyAuthError(err){
+  const msg=String(err?.message||err||"");
+  if(/rate limit|too many requests|over_.*_rate_limit/i.test(msg))return "Too many attempts right now. Please wait a few minutes and try again.";
+  if(/already registered|already exists/i.test(msg))return "That username is already taken. Please choose another one or sign in.";
+  if(/Database error saving new user/i.test(msg))return "That username is already taken. Please choose another one.";
+  if(/invalid login credentials/i.test(msg))return "Wrong username or password.";
+  if(/email.*(invalid|not valid)|invalid.*email/i.test(msg))return "The auth server rejected every internal login address. Owner: edit AUTH_EMAIL_DOMAINS in index.html and use a domain you own.";
+  if(/email not confirmed/i.test(msg))return "Owner: turn OFF 'Confirm email' in Supabase → Authentication → Providers → Email.";
+  return msg||"Something went wrong. Please try again.";
+}
+async function finishNewAccount(username,pass){
+  if(!client && !(await initSupabase()))throw new Error("Not connected to the database yet. Please try again.");
+  // No separate "is the username taken?" request: the unique index + signUp already tell us.
+  let r=null,authEmail=null,usedDom=null;
+  for(const dom of orderedDomains()){
+    authEmail=authEmailFor(username,dom);usedDom=dom;
+    r=await client.auth.signUp({email:authEmail,password:pass,options:{data:{username,display_name:username}}});
+    if(r.error && isInvalidEmailErr(r.error))continue; // domain rejected, try the next one
+    break;
+  }
+  if(!r.error)rememberDomain(usedDom);
+  if(r.error){
+    // If a previous attempt already created this user, just sign in.
+    const s=await client.auth.signInWithPassword({email:authEmail,password:pass});
+    if(!s.error && s.data.session){
+      session=s.data.session;
+      await ensureProfileAfterAuth(s.data.user,username);
+      toast("Welcome to Litanya!","success");afterLogin();return;
+    }
+    throw r.error;
+  }
+  if(!r.data.user)throw new Error("Account could not be created. Please try again.");
+  let sess=r.data.session;
+  if(!sess){
+    // "Confirm email" is ON, or signup returned no session: try signing in directly.
+    const s=await client.auth.signInWithPassword({email:authEmail,password:pass});
+    if(s.error||!s.data.session)throw new Error("Owner: turn OFF 'Confirm email' in Supabase → Authentication → Providers → Email, then try again.");
+    sess=s.data.session;
+  }
+  session=sess;
+  await ensureProfileAfterAuth(sess.user,username);
+  $("signupForm").reset();
+  toast("Account created! Welcome to Litanya.","success",3500);
+  afterLogin();
+}
+$("loginForm").onsubmit=async e=>{
+  e.preventDefault();
+  const btn=$("loginSubmit");btn.disabled=true;btn.textContent="Signing in…";
+  try{
+    if(!client && !(await initSupabase()))throw new Error("Not connected to the database yet. Please try again.");
+    const username=$("loginUsername").value.trim().toLowerCase();
+    const pass=$("loginPassword").value;
+    if(!USERNAME_RE.test(username))throw new Error(USERNAME_MSG);
+    if(pass.length<8)throw new Error("Password must be at least 8 characters.");
+    let r=null;
+    for(const dom of orderedDomains()){
+      r=await client.auth.signInWithPassword({email:authEmailFor(username,dom),password:pass});
+      if(!r.error){rememberDomain(dom);break}
+      if(!/invalid login credentials/i.test(r.error.message||"") && !isInvalidEmailErr(r.error))break;
+    }
+    if(r.error)throw r.error;
+    session=r.data.session;
+    await loadMe();
+    if(!me) await ensureProfileAfterAuth(session.user,username);
+    $("loginForm").reset();
+    toast("Welcome back.","success");
+    afterLogin();
+  }catch(err){toast(friendlyAuthError(err),"error",6000)}
+  finally{btn.disabled=false;btn.textContent="Sign in"}
+};
+$("signupForm").onsubmit=async e=>{
+  e.preventDefault();
+  const btn=$("signupSubmit");btn.disabled=true;btn.textContent="Entering Litanya…";
+  try{
+    if(!client && !(await initSupabase()))throw new Error("Not connected to the database yet. Please try again.");
+    const username=$("signupUsername").value.trim();
+    if(!USERNAME_RE.test(username))throw new Error(USERNAME_MSG);
+    const name=username;
+    // No password/email is requested. Supabase Authentication must have Anonymous sign-in enabled.
+    const a=await client.auth.signInAnonymously({options:{data:{username:name,display_name:name}}});
+    if(a.error)throw a.error;
+    session=a.data.session;
+    await ensureProfileAfterAuth(session.user,name);
+    $("signupForm").reset();
+    toast("Welcome to Litanya!","success",3500);
+    afterLogin();
+  }catch(err){toast(String(err?.message||err||"Could not enter Litanya."),"error",7000)}
+  finally{btn.disabled=false;btn.textContent="Enter Litanya"}
+};
+function requireLogin(){if(!uid()){setPage("authPage");toast("Please sign in first.","error");return false}return true}
+async function ensureProfile(){if(me)return true;await loadMe();if(me)return true;showProfileEditor();return false}
+function showProfileEditor(){
+  const p=me||{};
+  $("modalRoot").innerHTML=`<div class="modalback"><div class="modal"><h2>${p.id?"Edit profile":"Complete your profile"}</h2>
+  <form id="profileForm"><div class="formrow"><label class="small">Username</label><input id="profileUsernameInput" class="input" maxlength="30" value="${attr(p.username||"")}" readonly><div class="tiny">Your username is your identity across LitanyaSafespace.</div></div>
+  <div class="formrow"><label class="small">Bio</label><textarea id="profileBioInput" maxlength="240">${esc(p.bio||"")}</textarea></div>
+  <div class="formrow"><label class="small">Avatar URL (optional)</label><input id="profileAvatarInput" class="input" maxlength="500" value="${attr(p.avatar_url||"")}"></div>
+  <div class="modalfoot"><button type="button" class="btn secondary" id="profileCancel">Cancel</button><button class="btn primary">Save</button></div></form></div></div>`;
+  $("profileCancel").onclick=()=>$("modalRoot").innerHTML="";
+  $("profileForm").onsubmit=async e=>{
+    e.preventDefault();
+    const row={id:uid(),bio:$("profileBioInput").value.trim(),avatar_url:$("profileAvatarInput").value.trim()||null};
+    const {error}=await client.from("profiles").update(row).eq("id",uid());
+    if(error){toast(/duplicate|unique/i.test(error.message)?"That username is already taken.":error.message,"error");return}
+    await loadMe();$("modalRoot").innerHTML="";applyProfileUI();toast("Profile saved.","success")
+  }
+}
+function applyProfileUI(){
+  if(!me)return;const name=me.username||"User";
+  ["postAvatar","realAvatar"].forEach(id=>{$(id).innerHTML=me.avatar_url?`<img src="${attr(me.avatar_url)}" alt="">`:esc(initials(name))});
+  if($("postUsername"))$("postUsername").textContent="@"+name;
+  if($("realUsername"))$("realUsername").textContent="@"+name;
+  $("profileName").textContent="@"+name;$("profileBio").textContent=me.bio||"No bio yet.";
+  $("profileAvatar").innerHTML=me.avatar_url?`<img src="${attr(me.avatar_url)}" alt="">`:esc(initials(name))
+}
+
+$("editProfile").onclick=()=>{if(requireLogin())showProfileEditor()};
+
+async function uploadProfileImage(file){
+  if(!file) return null;
+  if(!file.type.startsWith("image/")) throw new Error("Please choose an image file.");
+  if(file.size>8*1024*1024) throw new Error("Profile picture is too large. Maximum is 8 MB.");
+  const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+  const path=`${uid()}/profile-${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const up=await client.storage.from("profile-images").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+  if(up.error)throw up.error;
+  return client.storage.from("profile-images").getPublicUrl(path).data.publicUrl;
+}
+$("profileImage")?.addEventListener("change",async e=>{
+  const file=e.target.files?.[0]; if(!file||!requireLogin())return;
+  try{
+    const url=await uploadProfileImage(file);
+    const r=await client.from("profiles").update({avatar_url:url}).eq("id",uid());
+    if(r.error)throw r.error;
+    await loadMe();applyProfileUI();toast("Profile picture updated.","success");
+  }catch(err){toast("Profile picture upload failed: "+(err.message||err),"error",6000)}
+  finally{e.target.value=""}
+});
+
+async function recordProfileView(profileId){
+  if(!uid() || !profileId || profileId===uid()) return;
+  const r=await client.from("profile_views").insert({profile_id:profileId,viewer_id:uid()});
+  if(r.error && !/duplicate|unique/i.test(r.error.message||"")) log("profile view:",r.error.message);
+}
+async function loadProfileViews(){
+  if(!requireLogin())return;
+  const box=$("profileViewList"); if(!box)return;
+  const r=await client.from("profile_views")
+    .select("id,profile_id,viewer_id,viewed_at,profiles:viewer_id(id,username,avatar_url,bio)")
+    .eq("profile_id",uid()).order("viewed_at",{ascending:false}).limit(100);
+  if(r.error){box.innerHTML=`<div class="profile-view-empty">${esc(r.error.message)}</div>`;return}
+  const rows=r.data||[];
+  if(!rows.length){box.innerHTML='<div class="profile-view-empty">No one has viewed your profile yet.</div>';return}
+  const seen=new Set(),unique=[];
+  for(const row of rows){
+    if(seen.has(row.viewer_id))continue;
+    seen.add(row.viewer_id);unique.push(row);
+  }
+  box.innerHTML=unique.map(v=>{
+    const p=v.profiles||{}; const name=p.username||"User";
+    return `<div class="view-row" data-user="${attr(v.viewer_id)}">
+      ${avatarHTML(name,p.avatar_url,"avatar")}
+      <div class="view-info"><strong>@${esc(name)}</strong><span>Viewed your profile · ${esc(ago(v.viewed_at))}</span></div>
+    </div>`;
+  }).join("");
+  box.querySelectorAll(".view-row").forEach(x=>x.onclick=()=>openPublicProfile(x.dataset.user));
+  const badge=$("profileViewBadge"); if(badge){badge.classList.add("hidden");badge.textContent="0"}
+}
+async function loadProfileViewBadge(){
+  if(!uid())return;
+  const r=await client.from("profile_views").select("viewer_id").eq("profile_id",uid()).limit(1000);
+  const b=$("profileViewBadge"); if(!b)return;
+  const ids=[...new Set((r.data||[]).map(x=>x.viewer_id).filter(Boolean))];
+  const n=ids.length; b.textContent=n>99?"99+":String(n);b.classList.toggle("hidden",n===0);
+}
+
+// Whole-word matching so normal words (e.g. "reputation") are not blocked.
+function moderation(text){
+  const bad=["putangina","puta","tanga","gago","gaga","tarantado","ulol","bobo","pakshet","pakyu","fuck","fucking","shit","bullshit","bitch","asshole","motherfucker","dick","pussy","cunt","slut","whore"];
+  const t=" "+String(text||"").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[@4]/g,"a").replace(/[3]/g,"e").replace(/[1!]/g,"i").replace(/[0]/g,"o").replace(/[5$]/g,"s").replace(/[^a-z0-9]+/g," ")+" ";
+  return bad.some(x=>t.includes(" "+x+" "))
+}
+async function insert(table,row){return client.from(table).insert(row).select().single()}
+// ---- Feeds -------------------------------------------------------------
+// One request returns posts + their likes + comments (PostgREST embedded relations).
+const POST_SELECT="*,profiles:user_id(username,avatar_url),post_reactions(post_id,user_id,reaction),comments(*,profiles:user_id(username,avatar_url))";
+function normPost(p){
+  p._likes=p.post_reactions||[];
+  p._comments=(p.comments||[]).filter(c=>!c.is_hidden).sort((x,y)=>new Date(x.created_at)-new Date(y.created_at));
+  p._liked=p._likes.some(x=>x.user_id===uid());
+  cache.posts.set(p.id,p);return p
+}
+async function loadFeed(kind){
+  if(!client)return;
+  const cfg={
+   wall:{box:$("wallFeed"),search:$("wallSearch"),sort:$("wallSort")},
+   realization:{box:$("realFeed"),search:$("realSearch"),sort:$("realSort")},
+   update:{box:$("updateFeed"),search:$("updateSearch"),sort:$("updateSort")}
+  }[kind]||{box:$("wallFeed"),search:$("wallSearch"),sort:$("wallSort")};
+  const box=cfg.box,search=cfg.search.value.toLowerCase().trim(),sort=cfg.sort.value;
+  if(!box.children.length||box.querySelector(".loader"))box.innerHTML='<div class="loader">Loading...</div>';
+  let postsReq=client.from("posts").select(POST_SELECT).eq("is_hidden",false).order("created_at",{ascending:sort==="oldest"}).limit(60);
+  if(kind==="realization")postsReq=postsReq.eq("kind","realization");
+  else if(kind==="update")postsReq=postsReq.eq("kind","wall");
+  else postsReq=postsReq.eq("kind","wall");
+  const blocksReq=uid()?client.from("blocks").select("blocked_id").eq("blocker_id",uid()):Promise.resolve({data:[]});
+  const [{data,error},b]=await Promise.all([postsReq,blocksReq]);
+  if(error){box.innerHTML=`<div class="card" style="padding:15px;color:#8b4053">${esc(error.message)}</div>`;return}
+  const blocked=new Set((b.data||[]).map(x=>x.blocked_id));
+  let rows=(data||[]).filter(p=>!blocked.has(p.user_id)).map(normPost);
+  rows=rows.filter(p=>!search||String(p.content).toLowerCase().includes(search)||String(p.profiles?.username||p.display_name||"").toLowerCase().includes(search));
+  if(sort==="liked")rows.sort((a,b)=>b._likes.length-a._likes.length);
+  if(sort==="commented")rows.sort((a,b)=>b._comments.length-a._comments.length);
+  box.innerHTML=rows.length?rows.map(postCard).join(""):'<div class="empty">No posts found.</div>';
+  paintIcons(box);bindPostEvents(box)
+}
+function authorName(p){return p.is_anonymous?"Anonymous":p.profiles?.username||p.username||p.display_name||"User"}
+function avatarHTML(name,url,cls="avatar"){return `<div class="${cls}">${url?`<img src="${attr(url)}" alt="">`:esc(initials(name))}</div>`}
+function youtubeId(url){
+  try{const u=new URL(url);if(u.hostname.includes("youtu.be"))return u.pathname.slice(1).split("/")[0];if(u.hostname.includes("youtube.com")){if(u.pathname==="/watch")return u.searchParams.get("v");if(u.pathname.startsWith("/shorts/"))return u.pathname.split("/")[2];if(u.pathname.startsWith("/embed/"))return u.pathname.split("/")[2]}}catch{}return null;
+}
+function musicHTML(p){
+  if(!p.music_url)return "";
+  if(p.music_source==="youtube"){
+    const id=youtubeId(p.music_url);if(!id)return "";
+    const st=Math.max(0,Number(p.music_start)||0),en=Math.max(0,Number(p.music_end)||0);
+    const q=new URLSearchParams({start:String(st),autoplay:"1",mute:"1",playsinline:"1"});if(en>st)q.set("end",String(en));
+    return `<div class="ytmusic"><iframe src="https://www.youtube.com/embed/${encodeURIComponent(id)}?${q.toString()}" title="Music clip" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe><div class="music-name">♫ ${esc(p.music_name||"YouTube music clip")} · ${st}s${en>st?"–"+en+"s":""}</div></div>`;
+  }
+  return `<audio class="postaudio" controls preload="metadata" data-auto-music><source src="${attr(p.music_url)}"></audio><div class="music-name">♫ ${esc(p.music_name||"Attached music")}</div>`;
+}
+function postCard(p){
+  const own=p.user_id===uid(), name=authorName(p), liked=p._liked, comments=p._comments||[],likes=p._likes||[];
+  const profileLink=p.is_anonymous?`<strong>${esc(name)}</strong>`:`<strong class="link profile-open" data-user="${attr(p.user_id)}">${esc(name)}</strong>`;
+  return `<article class="card post ${p.kind==="update"?"update-card":""}" data-post="${attr(p.id)}">
+  <div class="posthead">${avatarHTML(name,p.is_anonymous?null:p.avatar_url)}<div class="postmeta">${profileLink}<span class="time">${esc(ago(p.created_at))} · ${esc(fmt(p.created_at))}</span></div>
+  <div class="postmenu"><button class="more" data-act="menu" title="More"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button><div class="menu">
+   <button data-act="share"><span class="svgicon" data-icon="arrow"></span> Share / copy link</button><button data-act="save"><span class="svgicon" data-icon="bookmark"></span> Save post</button>${own?'<button data-act="delete" class="danger">Delete post</button>':''}<button data-act="report">Report</button>${own?'':'<button data-act="block-author">Block author</button>'}
+  </div></div></div>
+  <div class="postbody">${esc(p.content)}${p.image_url?`<img class="postimg" src="${attr(p.image_url)}" alt="Post image" loading="lazy">`:""}${musicHTML(p)}</div>
+  <div class="actions"><button data-act="like" class="${liked?'active':''}"><span class="svgicon" data-icon="like"></span> ${liked?'Liked':'Like'} ${likes.length||""}</button><button data-act="comment"><span class="svgicon" data-icon="comment"></span> Comment ${comments.length||""}</button><button data-act="save"><span class="svgicon" data-icon="bookmark"></span> Save</button></div>
+  <div class="comments">${comments.filter(c=>!c.parent_id).slice(-20).map(c=>commentHTML(c,comments)).join("")}<form class="commentform" data-post="${attr(p.id)}"><input maxlength="1000" placeholder="Write a comment..."><button class="btn secondary">Send</button></form></div>
+ </article>`
+}
+function commentHTML(c, allComments=[]){
+  const name=c.profiles?.username||c.username||c.display_name||"User";
+  const replies=(allComments||[]).filter(x=>String(x.parent_id||"")===String(c.id));
+  const own=c.user_id===uid();
+  return `<div class="comment ${c.parent_id?'reply':''}" data-comment="${attr(c.id)}">
+    <div class="avatar">${esc(initials(name))}</div>
+    <div style="min-width:0;flex:1">
+      <div class="bubble"><strong>${esc(name)}</strong><p>${esc(c.content)}</p></div>
+      <div class="commenttools">
+        <span>${esc(ago(c.created_at))}</span>
+        <button type="button" class="reply-btn" data-reply="${attr(c.id)}">Reply</button>
+        <button type="button" class="link report-comment" data-comment="${attr(c.id)}">Report</button>
+        ${own?`<button type="button" class="link delete-comment" data-comment="${attr(c.id)}">Delete</button>`:""}
+      </div>
+      ${replies.map(r=>commentHTML(r,allComments)).join("")}
+      <div class="replybox" data-replybox="${attr(c.id)}" hidden>
+        <input maxlength="1000" placeholder="Reply to ${attr(name)}...">
+        <button type="button" class="btn secondary reply-send">Send</button>
+      </div>
+    </div>
+  </div>`
+}
+function refreshCurrentView(){
+  if($("singlePost").classList.contains("active")){const el=$("singlePostBox").querySelector(".post");if(el)openSinglePost(el.dataset.post,true);return}
+  if($("profile").classList.contains("active")){loadMyProfile();return}
+  loadFeed(currentFeed())
+}
+function bindPostEvents(box){
+  box.querySelectorAll(".profile-open").forEach(x=>x.onclick=e=>{e.stopPropagation();openPublicProfile(x.dataset.user)});
+  box.querySelectorAll("[data-act=menu]").forEach(x=>x.onclick=e=>{e.stopPropagation();let m=x.closest(".postmenu");document.querySelectorAll(".postmenu.open").forEach(z=>z!==m&&z.classList.remove("open"));m.classList.toggle("open")});
+  box.querySelectorAll("[data-act=like]").forEach(x=>x.onclick=async e=>{e.stopPropagation();await toggleLike(x.closest(".post").dataset.post)});
+  box.querySelectorAll("[data-act=comment]").forEach(x=>x.onclick=()=>openSinglePost(x.closest(".post").dataset.post));
+  box.querySelectorAll("[data-act=save]").forEach(x=>x.onclick=async e=>{e.stopPropagation();x.closest(".postmenu")?.classList.remove("open");await toggleSave(x.closest(".post").dataset.post)});
+  box.querySelectorAll("[data-act=share]").forEach(x=>x.onclick=async e=>{e.stopPropagation();await sharePost(x.closest(".post").dataset.post)});
+  box.querySelectorAll("[data-act=delete]").forEach(x=>x.onclick=async e=>{e.stopPropagation();await deletePost(x.closest(".post").dataset.post)});
+  box.querySelectorAll("[data-act=report]").forEach(x=>x.onclick=async e=>{e.stopPropagation();await report("post",x.closest(".post").dataset.post)});
+  box.querySelectorAll("[data-act=block-author]").forEach(x=>x.onclick=async e=>{e.stopPropagation();let p=cache.posts.get(x.closest(".post").dataset.post);if(p)await blockUser(p.user_id)});
+  box.querySelectorAll(".commentform").forEach(f=>f.onsubmit=async e=>{
+    e.preventDefault();if(!requireLogin()||!(await ensureProfile()))return;
+    let input=f.querySelector("input"),v=input.value.trim();if(!v)return;
+    if(moderation(v)){toast("That comment contains words that are not allowed.","error");return}
+    const r=await insert("comments",{post_id:f.dataset.post,user_id:uid(),display_name:me.username,content:v,parent_id:null});
+    if(r.error)toast(r.error.message,"error");else{input.value="";await reloadPost(f.dataset.post)}
+  });
+  box.querySelectorAll("[data-reply]").forEach(btn=>btn.onclick=e=>{
+    e.stopPropagation();
+    const b=btn.closest(".comment")?.querySelector(`[data-replybox="${CSS.escape(String(btn.dataset.reply))}"]`);
+    if(b){b.hidden=!b.hidden;if(!b.hidden)b.querySelector("input")?.focus()}
+  });
+  box.querySelectorAll(".replybox").forEach(b=>{
+    b.querySelector(".reply-send")?.addEventListener("click",async()=>{
+      if(!requireLogin()||!(await ensureProfile()))return;
+      const input=b.querySelector("input"),v=input.value.trim();
+      if(!v)return;
+      if(moderation(v)){toast("That reply contains words that are not allowed.","error");return}
+      const commentId=b.dataset.replybox;
+      const post=b.closest(".post");
+      if(!post)return;
+      const r=await insert("comments",{post_id:post.dataset.post,user_id:uid(),display_name:me.username,content:v,parent_id:commentId});
+      if(r.error)toast(r.error.message,"error");else{input.value="";b.hidden=true;await reloadPost(post.dataset.post)}
+    });
+  });
+  box.querySelectorAll(".delete-comment").forEach(x=>x.onclick=async()=>{
+    if(!confirm("Delete this comment and its replies?"))return;
+    const r=await client.from("comments").delete().eq("id",x.dataset.comment).eq("user_id",uid());
+    if(r.error)toast(r.error.message,"error");else{
+      const post=x.closest(".post")?.dataset.post;
+      if(post)await reloadPost(post);
+    }
+  });
+  box.querySelectorAll(".report-comment").forEach(x=>x.onclick=()=>report("comment",x.dataset.comment));
+  box.querySelectorAll(".postbody").forEach(x=>x.onclick=()=>openSinglePost(x.closest(".post").dataset.post));
+}
+document.addEventListener("click",e=>{if(!e.target.closest(".postmenu"))document.querySelectorAll(".postmenu.open").forEach(z=>z.classList.remove("open"))});
+function currentFeed(){
+  if($("updates")?.classList.contains("active"))return "update";
+  if($("realizations")?.classList.contains("active"))return "realization";
+  return "wall";
+}
+function rerenderPost(id){
+  const p=cache.posts.get(id);if(!p)return;
+  document.querySelectorAll(`.post[data-post="${CSS.escape(String(id))}"]`).forEach(el=>{
+    const w=document.createElement("div");w.innerHTML=postCard(p);const n=w.firstElementChild;
+    el.replaceWith(n);bindPostEvents(n.parentElement||n)
+  })
+}
+async function reloadPost(id){
+  const r=await client.from("posts").select(POST_SELECT).eq("id",id).maybeSingle();
+  if(r.data){normPost(r.data);rerenderPost(id)}else refreshCurrentView()
+}
+async function toggleLike(id){
+  if(!requireLogin())return;
+  const p=cache.posts.get(id);const was=!!(p&&p._liked);
+  if(p){p._liked=!was;p._likes=was?p._likes.filter(x=>x.user_id!==uid()):[...p._likes,{post_id:id,user_id:uid(),reaction:"like"}];rerenderPost(id)} // instant UI
+  const r=was?await client.from("post_reactions").delete().eq("post_id",id).eq("user_id",uid()):await client.from("post_reactions").insert({post_id:id,user_id:uid(),reaction:"like"});
+  if(r.error){toast(r.error.message,"error");reloadPost(id)}
+}
+async function toggleSave(id){
+  if(!requireLogin())return;
+  const x=await client.from("bookmarks").select("post_id").eq("post_id",id).eq("user_id",uid()).maybeSingle();
+  if(x.data){await client.from("bookmarks").delete().eq("post_id",id).eq("user_id",uid());toast("Removed from saved posts.")}
+  else{const r=await client.from("bookmarks").insert({post_id:id,user_id:uid()});if(r.error)toast(r.error.message,"error");else toast("Saved.")}
+}
+async function sharePost(id){const url=location.origin+location.pathname+"#post/"+encodeURIComponent(id);try{await navigator.clipboard.writeText(url);toast("Post link copied.","success")}catch{toast(url)}}
+async function deletePost(id){
+  if(!confirm("Delete this post?"))return;
+  const r=await client.from("posts").delete().eq("id",id).eq("user_id",uid());
+  if(r.error)toast(r.error.message,"error");
+  else{toast("Post deleted.","success");if($("singlePost").classList.contains("active"))history.back();else refreshCurrentView()}
+}
+async function report(type,id){
+  if(!requireLogin())return;const reason=prompt("Why are you reporting this?");if(!reason)return;
+  const r=await client.from("reports").insert({reporter_id:uid(),target_type:type,target_id:id,reason:reason.slice(0,500)});
+  if(r.error)toast(r.error.message,"error");else toast("Report submitted. Thank you.","success")
+}
+async function blockUser(id){
+  if(!requireLogin()||id===uid())return;
+  const r=await client.from("blocks").upsert({blocker_id:uid(),blocked_id:id},{onConflict:"blocker_id,blocked_id"});
+  if(r.error)toast(r.error.message,"error");else{toast("User blocked.","success");refreshCurrentView()}
+}
+
+const uploadState={post:null,real:null,update:null,postMusic:null,realMusic:null,updateMusic:null,youtubeMusic:null};
+function setupImagePicker(inputId,previewId,nameId,stateKey){
+  const input=$(inputId),preview=$(previewId),name=$(nameId);if(!input)return;
+  input.onchange=()=>{
+    const file=input.files?.[0];uploadState[stateKey]=file||null;
+    if(!file){preview.innerHTML="";preview.classList.add("hidden");name.textContent="";return}
+    if(!file.type.startsWith("image/")){toast("Please choose an image file.","error");input.value="";uploadState[stateKey]=null;return}
+    if(file.size>8*1024*1024){toast("Image is too large. Maximum is 8 MB.","error");input.value="";uploadState[stateKey]=null;return}
+    name.textContent=file.name;
+    const url=URL.createObjectURL(file);
+    preview.innerHTML=`<img src="${url}" alt="Preview"><button type="button" class="iconbtn remove-image" title="Remove picture"><span class="svgicon" data-icon="close"></span></button>`;
+    preview.classList.remove("hidden");paintIcons(preview);
+    preview.querySelector(".remove-image").onclick=()=>{input.value="";uploadState[stateKey]=null;preview.innerHTML="";preview.classList.add("hidden");name.textContent=""};
+  };
+}
+function setupMusicPicker(inputId,previewId,stateKey){
+  const input=$(inputId),preview=$(previewId);if(!input||!preview)return;
+  input.onchange=()=>{
+    const file=input.files?.[0];uploadState[stateKey]=file||null;
+    if(!file){preview.innerHTML="";preview.classList.add("hidden");return}
+    if(!file.type.startsWith("audio/")&&!/\.(mp3|m4a|wav|ogg)$/i.test(file.name)){toast("Please choose an audio file.","error");input.value="";uploadState[stateKey]=null;return}
+    if(file.size>15*1024*1024){toast("Music file is too large. Maximum is 15 MB.","error");input.value="";uploadState[stateKey]=null;return}
+    const url=URL.createObjectURL(file);
+    preview.innerHTML=`<audio controls src="${url}"></audio><button type="button" class="iconbtn remove-music" title="Remove music"><span class="svgicon" data-icon="close"></span></button>`;
+    preview.classList.remove("hidden");paintIcons(preview);
+    preview.querySelector(".remove-music").onclick=()=>{input.value="";uploadState[stateKey]=null;preview.innerHTML="";preview.classList.add("hidden")};
+  };
+}
+async function uploadPostMusic(file){
+  if(!file)return null;
+  const ext=(file.name.split(".").pop()||"mp3").toLowerCase().replace(/[^a-z0-9]/g,"")||"mp3";
+  const path=`${uid()}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const up=await client.storage.from("post-music").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type||"audio/mpeg"});
+  if(up.error)throw up.error;
+  const pub=client.storage.from("post-music").getPublicUrl(path);
+  return pub.data.publicUrl;
+}
+async function uploadPostImage(file){
+  if(!file)return null;
+  const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+  const path=`${uid()}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const up=await client.storage.from("post-images").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+  if(up.error)throw up.error;
+  const pub=client.storage.from("post-images").getPublicUrl(path);
+  return pub.data.publicUrl;
+}
+setupImagePicker("postImage","postImagePreview","postImageName","post");
+setupImagePicker("realImage","realImagePreview","realImageName","real");
+setupImagePicker("updateImage","updateImagePreview","updateImageName","update");
+setupMusicPicker("postMusic","postMusicPreview","postMusic");
+setupMusicPicker("realMusic","realMusicPreview","realMusic");
+setupMusicPicker("updateMusic","updateMusicPreview","updateMusic");
+
+function openYouTubeSearch(){
+  const q=prompt("What music do you want to search for on YouTube?");
+  if(q&&q.trim())window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(q.trim()),"_blank","noopener,noreferrer");
+}
+function setYouTubeMusic(url){
+  const id=youtubeId(url);if(!id){toast("Please paste a valid YouTube video or Shorts link.","error");return false}
+  const start=Math.max(0,Number($("youtubeStart").value)||0),end=Math.max(0,Number($("youtubeEnd").value)||0);
+  if(end&&end<=start){toast("End time must be later than start time.","error");return false}
+  uploadState.youtubeMusic={url,id,start,end,name:"YouTube music clip"};
+  $("youtubeMusicPanel").classList.add("hidden");
+  $("postMusicPreview").innerHTML=`<div style="flex:1"><strong>♫ YouTube clip selected</strong><div class="tiny">${esc(start)}s${end?"–"+esc(end)+"s":" onward"}</div></div><button type="button" class="iconbtn" id="removeYoutubeMusic"><span class="svgicon" data-icon="close"></span></button>`;
+  $("postMusicPreview").classList.remove("hidden");paintIcons($("postMusicPreview"));
+  $("removeYoutubeMusic").onclick=()=>{uploadState.youtubeMusic=null;$("postMusicPreview").innerHTML="";$("postMusicPreview").classList.add("hidden")};
+  return true;
+}
+$("youtubeMusicBtn").onclick=()=>{$("youtubeMusicPanel").classList.toggle("hidden")};
+$("youtubeSearchBtn").onclick=openYouTubeSearch;
+$("youtubeCancel").onclick=()=>$("youtubeMusicPanel").classList.add("hidden");
+$("youtubeUse").onclick=()=>setYouTubeMusic($("youtubeMusicUrl").value.trim());
+$("postForm").onsubmit=async e=>{
+  e.preventDefault();if(!requireLogin()||!(await ensureProfile()))return;
+  const v=$("postContent").value.trim();if(!v)return;
+  if(moderation(v)){toast("This post contains words that are not allowed.","error");return}
+  const anon=$("postAnon").checked;
+  let imageUrl=null,musicUrl=null,musicSource=null,musicStart=null,musicEnd=null,musicName=null;try{imageUrl=await uploadPostImage(uploadState.post);if(uploadState.youtubeMusic){musicUrl=uploadState.youtubeMusic.url;musicSource="youtube";musicStart=uploadState.youtubeMusic.start;musicEnd=uploadState.youtubeMusic.end;musicName="YouTube music clip"}else if(uploadState.postMusic){musicUrl=await uploadPostMusic(uploadState.postMusic);musicSource="upload";musicName=uploadState.postMusic.name}}catch(err){toast("Upload failed: "+err.message,"error");return}
+  const r=await insert("posts",{user_id:uid(),kind:"wall",content:v,display_name:anon?"Anonymous":me.username,avatar_url:anon?null:me.avatar_url||null,is_anonymous:anon,image_url:imageUrl,music_url:musicUrl,music_source:musicSource,music_start:musicStart,music_end:musicEnd,music_name:musicName});
+  if(r.error)toast(r.error.message,"error");else{$("postContent").value="";$("postImage").value="";$("postMusic").value="";uploadState.post=null;uploadState.postMusic=null;uploadState.youtubeMusic=null;$("postImagePreview").innerHTML="";$("postImagePreview").classList.add("hidden");$("postMusicPreview").innerHTML="";$("postMusicPreview").classList.add("hidden");$("youtubeMusicUrl").value="";$("youtubeMusicPanel").classList.add("hidden");$("postImageName").textContent="";toast("Posted.","success");await loadFeed("wall")}
+};
+$("realForm").onsubmit=async e=>{
+  e.preventDefault();if(!requireLogin()||!(await ensureProfile()))return;
+  const v=$("realContent").value.trim();if(!v)return;
+  if(moderation(v)){toast("This post contains words that are not allowed.","error");return}
+  const anon=$("realAnon").checked;
+  let imageUrl=null,musicUrl=null;try{imageUrl=await uploadPostImage(uploadState.real);musicUrl=await uploadPostMusic(uploadState.realMusic)}catch(err){toast("Upload failed: "+err.message,"error");return}
+  const r=await insert("posts",{user_id:uid(),kind:"realization",content:v,display_name:anon?"Anonymous":me.username,avatar_url:anon?null:me.avatar_url||null,is_anonymous:anon,image_url:imageUrl,music_url:musicUrl,music_name:uploadState.realMusic?.name||null});
+  if(r.error)toast(r.error.message,"error");else{$("realContent").value="";$("realImage").value="";$("realMusic").value="";uploadState.real=null;uploadState.realMusic=null;$("realImagePreview").innerHTML="";$("realImagePreview").classList.add("hidden");$("realMusicPreview").innerHTML="";$("realMusicPreview").classList.add("hidden");$("realImageName").textContent="";toast("Realization shared.","success");await loadFeed("realization")}
+};
+
+$("updateForm").onsubmit=async e=>{
+  e.preventDefault();if(!requireLogin()||!(await ensureProfile()))return;
+  const v=$("updateContent").value.trim();if(!v)return;
+  if(moderation(v)){toast("This update contains words that are not allowed.","error");return}
+  let imageUrl=null,musicUrl=null;try{imageUrl=await uploadPostImage(uploadState.update);musicUrl=await uploadPostMusic(uploadState.updateMusic)}catch(err){toast("Upload failed: "+err.message,"error");return}
+  const r=await insert("posts",{user_id:uid(),kind:"wall",content:v,display_name:me.username,avatar_url:me.avatar_url||null,is_anonymous:false,image_url:imageUrl,music_url:musicUrl,music_name:uploadState.updateMusic?.name||null});
+  if(r.error)toast(r.error.message,"error");else{$("updateContent").value="";$("updateImage").value="";$("updateMusic").value="";uploadState.update=null;uploadState.updateMusic=null;$("updateImagePreview").innerHTML="";$("updateImagePreview").classList.add("hidden");$("updateMusicPreview").innerHTML="";$("updateMusicPreview").classList.add("hidden");$("updateImageName").textContent="";toast("Update posted.","success");await loadFeed("update")}
+};
+const debounce=(fn,ms=300)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};
+$("wallSearch").oninput=debounce(()=>loadFeed("wall"));$("wallSort").onchange=()=>loadFeed("wall");
+$("realSearch").oninput=debounce(()=>loadFeed("realization"));$("realSort").onchange=()=>loadFeed("realization");
+$("updateSearch").oninput=debounce(()=>loadFeed("update"));$("updateSort").onchange=()=>loadFeed("update");
+async function openSinglePost(id,stay){
+  const r=await client.from("posts").select(POST_SELECT).eq("id",id).maybeSingle();const p=r.data;
+  if(!p){toast("Post not found.","error");return}
+  normPost(p);
+  $("singlePostBox").innerHTML=postCard(p);paintIcons($("singlePostBox"));bindPostEvents($("singlePostBox"));
+  if(!stay){setPage("singlePost");safeHist("pushState",{page:"singlePost"},"","#post/"+encodeURIComponent(id))}
+}
+$("singleBack").onclick=()=>history.back();
+async function openPublicProfile(id){
+  const r=await client.from("profiles").select("*").eq("id",id).maybeSingle();
+  if(r.error||!r.data){toast("Profile not found.","error");return}
+  const p=r.data;const following=await isFollowing(id);
+  if(id!==uid()) { await recordProfileView(id); }
+  const [fc,gc]=await Promise.all([
+    client.from("follows").select("follower_id",{count:"exact",head:true}).eq("following_id",id),
+    client.from("follows").select("following_id",{count:"exact",head:true}).eq("follower_id",id)
+  ]);
+  $("publicProfileBox").innerHTML=`<div class="card"><div class="cover"></div><div class="profiletop">${avatarHTML(p.username,p.avatar_url,"bigavatar")}<h2>@${esc(p.username)}</h2><p class="muted">${esc(p.bio||"No bio yet.")}</p>
+  <div class="stats"><div class="stat"><strong>${fc.count||0}</strong><span>Followers</span></div><div class="stat"><strong>${gc.count||0}</strong><span>Following</span></div></div>
+  <div class="profile-actions"><button class="btn primary" id="followBtn">${following?"Following":"Follow"}</button><button class="btn secondary" id="messageUser">Message</button></div>
+  </div></div>`;
+  $("followBtn").onclick=async()=>{
+    if(!requireLogin()||id===uid())return;
+    const f=await isFollowing(id);
+    if(f)await client.from("follows").delete().eq("follower_id",uid()).eq("following_id",id);
+    else await client.from("follows").insert({follower_id:uid(),following_id:id});
+    openPublicProfile(id)
+  };
+  $("messageUser").onclick=()=>startDM(id);
+  const posts=await client.from("posts").select(POST_SELECT).eq("user_id",id).eq("is_hidden",false).eq("is_anonymous",false).order("created_at",{ascending:false}).limit(50);
+  const rows=posts.data||[];
+  await attachCounts(rows);
+  $("publicPosts").innerHTML=rows.length?rows.map(postCard).join(""):'<div class="empty">No public posts yet.</div>';
+  bindPostEvents($("publicPosts"));setPage("publicProfile");safeHist("pushState",{page:"publicProfile"},"","#user/"+encodeURIComponent(id))
+}
+async function attachCounts(rows){rows.forEach(normPost)}
+$("publicBack").onclick=()=>history.back();
+async function isFollowing(id){if(!uid())return false;const r=await client.from("follows").select("follower_id").eq("follower_id",uid()).eq("following_id",id).maybeSingle();return !!r.data}
+async function loadMyProfile(){
+  if(!requireLogin()||!(await ensureProfile()))return;applyProfileUI();
+  const [p,f,g]=await Promise.all([
+    client.from("posts").select(POST_SELECT).eq("user_id",uid()).order("created_at",{ascending:false}).limit(60),
+    client.from("follows").select("follower_id",{count:"exact",head:true}).eq("following_id",uid()),
+    client.from("follows").select("following_id",{count:"exact",head:true}).eq("follower_id",uid())
+  ]);
+  const rows=(p.data||[]).map(normPost);
+  $("statPosts").textContent=rows.length;
+  $("statFollowers").textContent=f.count||0;$("statFollowing").textContent=g.count||0;
+  $("profileFeed").innerHTML=rows.length?rows.map(postCard).join(""):'<div class="empty">No posts yet.</div>';bindPostEvents($("profileFeed"));
+  await renderFollowingList();
+}
+async function renderFollowingList(){
+  const card=$("profileAvatar")?.closest(".profilecard"); if(!card)return;
+  let panel=card.querySelector("#followingPanel");
+  if(!panel){panel=document.createElement("div");panel.id="followingPanel";panel.className="following-panel";card.appendChild(panel)}
+  const r=await client.from("follows").select("following_id,profiles:following_id(id,username,avatar_url,bio)").eq("follower_id",uid()).order("created_at",{ascending:false}).limit(50);
+  if(r.error){panel.innerHTML=`<h4>Following</h4><div class="tiny">${esc(r.error.message)}</div>`;return}
+  const rows=r.data||[];
+  panel.innerHTML=`<h4>Following <span class="tiny">(${rows.length})</span></h4>`+(rows.length?rows.map(x=>{
+    const p=x.profiles||{};const n=p.username||"User";
+    return `<div class="person-row" data-user="${attr(x.following_id)}">${avatarHTML(n,p.avatar_url,"avatar")}<div class="person-info"><strong>@${esc(n)}</strong><span>${esc(p.bio||"Litanya user")}</span></div></div>`
+  }).join(""):'<div class="tiny">You are not following anyone yet.</div>');
+  panel.querySelectorAll(".person-row").forEach(x=>x.onclick=()=>openPublicProfile(x.dataset.user));
+}
+// ---- Messenger ---------------------------------------------------------
+function chatName(c){
+  if(c.name)return c.name;
+  const o=cache.chats.get(c.id);
+  return o?.username||o?.display_name||"Private chat";
+}
+async function ensurePublicChat(){
+  if(!requireLogin()) return null;
+  // There must be ONE shared Public Chat room for the whole community.
+  let r=await client.from("conversations").select("id,type,name,created_at").eq("type","group").eq("name","Public Chat").order("created_at",{ascending:true}).limit(1).maybeSingle();
+  if(r.error){toast("Could not load Public Chat: "+r.error.message,"error",6000);return null}
+  let room=r.data;
+  if(!room){
+    const c=await client.from("conversations").insert({type:"group",name:"Public Chat",created_by:uid()}).select().single();
+    if(c.error){
+      // A different user may have created it at the same moment. Fetch it again.
+      if(/duplicate|unique/i.test(c.error.message||"")){
+        const again=await client.from("conversations").select("id,type,name,created_at").eq("type","group").eq("name","Public Chat").order("created_at",{ascending:true}).limit(1).maybeSingle();
+        if(again.error||!again.data){toast("Could not find Public Chat.","error",6000);return null}
+        room=again.data;
+      }else{
+        toast("Could not create Public Chat: "+c.error.message,"error",6000);return null;
+      }
+    }else room=c.data;
+  }
+  // Every logged-in user joins this exact same room.
+  const m=await client.from("conversation_members").upsert(
+    {conversation_id:room.id,user_id:uid()},
+    {onConflict:"conversation_id,user_id",ignoreDuplicates:true}
+  );
+  if(m.error){
+    toast("Could not join Public Chat: "+m.error.message,"error",6000);return null;
+  }
+  return room;
+}
+async function loadChats(){
+  if(!requireLogin())return;
+  // Always make sure the community room exists and this user can see it.
+  await ensurePublicChat();
+  const r=await client.from("conversation_members").select("conversation_id,conversations(id,type,name,created_at)").eq("user_id",uid()).order("joined_at",{ascending:false});
+  if(r.error){toast(r.error.message,"error");return}
+  const rows=(r.data||[]).map(x=>x.conversations).filter(Boolean);
+  const dmIds=rows.filter(c=>isDirectConversation(c)).map(c=>c.id);
+  if(dmIds.length){
+    const o=await client.from("conversation_members").select("conversation_id,profiles:user_id(username,avatar_url)").in("conversation_id",dmIds).neq("user_id",uid());
+    (o.data||[]).forEach(x=>cache.chats.set(x.conversation_id,x.profiles));
+  }
+  rows.sort((a,b)=>a.name==="Public Chat"?-1:b.name==="Public Chat"?1:0);
+  $("chatItems").innerHTML=rows.length?rows.map(c=>`<div class="chatitem ${activeChat===c.id?'active':''}" data-chat="${attr(c.id)}">${avatarHTML(chatName(c),cache.chats.get(c.id)?.avatar_url)}<div class="chattext"><strong>${esc(chatName(c))}</strong><span>${esc(c.name==="Public Chat"?"Everyone · Public community chat":isGroupConversation(c)?"Group conversation":"Private conversation")}</span></div></div>`).join(""):'<div class="empty">No chats yet.</div>';
+  $("chatItems").querySelectorAll(".chatitem").forEach(x=>x.onclick=()=>openChat(x.dataset.chat));
+  $("messengerBox").classList.toggle("chatopen",!!activeChat);
+  $("chatBack").style.display=window.innerWidth<=850&&activeChat?"inline-block":"none";
+}
+window.openPeople=()=>{$("peopleSearch").focus()};
+function isGroupConversation(c){return String(c?.type||"").toLowerCase()==="group"}
+function isDirectConversation(c){return !!c && !isGroupConversation(c)}
+async function createDirectConversation(other){
+  const types=["dm","private","direct","one_to_one"];
+  let lastError=null;
+  for(const type of types){
+    const c=await insert("conversations",{type,name:null,created_by:uid()});
+    if(!c.error)return c;
+    lastError=c.error;
+    // Existing databases may use a different allowed value for one-to-one chats.
+    if(!/check constraint|violates.*type/i.test(c.error.message||""))break;
+  }
+  return {error:lastError||new Error("Could not create private conversation.")};
+}
+async function startDM(other){
+  if(!requireLogin()||other===uid())return;
+  const existing=await client.from("conversation_members").select("conversation_id,conversations(id,type,name)").eq("user_id",uid());
+  if(existing.error){toast(existing.error.message,"error");return}
+  for(const x of (existing.data||[])){
+    if(!isDirectConversation(x.conversations))continue;
+    const members=await client.from("conversation_members").select("user_id").eq("conversation_id",x.conversation_id);
+    if((members.data||[]).some(m=>String(m.user_id)===String(other))){go("messenger");await openChat(x.conversation_id);return}
+  }
+  const c=await createDirectConversation(other);
+  if(c.error){toast("Could not start conversation: "+c.error.message,"error",7000);return}
+  const members=[{conversation_id:c.data.id,user_id:uid()},{conversation_id:c.data.id,user_id:other}];
+  const m=await client.from("conversation_members").insert(members);
+  if(m.error){toast("Could not add the members: "+m.error.message,"error",7000);return}
+  go("messenger");await openChat(c.data.id)
+}
+$("publicChatBtn").onclick=async()=>{
+  const room=await ensurePublicChat();
+  if(room){activeChat=null;go("messenger");await openChat(room.id)}
+};
+$("newGroupBtn").onclick=async()=>{
+  if(!requireLogin())return;
+  const title=(prompt("Group name")||"").trim();
+  if(!title)return;
+  const raw=(prompt("Enter the usernames of the people to add, separated by commas")||"").trim();
+  if(!raw){toast("Add at least one username to the group.","error");return}
+  const names=[...new Set(raw.split(",").map(x=>x.trim().toLowerCase()).filter(Boolean))];
+  const users=await client.from("profiles").select("id,username").in("username",names);
+  if(users.error){toast("Could not search users: "+users.error.message,"error",6000);return}
+  const found=users.data||[];
+  const foundNames=new Set(found.map(x=>String(x.username).toLowerCase()));
+  const missing=names.filter(n=>!foundNames.has(n));
+  const ids=found.map(x=>x.id).filter(x=>x!==uid());
+  if(missing.length){toast("Username not found: "+missing.join(", "),"error",6000);return}
+  if(!ids.length){toast("You need to add at least one other person.","error");return}
+  const c=await insert("conversations",{type:"group",name:title.slice(0,80),created_by:uid()});
+  if(c.error){toast("Could not create group: "+c.error.message,"error",6000);return}
+  const memberIds=[uid(),...ids.filter(x=>x!==uid())];
+  const members=[...new Set(memberIds)].map(user_id=>({conversation_id:c.data.id,user_id}));
+  const a=await client.from("conversation_members").insert(members);
+  if(a.error){toast("Group was created, but members could not be added: "+a.error.message,"error",7000);return}
+  toast("Group created successfully.","success",3500);
+  await openChat(c.data.id)
+};
+async function openChat(id){
+  activeChat=id;
+  await loadChats();
+  const c=await client.from("conversations").select("*").eq("id",id).single();
+  if(c.error){toast(c.error.message,"error");return}
+  const publicRoom=c.data.type==="group" && c.data.name==="Public Chat";
+  $("chatTitle").textContent=chatName(c.data);
+  $("chatSubtitle").textContent=publicRoom?"Everyone · Public community chat":c.data.type==="group"?"Group conversation":"Private conversation";
+  $("chatAvatar").textContent=initials(chatName(c.data));
+  $("messageInput").disabled=false;
+  $("sendBtn").disabled=false;
+  const r=await client.from("messages")
+    .select("*,profiles:sender_id(username,avatar_url)")
+    .eq("conversation_id",id)
+    .is("deleted_at",null)
+    .order("created_at",{ascending:true})
+    .limit(500);
+  if(r.error){toast(r.error.message,"error");return}
+  renderMessages(r.data||[]);
+  if(chatChannel){await client.removeChannel(chatChannel);chatChannel=null}
+  // One realtime stream for the entire shared room.
+  chatChannel=client.channel("litanya-chat-"+id)
+    .on("postgres_changes",{
+      event:"INSERT",schema:"public",table:"messages",
+      filter:"conversation_id=eq."+id
+    },async payload=>{
+      const senderId=String(payload.new.sender_id);
+      const p=await client.from("profiles")
+        .select("username,avatar_url")
+        .eq("id",senderId)
+        .maybeSingle();
+      appendMessage({...payload.new,profiles:p.data||null});
+    })
+    .subscribe(status=>{
+      if(status==="SUBSCRIBED")log("Realtime chat connected:",id);
+    });
+}
+function renderMessages(rows){$("chatMessages").innerHTML=rows.length?rows.map(messageHTML).join(""):'<div class="empty">No messages yet. Say hello.</div>';$("chatMessages").scrollTop=$("chatMessages").scrollHeight}
+function appendMessage(m){
+  const box=$("chatMessages");if(box.querySelector(`[data-msg="${CSS.escape(String(m.id))}"]`))return;
+  const emp=box.querySelector(".empty");if(emp)emp.remove();
+  box.insertAdjacentHTML("beforeend",messageHTML(m));box.scrollTop=box.scrollHeight
+}
+function messageHTML(m){const mine=m.sender_id===uid();const name=m.profiles?.username||m.profiles?.display_name||"User";return `<div class="msgrow ${mine?'mine':''}" data-msg="${attr(m.id)}">${!mine?avatarHTML(name,m.profiles?.avatar_url):""}<div class="msg">${esc(m.content)}<time>${esc(ago(m.created_at))}</time></div></div>`}
+$("messageForm").onsubmit=async e=>{
+  e.preventDefault();
+  if(!activeChat||!requireLogin())return;
+  const v=$("messageInput").value.trim();
+  if(!v)return;
+  if(moderation(v)){toast("That message contains words that are not allowed.","error");return}
+  const r=await client.from("messages")
+    .insert({conversation_id:activeChat,sender_id:uid(),content:v})
+    .select("*,profiles:sender_id(username,avatar_url)")
+    .single();
+  if(r.error){
+    toast(r.error.message,"error");
+  }else{
+    $("messageInput").value="";
+    // Do not append manually. Realtime delivers this same message to every
+    // connected member, including the sender, and appendMessage de-duplicates.
+  }
+};
+$("chatBack").onclick=()=>{$("messengerBox").classList.remove("chatopen");activeChat=null;loadChats()};
+$("chatInfo").onclick=()=>{if(activeChat)toast("Chat settings can be managed through the group/member controls in the next update.")};
+let peopleTimer=null;
+$("peopleSearch").oninput=e=>{
+  clearTimeout(peopleTimer);
+  peopleTimer=setTimeout(async()=>{
+    if(!requireLogin())return;
+    const q=e.target.value.trim().toLowerCase().replace(/[%,()]/g,"");
+    if(!q){loadChats();return}
+    const r=await client.from("profiles").select("id,username,display_name,avatar_url").or(`username.ilike.%${q}%,display_name.ilike.%${q}%`).neq("id",uid()).limit(12);
+    $("chatItems").innerHTML=(r.data||[]).map(p=>`<div class="chatitem person" data-person="${attr(p.id)}">${avatarHTML(p.display_name||p.username,p.avatar_url)}<div class="chattext"><strong>${esc(p.display_name||p.username)}</strong><span>@${esc(p.username)}</span></div></div>`).join("")||'<div class="empty">No people found.</div>';
+    $("chatItems").querySelectorAll(".person").forEach(x=>x.onclick=()=>{$("peopleSearch").value="";startDM(x.dataset.person)})
+  },250)
+};
+$("refreshChats").onclick=loadChats;
+// ---- Notifications & realtime -----------------------------------------
+async function loadNotifications(){
+  if(!uid()||!client)return;
+  let r=await client.from("notifications").select("*").eq("user_id",uid()).order("created_at",{ascending:false}).limit(100);
+  if(r.error){toast(r.error.message||"Could not load notifications.","error");return}
+  const rows=r.data||[];
+  const unread=rows.filter(x=>!x.is_read).length;
+  $("notifBadge").textContent=unread;
+  $("notifBadge").classList.toggle("hidden",!unread);
+  $("notificationList").innerHTML=rows.length?rows.map(n=>`<div class="notice ${n.is_read?'':'unread'}" data-notif="${attr(n.id)}">
+    <div class="avatar">${n.type==="message"?"✉":n.type==="comment"||n.type==="comment_reply"?"💬":"•"}</div>
+    <div class="noticebody"><strong>${esc(n.title||"Notification")}</strong><p>${esc(n.body||"")}</p><span class="tiny">${esc(ago(n.created_at))}</span></div>
+  </div>`).join(""):'<div class="empty">No notifications.</div>';
+  $("notificationList").querySelectorAll(".notice").forEach(x=>x.onclick=()=>openNotification(rows.find(n=>String(n.id)===String(x.dataset.notif))));
+}
+async function openNotification(n){
+  if(!n)return;
+  const u=await client.from("notifications").update({is_read:true}).eq("id",n.id);
+  if(u.error)toast(u.error.message,"error");
+  await loadNotifications();
+  if(n.post_id){
+    await openSinglePost(n.post_id);
+    setTimeout(()=>{
+      const root=$("singlePostBox");
+      const target=n.comment_id?root.querySelector(`[data-comment="${CSS.escape(String(n.comment_id))}"]`):root.querySelector(`.post[data-post="${CSS.escape(String(n.post_id))}"]`);
+      if(target){
+        target.scrollIntoView({behavior:"smooth",block:"center"});
+        target.classList.add("notification-target");
+        setTimeout(()=>target.classList.remove("notification-target"),3000);
+      }
+    },250);
+  }else if(n.type==="message"){
+    go("messenger");
+  }
+}
+function startRealtime(){
+  liveChannels.forEach(x=>client.removeChannel(x));liveChannels=[];
+  const postChannel=client.channel("litanya-posts").on("postgres_changes",{event:"INSERT",schema:"public",table:"posts"},()=>{if($("wall").classList.contains("active"))loadFeed("wall");if($("realizations").classList.contains("active"))loadFeed("realization")}).subscribe();
+  const commentChannel=client.channel("litanya-comments").on("postgres_changes",{event:"INSERT",schema:"public",table:"comments"},payload=>{
+    const c=payload.new;
+    loadNotifications();
+    if(c.user_id!==uid())toast("New comment or reply.","success");
+    if($("wall").classList.contains("active")||$("realizations").classList.contains("active"))reloadPost(c.post_id);
+    if($("singlePost").classList.contains("active"))reloadPost(c.post_id);
+  }).subscribe();
+  const profileViewsChannel=client.channel("litanya-profile-views").on("postgres_changes",{event:"INSERT",schema:"public",table:"profile_views",filter:"profile_id=eq."+uid()},payload=>{
+    loadProfileViewBadge();
+    if($("profileViews").classList.contains("active"))loadProfileViews();
+    toast("Someone viewed your profile.","success");
+  }).subscribe();
+  const notif=client.channel("litanya-notifs").on("postgres_changes",{event:"INSERT",schema:"public",table:"notifications",filter:"user_id=eq."+uid()},payload=>{
+    loadNotifications();
+    const n=payload.new;
+    toast(n.title||"New notification.","success");
+  }).subscribe();
+  liveChannels=[postChannel,commentChannel,profileViewsChannel,notif];
+}
+const musicObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{const a=entry.target;if(entry.isIntersecting&&entry.intersectionRatio>=0.65){document.querySelectorAll("audio[data-auto-music]").forEach(x=>{if(x!==a&&!x.paused)x.pause()});a.play().catch(()=>{});}})},{threshold:[0.65]});
+function observePostMusic(root=document){root.querySelectorAll("audio[data-auto-music]").forEach(a=>musicObserver.observe(a))}
+const oldBindPostEvents=bindPostEvents;
+bindPostEvents=function(box){oldBindPostEvents(box);observePostMusic(box)};
+window.addEventListener("popstate",()=>{
+  const h=location.hash.slice(1);
+  if(h.startsWith("post/"))openSinglePost(decodeURIComponent(h.slice(5)),true).then(()=>setPage("singlePost"));
+  else if(h.startsWith("user/"))openPublicProfile(decodeURIComponent(h.slice(5)));
+  else go(h||"home")
+});
+$("globalSearchBtn").onclick=()=>{
+  if(!requireLogin())return;
+  const q=prompt("Search usernames");
+  if(q){go("messenger");$("peopleSearch").value=q;$("peopleSearch").dispatchEvent(new Event("input"))}
+};
+$("modalRoot").addEventListener("click",e=>{if(e.target.classList.contains("modalback"))$("modalRoot").innerHTML=""});
+window.addEventListener("beforeunload",()=>{if(client)stopRealtime()});
+// ---- Boot --------------------------------------------------------------
+(async()=>{
+  openSignupScreen();
+  if(await initSupabase()){
+    await refreshSession();
+    if(!session){
+      const h=location.hash.slice(1);
+      if(h==="authPage")setPage("authPage");
+    }
+  }
+})();
+})();
+</script>
+</body>
+</html>
